@@ -1,0 +1,104 @@
+------------- DOCUMENT DE CONCEPTION -------------
+
+******************** ETAPE 1 ********************
+
+1. Définir les objectifs ( Peuvent changer)
+2. Définir les grandes lignes
+3. Définir les stratégies technologiques ( Qt, open cv, c++ ...)
+4. Comprendre le devis et précisé son intention
+(modélisation, structures de données, base de données, orientée objet, ergonomie, gestion de projet, …)
+
+* CRC/UML/Schéma relationnel
+* 2 Patrons de conception (expliquer aussi leur utilité/usage)
+	- Évaluation basée sur pertinence, justification et qualité d'implémentation
+
+
+******************** RAPPORT ********************
+
+Page titre 																							1.0 % 
+Présentation générale du projet (présentation du devis général en quelques lignes)					1.0 % 
+Présentation précise du projet (présentation en détail du projet) 									6.0 % 
+Présentation des patrons de conception envisagés 													2.0 % 
+Aspects techniques de la conception : 
+	a. cas d’utilisation; 																			2.0 %  
+	b. diagramme(s) de conception technique : 
+		• diagramme CRC étendu1 (Classes-Responsabilités-Collaboration) 
+		• diagramme de classe UML (Unified Modeling Langage, voir l’annexe sur le sujet) 
+		• diagramme de base de données (c’est l’enseignant qui décide selon la nature du projet) 
+		• tout autre diagramme pertinent 															10.0 % 
+	c. conception des interfaces usagers (voir l’annexe sur le sujet). 3.0 % 
+																									25.0 %
+																									
+Concernant le document à remettre, voici les contraintes à respecter : 
+• Le document doit être de format PDF 
+• Concernant la production des schémas : 
+	o pour les cas d’usage et le diagramme CRC, UML ou schéma relationnel, 
+		vous pouvez utiliser un logiciel de dessin vectoriel tel que : DIA (logiciel libre), 
+		Visio (disponible sur les ordinateurs du département) ou tout autre; 
+	o pour les interfaces usagers, vous pouvez utiliser un logiciel comme Visio, 
+		Balsamiq Mockups ou un autre outil du même calibre (voir l’annexe);  
+	o tous les schémas doivent être inclus lisiblement dans le document principal 
+		et ne doivent pas être remis séparément. 
+	o Il est possible de faire tous les diagrammes et schémas à main levée. 
+		Toutefois, tous vos schémas doivent être réalisés avec soins, 
+		numérisés et inclus dans votre document. 
+		
+**Au diagramme CRC présenté dans les cours précédents, ajouter 
+	une description précise des types de données pour chaque 
+	attribut (variables) et la signature complète des 
+	méthodes (fonctions) en plus d’inclure une légende claire		
+		
+• Le document doit être nommé : B65_S1_Conception_[NomPrenom].pdf.  
+
+******************** DOCUMENT DE PLANIFICATION GÉNÉRALE ********************
+
+- Doc fait planif détaillée des sprints
+- Découpage modulaire ( chaque module apporte une fonctionnalité particulière)
+
+Une description technique de haut niveau de la tâche 							1.25 % 
+	vous pouvez faire référence à certains éléments de votre 
+	document de conception et vous devez ajouter les précisions 
+	techniques nécessaires 
+	(avec Excel, utilisez l'outil Nouveau commentaire disponible dans l'onglet Révision) 
+Une liste des tâches préalables à la tâche courante (tâches prédécesseurs);  	0.25 % 
+Une cote de priorité 0.25 % 
+	1 à 3 où 1 étant le plus prioritaire – cette cote doit vous 
+	permettre d’établir quels éléments seront évincés si vous m
+	anquez de temps 
+Une cote associée à la difficulté technique de réalisation  					0.25 % 
+	1 à 3 où 1 représente une plus grande difficulté pour vous  
+Une estimation du temps requis 													0.50 % 
+																				2.50 %
+Contrainte : 
+
+• Un fichier Excel a été monté afin de simplifier la gestion de cette planification. 
+	L’usage de ce fichier est obligatoire pour tous.  
+• Il est attendu que vous définissiez entre 25 et 35 tâches pour le projet. 
+	D’ailleurs, le fichier Excel mis à votre disposition ne peut prendre plus de 35 tâches. 
+• Le même fichier Excel possède plusieurs feuilles interreliées. 
+	Pour le Sprint 1, vous devez remplir adéquatement les feuilles intitulées : 
+	o Sprint 1 – Planification : 
+		Cette feuille correspond à la structure de votre planification pour la session.  
+	o Sprint 1 – Bilan : 
+		Tout au long de la session, vous utiliserez le même fichier Excel 
+		et chaque feuille subséquente vous permettra de faire une saisie rapide 
+		de l’avancement de votre travail selon votre planification. 
+		Par conséquent, vous devez remplir la feuille Sprint 1 – Bilan afin de 
+		faire le suivi des activités réalisées lors du premier sprint. 
+		Voir les livrables 3 et 4 pour plus de détail. 
+
+• Votre document doit être nommé : B65_S1_Planification_[NomPrenom].xlsx. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
