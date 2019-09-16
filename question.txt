@@ -1,0 +1,12 @@
+- Nécéssité d'un background uniforme en couleur? (meme avec des spheres vertes fluorescent et reste du gant rose fluorescent)
+
+- Si background uniforme "blanc" et sphere verte sur  les bouts de doigts, nécéssité du gant ?
+
+- Pour reconnaitre les formes/placements des doigts, calculer la distance et angle entre les spheres? (bonnes pistes?)
+	permet possible ajustement de ratio selon grande main ou petite main
+
+- Design pattern null object et iterator viable comme patron de conception envisagé? (présent sur le site internet)
+ 
+ (langage = LSF (langue des signes francaise) // tres important
+- Lettre envisagé : A, B, D, E, F, G, L, M, O(?), X(?), Y,
+		https://www.google.ca/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjhpq7EntTkAhUDTt8KHVx2AsgQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F404268504024041097%2F&psig=AOvVaw0DmfSEzUF-keTK72WWmwO-&ust=1568684890964979

@@ -15,18 +15,18 @@
 
 ******************** RAPPORT ********************
 
-Page titre 																							1.0 % 
-Présentation générale du projet (présentation du devis général en quelques lignes)					1.0 % 
-Présentation précise du projet (présentation en détail du projet) 									6.0 % 
-Présentation des patrons de conception envisagés 													2.0 % 
+Page titre 																							 1.0 % 
+Présentation générale du projet (présentation du devis général en quelques lignes)					 1.0 % 
+Présentation précise du projet (présentation en détail du projet) 									 6.0 % 
+Présentation des patrons de conception envisagés 													 2.0 % 
 Aspects techniques de la conception : 
-	a. cas d’utilisation; 																			2.0 %  
+	a. cas d’utilisation; 																			 2.0 %  
 	b. diagramme(s) de conception technique : 
 		• diagramme CRC étendu1 (Classes-Responsabilités-Collaboration) 
 		• diagramme de classe UML (Unified Modeling Langage, voir l’annexe sur le sujet) 
 		• diagramme de base de données (c’est l’enseignant qui décide selon la nature du projet) 
 		• tout autre diagramme pertinent 															10.0 % 
-	c. conception des interfaces usagers (voir l’annexe sur le sujet). 3.0 % 
+	c. conception des interfaces usagers (voir l’annexe sur le sujet). 								 3.0 % 
 																									25.0 %
 																									
 Concernant le document à remettre, voici les contraintes à respecter : 
