@@ -11,5 +11,13 @@
 - Lettre envisagé : A, B, D, E, F, G, L, M, O(?), X(?), Y,
 		https://www.google.ca/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjhpq7EntTkAhUDTt8KHVx2AsgQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F404268504024041097%2F&psig=AOvVaw0DmfSEzUF-keTK72WWmwO-&ust=1568684890964979
 
-- Comment commencer un diagramme de classe 		
+- Comment commencer un diagramme de classe 
+
+- Persistance des infos de placements des doigts pour comparer si placements est bien? (si pas bd, comment?)		
 		
+- Pourquoi vouloir carte eclairage avec image de référence si possibilité de la creer avec l'image source? (voir annexe ancien projet)
+
+- Filtre de convolution 2 fois ? différente étapes?
+
+- Comment interpréter le résultat final?
+
