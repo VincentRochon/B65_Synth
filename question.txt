@@ -19,5 +19,6 @@
 
 - Filtre de convolution 2 fois ? différente étapes?
 
-- Comment interpréter le résultat final?
+- Comment interpréter le résultat final (niveau des images)?
 
+- Quoi s'attendre comme résultat final (niveau des images)?
