@@ -28,3 +28,7 @@
 - Comment commencer/aborder un diagramme de classe 
 
 - Persistance des infos de placements des doigts pour comparer si placements est bien? 
+
+------------------------------------------------------------------------------------------------------------------
+
+- convolution avec distribution de gausse / uniforme 
