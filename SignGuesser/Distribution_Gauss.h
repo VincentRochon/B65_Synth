@@ -1,1 +1,6 @@
-#pragma once
+#ifndef DISTRIBUTION_GAUSS_H
+#define DISTRIBUTION_GAUSS_H
+
+
+
+#endif
