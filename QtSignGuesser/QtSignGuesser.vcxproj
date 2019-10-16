@@ -88,10 +88,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CalculForme.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Classification.cpp" />
+    <ClCompile Include="Comparaison.cpp" />
+    <ClCompile Include="Convolution.cpp" />
+    <ClCompile Include="DatabaseAccess.cpp" />
+    <ClCompile Include="Distribution_Gauss.cpp" />
+    <ClCompile Include="Distribution_Normal.cpp" />
+    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="InProcess.cpp" />
+    <ClCompile Include="InteriorFilling.cpp" />
+    <ClCompile Include="Kernel_Convolution.cpp" />
+    <ClCompile Include="Logitech_Camera.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Maximum_Filter.cpp" />
+    <ClCompile Include="Median_Filter.cpp" />
+    <ClCompile Include="Normalisation.cpp" />
     <ClCompile Include="QSimpleImageGrabber.cpp" />
     <ClCompile Include="QSimpleImageViewer.cpp" />
+    <ClCompile Include="RankFilter.cpp" />
+    <ClCompile Include="Segmentation.cpp" />
+    <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="SignGuesser.cpp" />
+    <ClCompile Include="Split.cpp" />
+    <ClCompile Include="UnaryProcess.cpp" />
+    <ClCompile Include="Virtual_Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SignGuesser.h" />
@@ -107,6 +130,31 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QSimpleImageGrabber.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CalculForme.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Classification.h" />
+    <ClInclude Include="Comparaison.h" />
+    <ClInclude Include="Convolution.h" />
+    <ClInclude Include="DatabaseAccess.h" />
+    <ClInclude Include="Distribution_Gauss.h" />
+    <ClInclude Include="Distribution_Normal.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="InProcess.h" />
+    <ClInclude Include="InteriorFilling.h" />
+    <ClInclude Include="Kernel_Convolution.h" />
+    <ClInclude Include="Logitech_Camera.h" />
+    <ClInclude Include="Maximum_Filter.h" />
+    <ClInclude Include="Median_Filter.h" />
+    <ClInclude Include="Normalisation.h" />
+    <ClInclude Include="RankFilter.h" />
+    <ClInclude Include="Segmentation.h" />
+    <ClInclude Include="Shapes.h" />
+    <ClInclude Include="Split.h" />
+    <ClInclude Include="UnaryProcess.h" />
+    <ClInclude Include="Virtual_Camera.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
