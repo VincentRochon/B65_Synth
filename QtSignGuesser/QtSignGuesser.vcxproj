@@ -51,11 +51,11 @@
   </ImportGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core;gui;sql</QtModules>
+    <QtModules>core;gui;multimedia;multimediawidgets;quick;quickwidgets;quickcontrols2;sql;widgets</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core;gui;sql</QtModules>
+    <QtModules>core;gui;multimedia;multimediawidgets;quick;quickwidgets;quickcontrols2;sql;widgets</QtModules>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
@@ -69,7 +69,7 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
@@ -82,13 +82,31 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="QSimpleImageGrabber.cpp" />
+    <ClCompile Include="QSimpleImageViewer.cpp" />
+    <ClCompile Include="SignGuesser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="SignGuesser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="SignGuesser.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="SignGuesser.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="QSimpleImageViewer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="QSimpleImageGrabber.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
@@ -96,9 +114,4 @@
   </ImportGroup>
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" MocOptions="" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>
