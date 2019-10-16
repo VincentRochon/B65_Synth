@@ -3,7 +3,7 @@
 #include <QCameraInfo>
 
 
-#include <QVBoxLayout>
+#include <QGridLayout>
 #include "QSimpleImageGrabber.h"
 
 SignGuesser::SignGuesser(QWidget *parent)
@@ -18,15 +18,16 @@ SignGuesser::SignGuesser(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	QVBoxLayout* layout{ new QVBoxLayout };
-	layout->addWidget(mConnectButton);
-	layout->addWidget(mDisconnectButton);
-	layout->addWidget(mCaptureOneButton);
-	layout->addWidget(mCaptureContinuouslyButton);
-	layout->addWidget(mInputImage);
-	layout->addWidget(mProcessedImage);
+	QGridLayout* layout{ new QGridLayout };
+	layout->addWidget(mConnectButton,0,0);
+	layout->addWidget(mDisconnectButton,1,0);
+	layout->addWidget(mCaptureOneButton,2,0);
+	layout->addWidget(mCaptureContinuouslyButton,3,0);
+	layout->addWidget(mInputImage,0,1,8,1);
+	layout->addWidget(mProcessedImage,8,1,8,1);
 
 	QWidget* centralWidget{ new QWidget };
+	centralWidget->setMinimumSize(1200,1000);
 	centralWidget->setLayout(layout);
 
 	setCentralWidget(centralWidget);
@@ -43,6 +44,7 @@ SignGuesser::SignGuesser(QWidget *parent)
 
 	updateGui();
 }
+
 
 void SignGuesser::connectCamera()
 {
@@ -87,7 +89,7 @@ void SignGuesser::updateGui()
 
 void SignGuesser::process01(QImage const& image)
 {
-	QImage::Format f{ image.format() };
+	//QImage::Format f{ image.format() };
 	QImage im(image);
 
 	// Scrap pour voir comment pas faire!!!
@@ -129,6 +131,7 @@ void SignGuesser::process01(QImage const& image)
 
 	mProcessedImage->setImage(im);
 
-	//!emit imageProcessed(im);
+
+	//emit imageProcessed(im);
 }
 

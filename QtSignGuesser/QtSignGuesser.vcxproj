@@ -95,7 +95,6 @@
     <ClCompile Include="DatabaseAccess.cpp" />
     <ClCompile Include="Distribution_Gauss.cpp" />
     <ClCompile Include="Distribution_Normal.cpp" />
-    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InProcess.cpp" />
     <ClCompile Include="InteriorFilling.cpp" />
@@ -137,7 +136,6 @@
     <ClInclude Include="DatabaseAccess.h" />
     <ClInclude Include="Distribution_Gauss.h" />
     <ClInclude Include="Distribution_Normal.h" />
-    <ClInclude Include="GUI.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InProcess.h" />
     <ClInclude Include="InteriorFilling.h" />

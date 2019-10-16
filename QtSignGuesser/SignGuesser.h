@@ -38,8 +38,8 @@ private slots:
 
 	void updateGui();
 
-	//!signals:
-		//!void imageProcessed(QImage const & image);
+	//signals:
+		//void imageProcessed(QImage const & image);
 };
 
 
