@@ -38,7 +38,7 @@ SignGuesser::SignGuesser(QWidget *parent)
 
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, mInputImage, &QSimpleImageViewer::setImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::process01);
-	//connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &ImgDemo::processCapturedImage);
+	//connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::processCapturedImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::readyForCaptureChanged, this, &SignGuesser::processReadyToCapture);
 
 	updateGui();

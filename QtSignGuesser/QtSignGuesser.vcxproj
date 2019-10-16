@@ -89,7 +89,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CalculForme.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Classification.cpp" />
     <ClCompile Include="Comparaison.cpp" />
     <ClCompile Include="Convolution.cpp" />
@@ -114,7 +113,6 @@
     <ClCompile Include="SignGuesser.cpp" />
     <ClCompile Include="Split.cpp" />
     <ClCompile Include="UnaryProcess.cpp" />
-    <ClCompile Include="Virtual_Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SignGuesser.h" />
@@ -133,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CalculForme.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="Classification.h" />
     <ClInclude Include="Comparaison.h" />
     <ClInclude Include="Convolution.h" />
@@ -154,7 +151,6 @@
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="Split.h" />
     <ClInclude Include="UnaryProcess.h" />
-    <ClInclude Include="Virtual_Camera.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
