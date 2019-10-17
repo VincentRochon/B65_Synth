@@ -38,7 +38,10 @@ SignGuesser::SignGuesser(QWidget *parent)
 	connect(mCaptureContinuouslyButton, &QPushButton::clicked, this, &SignGuesser::captureContinuously);
 
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, mInputImage, &QSimpleImageViewer::setImage);
-	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::process01);
+	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::process);
+
+	connect(this, &SignGuesser::imageProcessed, mProcessedImage, &QSimpleImageViewer::setImage);
+		
 	//connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::processCapturedImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::readyForCaptureChanged, this, &SignGuesser::processReadyToCapture);
 
@@ -87,10 +90,10 @@ void SignGuesser::updateGui()
 	mCaptureContinuouslyButton->setText(mCapturingContinuously ? "Stop capture continuously" : "Start capture continuously");
 }
 
-void SignGuesser::process01(QImage const& image)
+void SignGuesser::process(QImage const& image)
 {
 	//QImage::Format f{ image.format() };
-	QImage im(image);
+	QImage im(UnaryProcess::ProcessImage(image,34));
 
 	// Scrap pour voir comment pas faire!!!
 	//for (int x{}; x < im.width(); ++x) {
@@ -104,7 +107,7 @@ void SignGuesser::process01(QImage const& image)
 	//    }
 	//}
 
-	int* curPix{ reinterpret_cast<int*>(im.bits()) };
+	/*int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + im.width() * im.height() };
 	while (curPix < endPix) {
 		int c{ *curPix };
@@ -127,11 +130,11 @@ void SignGuesser::process01(QImage const& image)
 			0xFF'00'00'00;
 
 		++curPix;
-	}
+	}*/
 
-	mProcessedImage->setImage(im);
+	//mProcessedImage->setImage(im);
 
 
-	//emit imageProcessed(im);
+	emit imageProcessed(im);
 }
 

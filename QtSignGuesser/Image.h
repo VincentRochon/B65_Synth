@@ -2,5 +2,14 @@
 #define IMAGE_H
 
 
+class Image
+{
+public:
+	Image() = default;
+	~Image() = default;
+
+
+};
+
 
 #endif

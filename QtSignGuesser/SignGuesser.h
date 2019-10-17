@@ -7,6 +7,7 @@
 #include <QTimer>
 #include "QSimpleImageGrabber.h"
 #include "QSimpleImageViewer.h"
+#include "UnaryProcess.h"
 
 
 class SignGuesser : public QMainWindow
@@ -34,12 +35,12 @@ private slots:
 	void captureContinuously();
 	void processReadyToCapture(bool ready);
 
-	virtual void process01(QImage const& image);
+	virtual void process(QImage const& image);
 
 	void updateGui();
 
-	//signals:
-		//void imageProcessed(QImage const & image);
+	signals:
+		void imageProcessed(QImage const & image);
 };
 
 

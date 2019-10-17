@@ -101,8 +101,8 @@
     <ClCompile Include="Kernel_Convolution.cpp" />
     <ClCompile Include="Logitech_Camera.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Maximum_Filter.cpp" />
-    <ClCompile Include="Median_Filter.cpp" />
+    <ClCompile Include="MaximumFilter.cpp" />
+    <ClCompile Include="MedianFilter.cpp" />
     <ClCompile Include="Normalisation.cpp" />
     <ClCompile Include="QSimpleImageGrabber.cpp" />
     <ClCompile Include="QSimpleImageViewer.cpp" />
@@ -141,8 +141,8 @@
     <ClInclude Include="InteriorFilling.h" />
     <ClInclude Include="Kernel_Convolution.h" />
     <ClInclude Include="Logitech_Camera.h" />
-    <ClInclude Include="Maximum_Filter.h" />
-    <ClInclude Include="Median_Filter.h" />
+    <ClInclude Include="MaximumFilter.h" />
+    <ClInclude Include="MedianFilter.h" />
     <ClInclude Include="Normalisation.h" />
     <ClInclude Include="RankFilter.h" />
     <ClInclude Include="Segmentation.h" />

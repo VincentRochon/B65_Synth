@@ -4,7 +4,8 @@
 class InProcess 
 {
 private:
-
+	InProcess() = delete;
+	~InProcess() = delete;
 
 
 

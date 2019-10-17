@@ -73,12 +73,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Maximum_Filter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Median_Filter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Normalisation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,6 +89,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UnaryProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MaximumFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MedianFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,12 +156,6 @@
     <ClInclude Include="Logitech_Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Maximum_Filter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Median_Filter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Normalisation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -178,6 +172,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UnaryProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MaximumFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MedianFilter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

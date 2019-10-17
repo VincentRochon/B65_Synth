@@ -1,6 +1,16 @@
-#ifndef RANKFILTER_H 
+#ifndef RANKFILTER_H
 #define RANKFILTER_H
 
+#include "UnaryProcess.h"
 
 
-#endif
+class RankFilter : public UnaryProcess
+{
+
+public:
+	RankFilter() = delete;
+	~RankFilter() = delete;
+
+};
+
+#endif // RANKFILTER_H
