@@ -1,18 +1,24 @@
 #ifndef MAXIMUMFILTER_H
 #define MAXIMUMFILTER_H
 
-#include "RankFilter.h"
+#include "UnaryProcess.h"
 
 
-class MaximumFilter : public RankFilter
+class MaximumFilter : public UnaryProcess
 {
 public :
-	MaximumFilter() = delete;
-	~MaximumFilter() = delete;
+	MaximumFilter() = default;
+	MaximumFilter(int windowSize);
+	~MaximumFilter() = default;
 
 
-	QImage ProcessImage(QImage const& image, size_t NeighborSize );
+	QImage ProcessImage(QImage const& image ) override;
 
+	void setWindowSize(int newWindowSize);
+	size_t windowSize()const;
+
+private:
+	int mWindowSize = 0;
 
 };
 

@@ -5,6 +5,7 @@
 
 #include <QGridLayout>
 #include "QSimpleImageGrabber.h"
+#include "InProcess.h"
 
 SignGuesser::SignGuesser(QWidget *parent)
 	: QMainWindow(parent),
@@ -93,48 +94,53 @@ void SignGuesser::updateGui()
 void SignGuesser::process(QImage const& image)
 {
 	//QImage::Format f{ image.format() };
-	QImage im(UnaryProcess::ProcessImage(image,34));
-
-	// Scrap pour voir comment pas faire!!!
-	//for (int x{}; x < im.width(); ++x) {
-	//    for (int y{}; y < im.height(); ++y) {
-	//        QColor color(im.pixel(x, y));
-	//        color.setRed(255 - color.red());
-	//        color.setGreen(255 - color.green());
-	//        color.setBlue(255 - color.blue());
-	//
-	//        im.setPixelColor(x, y, color);
-	//    }
-	//}
-
-	/*int* curPix{ reinterpret_cast<int*>(im.bits()) };
-	int* endPix{ curPix + im.width() * im.height() };
-	while (curPix < endPix) {
-		int c{ *curPix };
-		//*curPix =   ((255 - static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16)) << 16) |
-		//            ((255 - static_cast<unsigned char>((c & 0x00'00'FF'00) >>  8)) <<  8) |
-		//            ((255 - static_cast<unsigned char>((c & 0x00'00'00'FF) >>  0)) <<  0) |
-		//            0xFF'00'00'00;
-
-		unsigned char r{ static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16) };
-		unsigned char g{ static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8) };
-		unsigned char b{ static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0) };
-
-		// moyenne géométrique
-		//int average{ ((int)r + (int)g + (int)b) / 3 }; 
-		// moyenne anthropomorphique
-		int average{ static_cast<int>((float)r * 0.25f + (float)g * 0.67f + (float)b * 0.08f) };
-		*curPix = (average << 16) |
-			(average << 8) |
-			(average << 0) |
-			0xFF'00'00'00;
-
-		++curPix;
-	}*/
-
-	//mProcessedImage->setImage(im);
+	QImage im(image);
 
 
-	emit imageProcessed(im);
+	InProcess listOfProcess(image);
+	listOfProcess.Process();
+	
+	emit imageProcessed(listOfProcess.getProcessedImage());
 }
+
+
+// Scrap pour voir comment pas faire!!!
+//for (int x{}; x < im.width(); ++x) {
+//    for (int y{}; y < im.height(); ++y) {
+//        QColor color(im.pixel(x, y));
+//        color.setRed(255 - color.red());
+//        color.setGreen(255 - color.green());
+//        color.setBlue(255 - color.blue());
+//
+//        im.setPixelColor(x, y, color);
+//    }
+//}
+
+/*int* curPix{ reinterpret_cast<int*>(im.bits()) };
+int* endPix{ curPix + im.width() * im.height() };
+while (curPix < endPix) {
+	int c{ *curPix };
+	//*curPix =   ((255 - static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16)) << 16) |
+	//            ((255 - static_cast<unsigned char>((c & 0x00'00'FF'00) >>  8)) <<  8) |
+	//            ((255 - static_cast<unsigned char>((c & 0x00'00'00'FF) >>  0)) <<  0) |
+	//            0xFF'00'00'00;
+
+	unsigned char r{ static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16) };
+	unsigned char g{ static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8) };
+	unsigned char b{ static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0) };
+
+	// moyenne géométrique
+	//int average{ ((int)r + (int)g + (int)b) / 3 };
+	// moyenne anthropomorphique
+	int average{ static_cast<int>((float)r * 0.25f + (float)g * 0.67f + (float)b * 0.08f) };
+	*curPix = (average << 16) |
+		(average << 8) |
+		(average << 0) |
+		0xFF'00'00'00;
+
+	++curPix;
+}*/
+
+//mProcessedImage->setImage(im);
+
 

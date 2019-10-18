@@ -4,13 +4,15 @@
 #include <QImage>
 
 
-class UnaryProcess
-{
+
+class UnaryProcess {
 	public:
 	UnaryProcess() = default;
-	~UnaryProcess() = default;
+	virtual ~UnaryProcess() = default;
 
-	static QImage ProcessImage(QImage const& image, int NeighborSize) ;
+	virtual QImage ProcessImage(QImage const& image) =0;
+
+
 
 };
 

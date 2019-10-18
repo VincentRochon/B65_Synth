@@ -1,6 +1,16 @@
 #include "UnaryProcess.h"
 
-QImage UnaryProcess::ProcessImage(QImage const& image, int NeighborSize)
+
+
+
+
+
+
+
+
+/*
+
+QImage UnaryProcess::ProcessImage(QImage const& image)
 {
 	QImage im(image);
 
@@ -24,3 +34,5 @@ QImage UnaryProcess::ProcessImage(QImage const& image, int NeighborSize)
 
 	return im;
 }
+
+*/

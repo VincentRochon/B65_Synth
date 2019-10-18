@@ -8,8 +8,8 @@ class RankFilter : public UnaryProcess
 {
 
 public:
-	RankFilter() = delete;
-	~RankFilter() = delete;
+	RankFilter() = default;
+	~RankFilter() = default;
 
 };
 
