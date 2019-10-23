@@ -99,7 +99,7 @@ void SignGuesser::process(QImage const& image)
 
 	InProcess listOfProcess(image);
 
-	listOfProcess.addMaximumFilter(100);
+	listOfProcess.addMaximumFilter(2);
 	listOfProcess.Process();
 	
 	emit imageProcessed(listOfProcess.getProcessedImage());
