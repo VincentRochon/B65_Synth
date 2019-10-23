@@ -2,7 +2,6 @@
 #define MAXIMUMFILTER_H
 
 #include "UnaryProcess.h"
-#include <algorithm>
 
 
 class MaximumFilter : public UnaryProcess
