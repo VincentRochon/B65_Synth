@@ -94,10 +94,12 @@ void SignGuesser::updateGui()
 void SignGuesser::process(QImage const& image)
 {
 	//QImage::Format f{ image.format() };
-	QImage im(image);
+	//QImage im(image);
 
 
 	InProcess listOfProcess(image);
+
+	listOfProcess.addMaximumFilter(100);
 	listOfProcess.Process();
 	
 	emit imageProcessed(listOfProcess.getProcessedImage());

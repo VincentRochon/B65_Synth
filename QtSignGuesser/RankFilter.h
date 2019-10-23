@@ -8,9 +8,12 @@ class RankFilter : public UnaryProcess
 {
 
 public:
-	RankFilter() = default;
+	RankFilter() = delete;
+	RankFilter(int neighborhoodSize);
 	~RankFilter() = default;
 
+private:
+	int mNeighborhoodSize;
 };
 
 #endif // RANKFILTER_H

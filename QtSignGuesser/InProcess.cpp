@@ -1,16 +1,24 @@
 #include "InProcess.h"
 
 InProcess::InProcess(QImage const& image)
-	:mImageToProcess(image)
+	:mImageToProcess(image),mProcessedImage(image)
 {
-	// A REFAIRE
-	mProcess.push_back(new MaximumFilter());
+
 }
 
 
 void InProcess::Process()
 {
-	mProcessedImage = mProcess[0]->ProcessImage(mImageToProcess);
+	auto itBegin{ mProcess.begin() };
+	auto itEnd{ mProcess.end() };
+
+	while (itBegin != itEnd)
+	{
+		mProcessedImage = (*itBegin)->ProcessImage(mImageToProcess);
+		
+		itBegin++;
+
+	}
 	
 }
 
@@ -18,3 +26,15 @@ QImage InProcess::getProcessedImage() const
 {
 	return mProcessedImage;
 }
+
+void InProcess::addMaximumFilter(int neighborhoodSize)
+{
+	mProcess.push_back(new MaximumFilter(neighborhoodSize));
+}
+
+void InProcess::addMedianFilter(int neighborhoodSize)
+{
+	mProcess.push_back(new MedianFilter(neighborhoodSize));
+}
+
+

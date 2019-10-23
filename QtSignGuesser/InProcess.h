@@ -17,10 +17,12 @@ public:
 public:
 	void Process();
 	QImage getProcessedImage() const;
+	void addMaximumFilter(int neighborhoodSize);
+	void addMedianFilter(int neighborhoodSize);
 
 
 private:
-	std::vector<UnaryProcess *> mProcess;
+	std::list<UnaryProcess *> mProcess;
 	QImage mImageToProcess;
 	QImage mProcessedImage;
 

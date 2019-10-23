@@ -7,7 +7,7 @@
 class MaximumFilter : public UnaryProcess
 {
 public :
-	MaximumFilter() = default;
+	MaximumFilter() = delete;
 	MaximumFilter(int windowSize);
 	~MaximumFilter() = default;
 
@@ -18,7 +18,7 @@ public :
 	size_t windowSize()const;
 
 private:
-	int mWindowSize = 0;
+	int mWindowSize = 1;
 
 };
 
