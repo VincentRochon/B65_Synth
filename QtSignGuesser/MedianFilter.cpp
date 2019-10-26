@@ -50,7 +50,6 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 
 		++posTracker;
 		++curPix;
-		++curPix;
 	}
 
 	return im;
