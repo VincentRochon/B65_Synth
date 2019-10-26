@@ -12,11 +12,16 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 
 	int imgWidth{ im.width() };
 	int imgHeight{ im.height() };
-	int posTracker{ 0 };
+	size_t posTracker{ 0 };
+	size_t compteur{ 0 };
+	int median{0};
 	int windowWidth{ mWindowSize * 2 + 1 };
+	std::vector<int> listOfPix(windowWidth * windowWidth);
 
 	int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };
+	int* vecPos{ listOfPix.data() };
+	//int* nextVecPos{ listOfPix.data() };
 
 	curPix += imgWidth * mWindowSize; // skip lines to prevent overflow
 	endPix -= imgWidth * mWindowSize; // remove last line prevent overflow for treatment
@@ -28,19 +33,54 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 
 			int* startPix{ curPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
 			//int* prevPix{ curPix - imgWidth * mWindowSize + mWindowSize };
-
-			for (size_t i = 0; i < windowWidth; ++i)
+			
+			for (size_t i = 0; i < windowWidth*windowWidth; ++i)
 			{
-				for (size_t j = 0; j < windowWidth; j++)
+				if (compteur == windowWidth)
 				{
+					compteur = 0;
+					startPix += imgWidth - windowWidth;// skip 1 line
 
 				}
 
-				startPix += imgWidth - windowWidth;// skip 1 line
-
+				
+				*vecPos = *startPix;
+				
+				++vecPos;
+				++compteur;
+				++startPix;
+				
 			}
 
-			*curPix = *startPix;
+			vecPos -= windowWidth * windowWidth;
+
+			std::sort(std::begin(listOfPix), std::end(listOfPix));
+			// grosse perte de performance a cause du sort de algo
+
+			/*
+			for (size_t i = 0; i < listOfPix.size(); i++)
+			{
+				++nextVecPos;
+							   
+				if (*nextVecPos > * vecPos)
+				{
+					int tempValue{*vecPos };
+					*vecPos = *nextVecPos;
+					*nextVecPos = tempValue;
+				}
+
+				++vecPos;
+			}
+			
+
+			vecPos -= windowWidth * windowWidth;
+			*/
+
+			int nombreTest = static_cast<int>(windowWidth * windowWidth - 1) * 0.5;
+			vecPos += nombreTest;
+			*curPix = *vecPos;
+			vecPos -= nombreTest;
+
 
 		}
 
