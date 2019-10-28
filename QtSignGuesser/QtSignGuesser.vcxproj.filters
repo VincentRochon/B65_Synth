@@ -64,9 +64,6 @@
     <ClCompile Include="InteriorFilling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Kernel_Convolution.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Logitech_Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,6 +92,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MedianFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kernel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -150,9 +150,6 @@
     <ClInclude Include="InteriorFilling.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Kernel_Convolution.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Logitech_Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -178,6 +175,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MedianFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kernel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

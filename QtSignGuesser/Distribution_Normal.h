@@ -1,6 +1,12 @@
-#ifndef CALCULFORME_H
-#define CALCULFORME_H
+#ifndef DISTRIBUTION_NOMRAL_H
+#define DISTRIBUTION_NOMRAL_H
+
+#include "Kernel.h"
+
+class Distribution_Normal : public Kernel
+{
+
+};
 
 
-
-#endif
+#endif // DISTRIBUTION_NORMAL

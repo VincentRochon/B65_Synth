@@ -98,7 +98,7 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InProcess.cpp" />
     <ClCompile Include="InteriorFilling.cpp" />
-    <ClCompile Include="Kernel_Convolution.cpp" />
+    <ClCompile Include="Kernel.cpp" />
     <ClCompile Include="Logitech_Camera.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaximumFilter.cpp" />
@@ -139,7 +139,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="InProcess.h" />
     <ClInclude Include="InteriorFilling.h" />
-    <ClInclude Include="Kernel_Convolution.h" />
+    <ClInclude Include="Kernel.h" />
     <ClInclude Include="Logitech_Camera.h" />
     <ClInclude Include="MaximumFilter.h" />
     <ClInclude Include="MedianFilter.h" />
