@@ -6,7 +6,7 @@
 #include "UnaryProcess.h"
 #include "MaximumFilter.h"
 #include "MedianFilter.h"
-#include "Kernel_Convolution.h"
+#include "Kernel.h"
 #include "Distribution_Gauss.h"
 #include "Distribution_Normal.h"
 
