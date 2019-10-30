@@ -6,13 +6,11 @@
 
 
 class UnaryProcess {
-	public:
+public:
 	UnaryProcess() = default;
 	virtual ~UnaryProcess() = default;
 
 	virtual QImage ProcessImage(QImage const& image) =0;
-
-
 
 };
 

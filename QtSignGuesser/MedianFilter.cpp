@@ -18,20 +18,23 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 	int windowWidth{ mWindowSize * 2 + 1 };
 	std::vector<int> listOfPix(windowWidth * windowWidth);
 
+	const int* curViewPix{ reinterpret_cast<const int*>(image.bits()) };
 	int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };
 	int* vecPos{ listOfPix.data() };
 	//int* nextVecPos{ listOfPix.data() };
 
+
+	curViewPix += imgWidth * mWindowSize;
 	curPix += imgWidth * mWindowSize; // skip lines to prevent overflow
 	endPix -= imgWidth * mWindowSize; // remove last line prevent overflow for treatment
 
 	while (curPix < endPix) {
 
-		if ((posTracker % imgWidth) > mWindowSize&& posTracker < (imgWidth - mWindowSize))
+		if (posTracker > mWindowSize&& posTracker < (imgWidth - mWindowSize))
 		{
 
-			int* startPix{ curPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
+			const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
 			//int* prevPix{ curPix - imgWidth * mWindowSize + mWindowSize };
 			
 			for (size_t i = 0; i < windowWidth*windowWidth; ++i)
@@ -88,6 +91,7 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 			posTracker = 0;
 		}
 
+		++curViewPix;
 		++posTracker;
 		++curPix;
 	}

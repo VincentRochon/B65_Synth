@@ -52,9 +52,6 @@
     <ClCompile Include="Distribution_Gauss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Distribution_Normal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,6 +92,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Kernel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Distribution_Uniforme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -138,9 +138,6 @@
     <ClInclude Include="Distribution_Gauss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Distribution_Normal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -178,6 +175,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Distribution_Uniforme.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

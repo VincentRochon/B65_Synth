@@ -7,13 +7,14 @@
 class Kernel : public UnaryProcess
 {
 public:
-	Kernel() = delete;
-	Kernel(int windowSize);
-	~Kernel() = default;
+	Kernel() = default;
+	virtual ~Kernel() = default;
+
+
 
 
 private:
-
+	virtual std::vector<int> fillKernel() = 0;
 
 };
 

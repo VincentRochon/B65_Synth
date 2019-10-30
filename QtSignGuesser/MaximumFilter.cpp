@@ -13,8 +13,6 @@ QImage MaximumFilter::ProcessImage(QImage const& image)
 
 	int imgWidth{ im.width() };
 	int imgHeight{ im.height() };
-	int imageWidth{ image.width() };
-	int imageHeight{ image.height() };
 
 	int posTracker{ 0 };
 	int windowWidth{ mWindowSize * 2 + 1 };
@@ -23,9 +21,8 @@ QImage MaximumFilter::ProcessImage(QImage const& image)
 	int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };
 	const int* curViewPix{ reinterpret_cast<const int*>(image.bits())  };
-	const int* endViewPix{ curPix + imageWidth * imageHeight };
 
-	curViewPix += imageWidth * mWindowSize;
+	curViewPix += imgWidth * mWindowSize;
 	// endViewPix -= imageWidth * mWindowSize;
 	curPix += imgWidth * mWindowSize; // skip lines to prevent overflow
 	endPix -= imgWidth * mWindowSize; // remove last lines prevent overflow for treatment
@@ -35,7 +32,7 @@ QImage MaximumFilter::ProcessImage(QImage const& image)
 		if (posTracker > mWindowSize && posTracker < (imgWidth - mWindowSize))
 		{
 			
-			const int * startPix{ curViewPix - imageWidth * mWindowSize + mWindowSize }; // start of the window of pixels
+			const int * startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
 			const int * prevPix{ startPix };
 			max = *startPix;
 			
@@ -50,11 +47,11 @@ QImage MaximumFilter::ProcessImage(QImage const& image)
 						max = *startPix;
 					}
 					if (i > 0 && j == 0){
-						prevPix += imageWidth - windowWidth-1;
+						prevPix += imgWidth - windowWidth-1;
 					}
 					++prevPix;
 				}
-				startPix += imageWidth - windowWidth-1;// skip 1 line
+				startPix += imgWidth - windowWidth-1;// skip 1 line
 
 			}
 	

@@ -1,20 +1,33 @@
 #include "InProcess.h"
 
 InProcess::InProcess(QImage const& image)
-	:mImageToProcess(image),mProcessedImage(image)
+	:mProcessedImage(image)
 {
 
+}
+
+InProcess::~InProcess()
+{
+	std::list<UnaryProcess*>::iterator itBegin{ mProcess.begin() };
+	std::list<UnaryProcess*>::iterator itEnd{ mProcess.end() };
+
+	while (itBegin != itEnd)
+	{
+		delete [] *itBegin;
+
+		++itBegin;
+	}
 }
 
 
 void InProcess::Process()
 {
-	auto itBegin{ mProcess.begin() };
-	auto itEnd{ mProcess.end() };
+	std::list<UnaryProcess *>::iterator itBegin{ mProcess.begin() };
+	std::list<UnaryProcess*>::iterator itEnd{ mProcess.end() };
 
 	while (itBegin != itEnd)
 	{
-		mProcessedImage = (*itBegin)->ProcessImage(mImageToProcess);
+		mProcessedImage = (*itBegin)->ProcessImage(mProcessedImage);
 		
 		itBegin++;
 
@@ -35,6 +48,16 @@ void InProcess::addMaximumFilter(int neighborhoodSize)
 void InProcess::addMedianFilter(int neighborhoodSize)
 {
 	mProcess.push_back(new MedianFilter(neighborhoodSize));
+}
+
+void InProcess::addGaussianConvolution(int neighborhoodSize)
+{
+	mProcess.push_back(new Distribution_Gauss(neighborhoodSize));
+}
+
+void InProcess::addNormalConvolution(int neighborhoodSize)
+{
+	mProcess.push_back(new Distribution_Uniforme(neighborhoodSize));
 }
 
 
