@@ -8,6 +8,7 @@
 #include "Kernel.h"
 #include "Distribution_Gauss.h"
 #include "Distribution_Uniforme.h"
+#include "Segmentation.h"
 
 class InProcess 
 {
@@ -22,7 +23,8 @@ public:
 	void addMaximumFilter(int neighborhoodSize);
 	void addMedianFilter(int neighborhoodSize);
 	void addGaussianConvolution(int neighborhoodSize);
-	void addNormalConvolution(int neighborhoodSize);
+	void addUniformeConvolution(int neighborhoodSize);
+	void addSegmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gmax, size_t Bmin, size_t Bmax);
 
 
 private:

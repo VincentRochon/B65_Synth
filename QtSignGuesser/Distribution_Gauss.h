@@ -15,7 +15,7 @@ public:
 
 
 private:
-	std::vector<int> fillKernel() override;
+	std::vector<float> fillKernel() override;
 	int mWindowSize = 1;
 
 };

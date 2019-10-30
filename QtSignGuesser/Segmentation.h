@@ -8,7 +8,7 @@ class Segmentation : public UnaryProcess
 {
 public:
 	Segmentation() = delete;
-	Segmentation(size_t Rmin, size_t Rmax, size_t Bmin, size_t Bmax, size_t Gmin, size_t Gmax);
+	Segmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gmax, size_t Bmin, size_t Bmax);
 	~Segmentation() = default;
 
 
@@ -16,7 +16,13 @@ public:
 
 
 private:
-	
+	size_t mRmin;
+	size_t mGmin;
+	size_t mBmin;
+	size_t mRmax;
+	size_t mGmax;
+	size_t mBmax;
+
 
 };
 

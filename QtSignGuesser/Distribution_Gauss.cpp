@@ -6,12 +6,12 @@ Distribution_Gauss::Distribution_Gauss(int windowSize)
 
 }
 
-std::vector<int> Distribution_Gauss::fillKernel()
+std::vector<float> Distribution_Gauss::fillKernel()
 {
-	std::vector<int> ConvolutionArray(mWindowSize*2+1);
+	std::vector<float> ConvolutionArray(mWindowSize*2+1);
 
 
-	int* curData { ConvolutionArray.data() };
+	float* curData{ reinterpret_cast<float*>(ConvolutionArray.data()) };
 
 
 	return ConvolutionArray;
@@ -26,7 +26,7 @@ QImage Distribution_Gauss::ProcessImage(QImage const& image)
 	int imgHeight{ im.height() };
 	int posTracker{ 0 };
 
-	std::vector<int> ConvolutionArray{ fillKernel() };
+	std::vector<float> ConvolutionArray{ fillKernel() };
 
 	int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };

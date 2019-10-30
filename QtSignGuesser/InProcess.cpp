@@ -13,7 +13,7 @@ InProcess::~InProcess()
 
 	while (itBegin != itEnd)
 	{
-		delete [] *itBegin;
+		delete *itBegin;
 
 		++itBegin;
 	}
@@ -55,9 +55,14 @@ void InProcess::addGaussianConvolution(int neighborhoodSize)
 	mProcess.push_back(new Distribution_Gauss(neighborhoodSize));
 }
 
-void InProcess::addNormalConvolution(int neighborhoodSize)
+void InProcess::addUniformeConvolution(int neighborhoodSize)
 {
 	mProcess.push_back(new Distribution_Uniforme(neighborhoodSize));
+}
+
+void InProcess::addSegmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gmax, size_t Bmin, size_t Bmax)
+{
+	mProcess.push_back(new Segmentation(Rmin,Rmax,Gmin,Gmax,Bmin,Bmax));
 }
 
 

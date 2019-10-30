@@ -14,7 +14,7 @@ public:
 
 
 private:
-	virtual std::vector<int> fillKernel() = 0;
+	virtual std::vector<float> fillKernel() = 0;
 
 };
 
