@@ -14,10 +14,12 @@ std::vector<float> Distribution_Uniforme::fillKernel()
 
 	float* curData{reinterpret_cast<float*>(ConvolutionArray.data()) };
 
+	float value{ 1.0f / window };
+
 	for (size_t i = 0; i < window; ++i)
 	{
 	
-		ConvolutionArray[i] =(1.0f / window);
+		ConvolutionArray[i] = value;
 	}
 
 	return ConvolutionArray;

@@ -41,15 +41,17 @@ QImage MaximumFilter::ProcessImage(QImage const& image)
 				for (size_t j = 0; j < windowWidth; ++j)
 				{
 					++startPix;
-					if (*startPix > * prevPix && *startPix > max)
+					if (*startPix > max)
 					{
 						//*prevPix = *startPix;
 						max = *startPix;
 					}
+					/*
+					*startPix > * prevPix &&
 					if (i > 0 && j == 0){
 						prevPix += imgWidth - windowWidth-1;
 					}
-					++prevPix;
+					++prevPix;*/
 				}
 				startPix += imgWidth - windowWidth-1;// skip 1 line
 
