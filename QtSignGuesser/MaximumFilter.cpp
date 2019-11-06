@@ -16,7 +16,14 @@ QImage MaximumFilter::ProcessImage(QImage const& image)
 
 	int posTracker{ 0 };
 	int windowWidth{ mWindowSize * 2 + 1 };
-	int max{};
+	unsigned char maxRed{};
+	unsigned char maxBlue{};
+	unsigned char maxGreen{};
+	unsigned char r{};
+	unsigned char g{};
+	unsigned char b{};
+	int c{};
+
 
 	int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };
@@ -34,30 +41,47 @@ QImage MaximumFilter::ProcessImage(QImage const& image)
 			
 			const int * startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
 			const int * prevPix{ startPix };
-			max = *startPix;
+
+			c = *startPix;
+
+			maxRed = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
+			maxGreen = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
+			maxBlue = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
+
 			
 			for (size_t i = 0; i < windowWidth; ++i)
 			{
 				for (size_t j = 0; j < windowWidth; ++j)
 				{
 					++startPix;
-					if (*startPix > max)
+
+					c = *startPix;
+
+					r = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
+					g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
+					b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
+
+
+					if (r > maxRed)
 					{
-						//*prevPix = *startPix;
-						max = *startPix;
+						maxRed = r;
 					}
-					/*
-					*startPix > * prevPix &&
-					if (i > 0 && j == 0){
-						prevPix += imgWidth - windowWidth-1;
+
+					if (g > maxGreen)
+					{
+						maxGreen = g;
 					}
-					++prevPix;*/
+
+					if (b > maxBlue)
+					{
+						maxBlue = b;
+					}
+
 				}
 				startPix += imgWidth - windowWidth-1;// skip 1 line
 
 			}
-	
-			*curPix = max;
+			*curPix = (maxRed << 16) | (maxGreen << 8) | (maxBlue << 0) | 0xFF'00'00'00;;
 		}
 
 		if (posTracker == imgWidth) {

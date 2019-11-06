@@ -62,7 +62,7 @@ QImage Distribution_Uniforme::ProcessImage(QImage const& image)
 			{
 				for (size_t j = 0; j < windowWidth; ++j)
 				{
-					sum += (*startPix * uniformeValue);
+					sum += (*startPix) * uniformeValue;
 					++startPix;
 				}
 				startPix += imgWidth - windowWidth;// skip 1 line

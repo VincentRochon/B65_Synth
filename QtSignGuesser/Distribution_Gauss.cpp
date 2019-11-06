@@ -11,29 +11,59 @@ std::vector<float> Distribution_Gauss::getKernel()
 	int longueur{ mWindowSize * 2 + 1 };
 	float moyenneX{ 1 + (longueur - 1) * 0.5f };
 	float moyenneY{ moyenneX };
-	float ecartypeX{ (longueur - 1) * 0.25f };
-	float ecartypeY{ ecartypeX };
+	float ecartTypeX{ (longueur - 1) * 0.20f };
+	float ecartTypeY{ ecartTypeX };
 
-	const double e{ 2.71828182845904523536 };
-	const double pi{ 3.14159265358979323846 };
+	const float e{ 2.71828182845904523536f };
+	const float pi{ 3.14159265358979323846f };
 
 	std::vector<float> ConvolutionArray(longueur * longueur);
 
 	float* curData{ reinterpret_cast<float*>(ConvolutionArray.data()) };
 
-	//(pow(i-moyenneX,2)/(2*ecartypeX) + pow(j-moyenneY)/(2*ecartypeX))*-1
 
-	//(1/(pow(2*pi,0.5))* ecartypeX* ecartypeY)* pow(e, (pow(i - moyenneX, 2) / (2 * ecartypeX) + pow(j - moyenneY) / (2 * ecartypeX)) * -1)
-		
+
+	// pow(i-moyenneX,2) / 2*ecartTypeX
+	// pow(j-moyenneY,2) / 2*ecartTypeY
+	// (pow(i-moyenneX,2) / 2*ecartTypeX)+(pow(j-moyenneY,2) / 2*ecartTypeY)
+
+	// pow(e,-(pow(i-moyenneX,2) / 2*ecartTypeX)+(pow(j-moyenneY,2) / 2*ecartTypeY))
+	/// pow(e,-((pow(i-moyenneX,2) / 2*ecartTypeX)+(pow(j-moyenneY,2) / 2*ecartTypeY)))
+
+	// pow(2*pi,0.5)
+	// pow(2*pi,0.5)*ecartTypeX*ecartTypeY
+	// 1/(pow(2*pi,0.5)*ecartTypeX*ecartTypeY)
+
+	// (1/(pow(2*pi,0.5)*ecartTypeX*ecartTypeY))*pow(e,-((pow(i-moyenneX,2) / 2*ecartTypeX)+(pow(j-moyenneY,2) / 2*ecartTypeY)))
+	
+	float sum{0};
+			
 	for (size_t i = 1; i <= longueur; ++i)
 	{
 		for (size_t j = 1; j <= longueur; ++j)
 		{
-			*curData = (1 / (pow(2 * pi, 0.5f)) * ecartypeX * ecartypeY) * pow(e, (pow(i - moyenneX, 2) / (2 * ecartypeX) + pow(j - moyenneY,2) / (2 * ecartypeY)) * -1);
+			///*curData = (1 / (pow(2 * pi, 0.5f)) * ecartTypeX * ecartTypeY) * pow(e, (pow(i - moyenneX, 2) / (2 * ecartTypeX) + pow(j - moyenneY,2) / (2 * ecartTypeY))* -1);
+			///*curData = (1 / ((pow(2 * pi, 0.5))*ecartTypeX*ecartTypeY))*(pow(e, (pow(i - moyenneX, 2) / 2 * ecartTypeX) + (pow(j - moyenneY, 2) / 2 * ecartTypeY)*-1));
+			*curData = (1 / (pow(2 * pi, 0.5f)*ecartTypeX*ecartTypeY))*pow(e, -((pow(i - moyenneX, 2) / 2 * ecartTypeX) + (pow(j - moyenneY, 2) / 2 * ecartTypeY)));
+			sum += *curData;
 			++curData;
 		}
 	}
+
+	curData = reinterpret_cast<float*>(ConvolutionArray.data());
 	
+	for (auto &v : ConvolutionArray) {
+
+		v /= sum;
+	}
+	
+	sum = 0;
+
+	for (auto &v : ConvolutionArray) {
+
+		sum += v;
+	}
+
 	return ConvolutionArray;
 }
 
@@ -47,7 +77,7 @@ QImage Distribution_Gauss::ProcessImage(QImage const& image)
 	int posTracker{ 0 };
 	size_t windowWidth = (mWindowSize * 2 + 1);
 
-	std::vector<float> ConvolutionArray{ getKernel() };
+	std::vector<float> ConvolutionArray( getKernel() );
 
 	int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };
