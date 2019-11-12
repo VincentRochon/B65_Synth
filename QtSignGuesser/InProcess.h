@@ -9,6 +9,7 @@
 #include "Distribution_Gauss.h"
 #include "Distribution_Uniforme.h"
 #include "Segmentation.h"
+#include "btree.h"
 
 class InProcess 
 {

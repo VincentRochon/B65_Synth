@@ -97,6 +97,9 @@
     <ClCompile Include="Distribution_Uniforme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="btree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SignGuesser.h">
@@ -178,6 +181,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Distribution_Uniforme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="btree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

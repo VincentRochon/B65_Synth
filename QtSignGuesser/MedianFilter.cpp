@@ -16,13 +16,29 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 	size_t compteur{ 0 };
 	int median{0};
 	int windowWidth{ mWindowSize * 2 + 1 };
-	std::vector<int> listOfPix(windowWidth * windowWidth);
+	unsigned char r{};
+	unsigned char g{};
+	unsigned char b{};
+	unsigned char midRed{};
+	unsigned char midGreen{};
+	unsigned char midBlue{};
+
+	int c{};
+	/*
+	std::vector<unsigned char> listOfRed(windowWidth * windowWidth);
+	std::vector<unsigned char> listOfGreen(windowWidth * windowWidth);
+	std::vector<unsigned char> listOfBlue(windowWidth * windowWidth);
+	*/
 
 	const int* curViewPix{ reinterpret_cast<const int*>(image.bits()) };
 	int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };
-	int* vecPos{ listOfPix.data() };
-	//int* nextVecPos{ listOfPix.data() };
+
+	/*
+	unsigned char* vecPosRed{ listOfRed.data() };
+	unsigned char* vecPosGreen{ listOfGreen.data() };
+	unsigned char* vecPosBlue{ listOfBlue.data() };
+	*/
 
 
 	curViewPix += imgWidth * mWindowSize;
@@ -33,6 +49,10 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 
 		if (posTracker > mWindowSize&& posTracker < (imgWidth - mWindowSize))
 		{
+			btree* redTree = new btree();
+			btree* greenTree = new btree();
+			btree* blueTree = new btree();
+
 
 			const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
 			//int* prevPix{ curPix - imgWidth * mWindowSize + mWindowSize };
@@ -43,21 +63,40 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 				{
 					compteur = 0;
 					startPix += imgWidth - windowWidth;// skip 1 line
-
 				}
+				c = *startPix;
 
+				r = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
+				g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
+				b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
 				
-				*vecPos = *startPix;
+				redTree->insert(r);
+				greenTree->insert(g);
+				blueTree->insert(b);
+
+				/*
+				*vecPosRed = r;
+				*vecPosGreen = g;
+				*vecPosBlue = b;
 				
-				++vecPos;
+				++vecPosRed;
+				++vecPosGreen;
+				++vecPosBlue;
+				*/
+
 				++compteur;
 				++startPix;
 				
 			}
+			/*
+			vecPosRed -= windowWidth * windowWidth;
+			vecPosGreen -= windowWidth * windowWidth;
+			vecPosBlue -= windowWidth * windowWidth;
+			*/
 
-			vecPos -= windowWidth * windowWidth;
 
-			std::sort(std::begin(listOfPix), std::end(listOfPix));
+
+			//std::sort(std::begin(listOfPix), std::end(listOfPix));
 			// grosse perte de performance a cause du sort de algo
 
 			/*
@@ -78,6 +117,7 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 
 			vecPos -= windowWidth * windowWidth;
 			*/
+
 
 			int nombreTest = static_cast<int>(windowWidth * windowWidth - 1) * 0.5;
 			vecPos += nombreTest;

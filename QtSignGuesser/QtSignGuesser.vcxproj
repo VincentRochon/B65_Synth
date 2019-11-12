@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="btree.cpp" />
     <ClCompile Include="CalculForme.cpp" />
     <ClCompile Include="Classification.cpp" />
     <ClCompile Include="Comparaison.cpp" />
@@ -129,6 +130,7 @@
     <QtMoc Include="QSimpleImageGrabber.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="btree.h" />
     <ClInclude Include="CalculForme.h" />
     <ClInclude Include="Classification.h" />
     <ClInclude Include="Comparaison.h" />
