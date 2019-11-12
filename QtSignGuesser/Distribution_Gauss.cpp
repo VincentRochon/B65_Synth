@@ -75,6 +75,13 @@ QImage Distribution_Gauss::ProcessImage(QImage const& image)
 	int imgWidth{ im.width() };
 	int imgHeight{ im.height() };
 	int posTracker{ 0 };
+	unsigned char maxRed{};
+	unsigned char maxBlue{};
+	unsigned char maxGreen{};
+	unsigned char r{};
+	unsigned char g{};
+	unsigned char b{};
+	int c{};
 	size_t windowWidth = (mWindowSize * 2 + 1);
 
 	std::vector<float> ConvolutionArray( getKernel() );
@@ -97,14 +104,25 @@ QImage Distribution_Gauss::ProcessImage(QImage const& image)
 
 			const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
 
-			int sum{ 0 };
+			maxRed = 0;
+			maxBlue = 0;
+			maxGreen= 0;
+
 
 			for (size_t i = 0; i < windowWidth; ++i)
 			{
 				for (size_t j = 0; j < windowWidth; ++j)
 				{
-					sum += (*startPix) * (*curPosVect);
+					c = *startPix;
 
+					r = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
+					g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
+					b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
+
+					maxRed += (r) * (*curPosVect);
+					maxGreen += (g) * (*curPosVect);
+					maxBlue += (b) * (*curPosVect);
+		
 
 					++curPosVect;
 					++startPix;
@@ -114,7 +132,7 @@ QImage Distribution_Gauss::ProcessImage(QImage const& image)
 
 			curPosVect = vectStart;
 
-			*curPix = sum;
+			*curPix = (maxRed << 16) | (maxGreen << 8) | (maxBlue << 0) | 0xFF'00'00'00;
 
 		}
 

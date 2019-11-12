@@ -36,6 +36,13 @@ QImage Distribution_Uniforme::ProcessImage(QImage const& image)
 	size_t windowWidth = (mWindowSize * 2 + 1);
 	size_t window = (windowWidth * windowWidth);
 	int posTracker{ 0 };
+	unsigned char maxRed{};
+	unsigned char maxBlue{};
+	unsigned char maxGreen{};
+	unsigned char r{};
+	unsigned char g{};
+	unsigned char b{};
+	int c{};
 
 	//std::vector<float > ConvolutionArray{ getKernel() };
 
@@ -56,19 +63,32 @@ QImage Distribution_Uniforme::ProcessImage(QImage const& image)
 		{
 
 			const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
-			int sum{0};
+
+			maxRed = 0 ;
+			maxGreen =  0 ;
+			maxBlue = 0 ;
+		
 
 			for (size_t i = 0; i < windowWidth; ++i)
 			{
 				for (size_t j = 0; j < windowWidth; ++j)
 				{
-					sum += (*startPix) * uniformeValue;
+					c = *startPix;
+
+					r = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
+					g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
+					b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
+
+					maxRed += r * uniformeValue;
+					maxGreen += g * uniformeValue;
+					maxBlue += b * uniformeValue;
+
 					++startPix;
 				}
 				startPix += imgWidth - windowWidth;// skip 1 line
 			}
 
-			*curPix = sum;
+			*curPix = (maxRed << 16) | (maxGreen << 8) | (maxBlue << 0) | 0xFF'00'00'00;;
 		}
 
 		if (posTracker == imgWidth) {
