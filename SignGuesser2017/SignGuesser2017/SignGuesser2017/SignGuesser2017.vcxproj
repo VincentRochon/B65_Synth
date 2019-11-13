@@ -113,6 +113,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\QtSignGuesser\btree.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\CalculForme.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Camera.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Classification.cpp" />
@@ -146,6 +147,7 @@
     <QtRcc Include="SignGuesser.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\QtSignGuesser\btree.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\CalculForme.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Camera.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Classification.h" />
