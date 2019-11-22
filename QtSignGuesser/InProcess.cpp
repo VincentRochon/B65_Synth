@@ -1,7 +1,6 @@
 #include "InProcess.h"
 
-InProcess::InProcess(QImage const& image)
-	:mProcessedImage(image)
+InProcess::InProcess()
 {
 
 }
@@ -27,7 +26,7 @@ void InProcess::Process()
 
 	while (itBegin != itEnd)
 	{
-		mProcessedImage = (*itBegin)->ProcessImage(mProcessedImage);
+		mVectorOfProcessedImage = (*itBegin)->ProcessImage(mVectorOfProcessedImage);
 		
 		itBegin++;
 

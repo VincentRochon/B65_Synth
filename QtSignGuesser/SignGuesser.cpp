@@ -97,10 +97,10 @@ void SignGuesser::process(QImage const& image)
 	//QImage im(image);
 
 
-	InProcess listOfProcess(image);
+	InProcess listOfProcess();
 
-	//listOfProcess.addMaximumFilter(2);
-	listOfProcess.addMedianFilter(2);
+	listOfProcess.addMaximumFilter(2);
+	//listOfProcess.addMedianFilter(2);
 	//listOfProcess.addSegmentation(0, 255, 0, 255, 0, 255);
 	//listOfProcess.addUniformeConvolution(2);
 	//listOfProcess.addGaussianConvolution(3);

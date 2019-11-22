@@ -12,7 +12,7 @@ public :
 	~MaximumFilter() = default;
 
 
-	QImage ProcessImage(QImage const& image ) override;
+	std::vector<QImage> ProcessImage(std::vector<QImage> image) override;
 
 	void setWindowSize(int newWindowSize);
 	size_t windowSize()const;

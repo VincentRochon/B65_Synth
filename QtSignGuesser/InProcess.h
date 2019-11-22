@@ -14,7 +14,7 @@
 class InProcess 
 {
 public:
-	InProcess(QImage const& image);
+	InProcess();
 	~InProcess();
 
 
@@ -31,6 +31,8 @@ public:
 private:
 	std::list<UnaryProcess *> mProcess;
 	QImage mProcessedImage;
+	std::vector<QImage> mVectorOfProcessedImage;
+	std::vector<QImage const&> mVectorOfImageToProcess;
 
 };
 

@@ -93,6 +93,7 @@
     <ClCompile Include="Classification.cpp" />
     <ClCompile Include="Comparaison.cpp" />
     <ClCompile Include="Convolution.cpp" />
+    <ClCompile Include="CustomBtree.cpp" />
     <ClCompile Include="DatabaseAccess.cpp" />
     <ClCompile Include="Distribution_Gauss.cpp" />
     <ClCompile Include="Distribution_Uniforme.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="Classification.h" />
     <ClInclude Include="Comparaison.h" />
     <ClInclude Include="Convolution.h" />
+    <ClInclude Include="CustomBtree.h" />
     <ClInclude Include="DatabaseAccess.h" />
     <ClInclude Include="Distribution_Gauss.h" />
     <ClInclude Include="Distribution_Uniforme.h" />
