@@ -24,21 +24,21 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 	unsigned char midBlue{};
 
 	int c{};
-	/*
+	
 	std::vector<unsigned char> listOfRed(windowWidth * windowWidth);
 	std::vector<unsigned char> listOfGreen(windowWidth * windowWidth);
 	std::vector<unsigned char> listOfBlue(windowWidth * windowWidth);
-	*/
+	
 
 	const int* curViewPix{ reinterpret_cast<const int*>(image.bits()) };
 	int* curPix{ reinterpret_cast<int*>(im.bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };
 
-	/*
+	
 	unsigned char* vecPosRed{ listOfRed.data() };
 	unsigned char* vecPosGreen{ listOfGreen.data() };
 	unsigned char* vecPosBlue{ listOfBlue.data() };
-	*/
+	
 
 
 	curViewPix += imgWidth * mWindowSize;
@@ -49,9 +49,9 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 
 		if (posTracker > mWindowSize&& posTracker < (imgWidth - mWindowSize))
 		{
-			btree* redTree = new btree();
-			btree* greenTree = new btree();
-			btree* blueTree = new btree();
+			//btree* redTree = new btree();
+			//btree* greenTree = new btree();
+			//btree* blueTree = new btree();
 
 
 			const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
@@ -70,11 +70,11 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 				g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
 				b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
 				
-				redTree->insert(r);
-				greenTree->insert(g);
-				blueTree->insert(b);
+				//redTree->insert(r);
+				//greenTree->insert(g);
+				//blueTree->insert(b);
 
-				/*
+				
 				*vecPosRed = r;
 				*vecPosGreen = g;
 				*vecPosBlue = b;
@@ -82,21 +82,29 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 				++vecPosRed;
 				++vecPosGreen;
 				++vecPosBlue;
-				*/
+				
 
 				++compteur;
 				++startPix;
 				
 			}
-			/*
+
+
+			
 			vecPosRed -= windowWidth * windowWidth;
 			vecPosGreen -= windowWidth * windowWidth;
 			vecPosBlue -= windowWidth * windowWidth;
-			*/
+			
 
 
+			//r = static_cast<unsigned char>(redTree->findMedian(redTree->getRoot()));
+			//g = static_cast<unsigned char>(greenTree->findMedian(greenTree->getRoot()));
+			//b = static_cast<unsigned char>(blueTree->findMedian(blueTree->getRoot()));
 
-			//std::sort(std::begin(listOfPix), std::end(listOfPix));
+
+			std::sort(std::begin(listOfRed), std::end(listOfRed));
+			std::sort(std::begin(listOfGreen), std::end(listOfGreen));
+			std::sort(std::begin(listOfBlue), std::end(listOfBlue));
 			// grosse perte de performance a cause du sort de algo
 
 			/*
@@ -120,11 +128,15 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 
 
 			int nombreTest = static_cast<int>(windowWidth * windowWidth - 1) * 0.5;
-			vecPos += nombreTest;
-			*curPix = *vecPos;
-			vecPos -= nombreTest;
+			vecPosRed += nombreTest;
+			vecPosGreen += nombreTest;
+			vecPosBlue += nombreTest;
 
-
+			* curPix = (*vecPosRed << 16) | (*vecPosGreen << 8) | (*vecPosBlue << 0) | 0xFF'00'00'00;
+			//* curPix = *vecPos;
+			vecPosRed -= nombreTest;
+			vecPosGreen -= nombreTest;
+			vecPosBlue -= nombreTest;
 		}
 
 		if (posTracker == imgWidth) {

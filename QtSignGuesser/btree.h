@@ -10,11 +10,12 @@ struct node {
 	node* right;
 };
 
+/*
 struct Node
 {
 	int data;
 	struct Node* left, * right;
-};
+};*/
 
 
 
@@ -29,6 +30,8 @@ public:
 	void inorder_print();
 	void postorder_print();
 	void preorder_print();
+	int findMedian(node* root);
+	node* getRoot();
 
 private:
 	void destroy_tree(node* leaf);
@@ -37,6 +40,7 @@ private:
 	void inorder_print(node* leaf);
 	void postorder_print(node* leaf);
 	void preorder_print(node* leaf);
+	int countNodes(node* root);
 
 	node* root;
 };

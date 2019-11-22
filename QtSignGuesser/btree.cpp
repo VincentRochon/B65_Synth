@@ -43,6 +43,8 @@ void btree::insert(int key, node* leaf) {
 
 }
 
+
+
 void btree::insert(int key) {
 	if (root != NULL) {
 		insert(key, root);
@@ -119,36 +121,44 @@ void btree::preorder_print(node* leaf) {
 	}
 }
 
+node* btree::getRoot() {
+
+	return root;
+}
+
 ///////////////////////////////////////////////////////////////
 
 // https://www.geeksforgeeks.org/find-median-bst-time-o1-space/
 
-struct Node* insert(struct Node* node, int key)
+
+
+//struct node* insert(struct node* node, int key)
+//{
+//	/* If the tree is empty, return a new node */
+//	if (node == NULL) return newNode(key);
+//
+//	/* Otherwise, recur down the tree */
+//	if (key < node->value)
+//		node->left = insert(node->left, key);
+//	else if (key > node->value)
+//		node->right = insert(node->right, key);
+//
+//	/* return the (unchanged) node pointer */
+//	return node;
+//}
+//
+//struct node* newNode(int item)
+//{
+//	struct node* temp = new node;
+//	temp->value = item;
+//	temp->left = temp->right = NULL;
+//	return temp;
+//}
+
+
+int btree::countNodes(struct node* root)
 {
-	/* If the tree is empty, return a new node */
-	if (node == NULL) return newNode(key);
-
-	/* Otherwise, recur down the tree */
-	if (key < node->data)
-		node->left = insert(node->left, key);
-	else if (key > node->data)
-		node->right = insert(node->right, key);
-
-	/* return the (unchanged) node pointer */
-	return node;
-}
-
-struct Node* newNode(int item)
-{
-	struct Node* temp = new Node;
-	temp->data = item;
-	temp->left = temp->right = NULL;
-	return temp;
-}
-
-int counNodes(struct Node* root)
-{
-	struct Node* current, * pre;
+	struct node* current, * pre;
 
 	// Initialise count of nodes as 0 
 	int count = 0;
@@ -203,14 +213,14 @@ int counNodes(struct Node* root)
 }
 
 
-int findMedian(struct Node* root)
+int btree::findMedian(struct node* root)
 {
 	if (root == NULL)
 		return 0;
 
-	int count = counNodes(root);
+	int count = btree::countNodes(root);
 	int currCount = 0;
-	struct Node* current = root, * pre, * prev;
+	struct node* current = root, * pre, * prev;
 
 	while (current != NULL)
 	{
@@ -222,11 +232,11 @@ int findMedian(struct Node* root)
 			// check if current node is the median 
 			// Odd case 
 			if (count % 2 != 0 && currCount == (count + 1) / 2)
-				return prev->data;
+				return prev->value;
 
 			// Even case 
 			else if (count % 2 == 0 && currCount == (count / 2) + 1)
-				return (prev->data + current->data) / 2;
+				return (prev->value + current->value) / 2;
 
 			// Update prev for even no. of nodes 
 			prev = current;
@@ -261,10 +271,10 @@ int findMedian(struct Node* root)
 
 				// Check if the current node is the median 
 				if (count % 2 != 0 && currCount == (count + 1) / 2)
-					return current->data;
+					return current->value;
 
 				else if (count % 2 == 0 && currCount == (count / 2) + 1)
-					return (prev->data + current->data) / 2;
+					return (prev->value + current->value) / 2;
 
 				// update prev node for the case of even 
 				// no. of nodes 

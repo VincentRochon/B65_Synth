@@ -13,7 +13,7 @@ public:
 
 
 	QImage ProcessImage(QImage const& image) override;
-
+ 
 	void setWindowSize(int newWindowSize);
 	size_t windowSize()const;
 

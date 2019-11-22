@@ -81,7 +81,7 @@ QImage MaximumFilter::ProcessImage(QImage const& image)
 				startPix += imgWidth - windowWidth-1;// skip 1 line
 
 			}
-			*curPix = (maxRed << 16) | (maxGreen << 8) | (maxBlue << 0) | 0xFF'00'00'00;;
+			*curPix = (maxRed << 16) | (maxGreen << 8) | (maxBlue << 0) | 0xFF'00'00'00;
 		}
 
 		if (posTracker == imgWidth) {

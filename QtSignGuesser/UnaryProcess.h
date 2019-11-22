@@ -2,7 +2,6 @@
 #define UNARYPROCESS_H
 
 #include <QImage>
-#include "btree.h"
 
 
 
