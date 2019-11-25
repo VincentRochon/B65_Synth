@@ -6,15 +6,11 @@ MedianFilter::MedianFilter(int windowSize)
 
 }
 
-QImage MedianFilter::ProcessImage(QImage const& image)
+void MedianFilter::ProcessImage(std::vector<QImage> &image)
 {
-	QImage im(image);
-
-	int imgWidth{ im.width() };
-	int imgHeight{ im.height() };
 	size_t posTracker{ 0 };
 	size_t compteur{ 0 };
-	int median{0};
+	int median{ 0 };
 	int windowWidth{ mWindowSize * 2 + 1 };
 	unsigned char r{};
 	unsigned char g{};
@@ -22,133 +18,131 @@ QImage MedianFilter::ProcessImage(QImage const& image)
 	unsigned char midRed{};
 	unsigned char midGreen{};
 	unsigned char midBlue{};
-
 	int c{};
-	
 	std::vector<unsigned char> listOfRed(windowWidth * windowWidth);
 	std::vector<unsigned char> listOfGreen(windowWidth * windowWidth);
 	std::vector<unsigned char> listOfBlue(windowWidth * windowWidth);
-	
-
-	const int* curViewPix{ reinterpret_cast<const int*>(image.bits()) };
-	int* curPix{ reinterpret_cast<int*>(im.bits()) };
-	int* endPix{ curPix + imgWidth * imgHeight };
-
-	
 	unsigned char* vecPosRed{ listOfRed.data() };
 	unsigned char* vecPosGreen{ listOfGreen.data() };
 	unsigned char* vecPosBlue{ listOfBlue.data() };
-	
 
+	auto img{ image.data() };
 
-	curViewPix += imgWidth * mWindowSize;
-	curPix += imgWidth * mWindowSize; // skip lines to prevent overflow
-	endPix -= imgWidth * mWindowSize; // remove last line prevent overflow for treatment
+	for (size_t i = 0; i < image.size(); i++) {
 
-	while (curPix < endPix) {
+		QImage im(*img);
 
-		if (posTracker > mWindowSize&& posTracker < (imgWidth - mWindowSize))
-		{
-			//btree* redTree = new btree();
-			//btree* greenTree = new btree();
-			//btree* blueTree = new btree();
+		int imgWidth{ im.width() };
+		int imgHeight{ im.height() };
 
+		const int* curViewPix{ reinterpret_cast<const int*>((*img).bits()) };
+		int* curPix{ reinterpret_cast<int*>(im.bits()) };
+		int* endPix{ curPix + imgWidth * imgHeight };
 
-			const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
-			//int* prevPix{ curPix - imgWidth * mWindowSize + mWindowSize };
-			
-			for (size_t i = 0; i < windowWidth*windowWidth; ++i)
+		curViewPix += imgWidth * mWindowSize;
+		curPix += imgWidth * mWindowSize; // skip lines to prevent overflow
+		endPix -= imgWidth * mWindowSize; // remove last line prevent overflow for treatment
+
+		while (curPix < endPix) {
+
+			if (posTracker > mWindowSize&& posTracker < (imgWidth - mWindowSize))
 			{
-				if (compteur == windowWidth)
+				//btree* redTree = new btree();
+				//btree* greenTree = new btree();
+				//btree* blueTree = new btree();
+
+				const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
+				//int* prevPix{ curPix - imgWidth * mWindowSize + mWindowSize };
+
+				for (size_t i = 0; i < windowWidth * windowWidth; ++i)
 				{
-					compteur = 0;
-					startPix += imgWidth - windowWidth;// skip 1 line
-				}
-				c = *startPix;
+					if (compteur == windowWidth)
+					{
+						compteur = 0;
+						startPix += imgWidth - windowWidth;// skip 1 line
+					}
+					c = *startPix;
 
-				r = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
-				g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
-				b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
-				
-				//redTree->insert(r);
-				//greenTree->insert(g);
-				//blueTree->insert(b);
+					r = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
+					g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
+					b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
 
-				
-				*vecPosRed = r;
-				*vecPosGreen = g;
-				*vecPosBlue = b;
-				
-				++vecPosRed;
-				++vecPosGreen;
-				++vecPosBlue;
-				
-
-				++compteur;
-				++startPix;
-				
-			}
+					//redTree->insert(r);
+					//greenTree->insert(g);
+					//blueTree->insert(b);
 
 
-			
-			vecPosRed -= windowWidth * windowWidth;
-			vecPosGreen -= windowWidth * windowWidth;
-			vecPosBlue -= windowWidth * windowWidth;
-			
+					*vecPosRed = r;
+					*vecPosGreen = g;
+					*vecPosBlue = b;
+
+					++vecPosRed;
+					++vecPosGreen;
+					++vecPosBlue;
 
 
-			//r = static_cast<unsigned char>(redTree->findMedian(redTree->getRoot()));
-			//g = static_cast<unsigned char>(greenTree->findMedian(greenTree->getRoot()));
-			//b = static_cast<unsigned char>(blueTree->findMedian(blueTree->getRoot()));
+					++compteur;
+					++startPix;
 
-
-			std::sort(std::begin(listOfRed), std::end(listOfRed));
-			std::sort(std::begin(listOfGreen), std::end(listOfGreen));
-			std::sort(std::begin(listOfBlue), std::end(listOfBlue));
-			// grosse perte de performance a cause du sort de algo
-
-			/*
-			for (size_t i = 0; i < listOfPix.size(); i++)
-			{
-				++nextVecPos;
-							   
-				if (*nextVecPos > * vecPos)
-				{
-					int tempValue{*vecPos };
-					*vecPos = *nextVecPos;
-					*nextVecPos = tempValue;
 				}
 
-				++vecPos;
+				vecPosRed -= windowWidth * windowWidth;
+				vecPosGreen -= windowWidth * windowWidth;
+				vecPosBlue -= windowWidth * windowWidth;
+
+				//r = static_cast<unsigned char>(redTree->findMedian(redTree->getRoot()));
+				//g = static_cast<unsigned char>(greenTree->findMedian(greenTree->getRoot()));
+				//b = static_cast<unsigned char>(blueTree->findMedian(blueTree->getRoot()));
+
+				std::sort(std::begin(listOfRed), std::end(listOfRed));
+				std::sort(std::begin(listOfGreen), std::end(listOfGreen));
+				std::sort(std::begin(listOfBlue), std::end(listOfBlue));
+				// grosse perte de performance a cause du sort de algo
+
+				/*
+				for (size_t i = 0; i < listOfPix.size(); i++)
+				{
+					++nextVecPos;
+
+					if (*nextVecPos > * vecPos)
+					{
+						int tempValue{*vecPos };
+						*vecPos = *nextVecPos;
+						*nextVecPos = tempValue;
+					}
+
+					++vecPos;
+				}
+
+
+				vecPos -= windowWidth * windowWidth;
+				*/
+
+
+				int nombreTest = static_cast<int>(windowWidth * windowWidth - 1) * 0.5;
+				vecPosRed += nombreTest;
+				vecPosGreen += nombreTest;
+				vecPosBlue += nombreTest;
+
+				*curPix = (*vecPosRed << 16) | (*vecPosGreen << 8) | (*vecPosBlue << 0) | 0xFF'00'00'00;
+				//* curPix = *vecPos;
+				vecPosRed -= nombreTest;
+				vecPosGreen -= nombreTest;
+				vecPosBlue -= nombreTest;
 			}
-			
 
-			vecPos -= windowWidth * windowWidth;
-			*/
+			if (posTracker == imgWidth) {
+				posTracker = 0;
+			}
 
-
-			int nombreTest = static_cast<int>(windowWidth * windowWidth - 1) * 0.5;
-			vecPosRed += nombreTest;
-			vecPosGreen += nombreTest;
-			vecPosBlue += nombreTest;
-
-			* curPix = (*vecPosRed << 16) | (*vecPosGreen << 8) | (*vecPosBlue << 0) | 0xFF'00'00'00;
-			//* curPix = *vecPos;
-			vecPosRed -= nombreTest;
-			vecPosGreen -= nombreTest;
-			vecPosBlue -= nombreTest;
+			++curViewPix;
+			++posTracker;
+			++curPix;
 		}
 
-		if (posTracker == imgWidth) {
-			posTracker = 0;
-		}
-
-		++curViewPix;
-		++posTracker;
-		++curPix;
+		*img = im;
 	}
 
-	return im;
 }
 
 void MedianFilter::setWindowSize(int newWindowSize)

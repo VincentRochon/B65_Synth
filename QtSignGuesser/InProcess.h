@@ -14,13 +14,14 @@
 class InProcess 
 {
 public:
-	InProcess();
+	InProcess(QImage const&);
 	~InProcess();
 
 
 public:
 	void Process();
 	QImage getProcessedImage() const;
+	std::vector<QImage> getProcessedImages() const;
 	void addMaximumFilter(int neighborhoodSize);
 	void addMedianFilter(int neighborhoodSize);
 	void addGaussianConvolution(int neighborhoodSize);
@@ -31,8 +32,8 @@ public:
 private:
 	std::list<UnaryProcess *> mProcess;
 	QImage mProcessedImage;
-	std::vector<QImage> mVectorOfProcessedImage;
-	std::vector<QImage const&> mVectorOfImageToProcess;
+	std::vector<QImage> mImageVector;
+	//std::vector<QImage const&> mVectorOfImageToProcess;
 
 };
 

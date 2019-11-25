@@ -10,7 +10,7 @@ public:
 	UnaryProcess() = default;
 	virtual ~UnaryProcess() = default;
 
-	virtual std::vector<QImage>  ProcessImage(std::vector<QImage> image) =0;
+	virtual void ProcessImage(std::vector<QImage> &image) =0;
 
 };
 

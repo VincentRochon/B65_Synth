@@ -10,7 +10,7 @@ public:
 	Distribution_Gauss(int windowSize);
 	~Distribution_Gauss() = default;
 
-	QImage ProcessImage(QImage const& image) override;
+	void ProcessImage(std::vector<QImage> &image) override;
 
 
 

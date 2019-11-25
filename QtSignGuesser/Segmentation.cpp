@@ -7,37 +7,42 @@ Segmentation::Segmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gmax, s
 {
 }
 
-QImage Segmentation::ProcessImage(QImage const& image)
+void Segmentation::ProcessImage(std::vector<QImage> &image)
 {
-	QImage im(image);
 
 
-	int imgWidth{ im.width() };
-	int imgHeight{ im.height() };
+	auto img{ image.data() };
 
-	int* curPix{ reinterpret_cast<int*>(im.bits()) };
-	int* endPix{ curPix + imgWidth * imgHeight };
+	for (size_t i = 0; i < image.size(); i++) {
+
+		QImage im(*img);
+		int imgWidth{ im.width() };
+		int imgHeight{ im.height() };
+		int* curPix{ reinterpret_cast<int*>(im.bits()) };
+		int* endPix{ curPix + imgWidth * imgHeight };
+
+		while (curPix < endPix) {
 
 
-	while (curPix < endPix) {
+			int c{ *curPix };
 
+			unsigned char r{ static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16) };
+			unsigned char g{ static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8) };
+			unsigned char b{ static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0) };
 
-		int c{ *curPix };
+			if (r <= mRmax && r >= mRmin && g <= mGmax && g >= mGmin && b <= mBmax && b >= mBmin) {
 
-		unsigned char r{ static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16) };
-		unsigned char g{ static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8) };
-		unsigned char b{ static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0) };
+				*curPix = 0xFF'FF'FF'FF;
+			}
+			else {
+				*curPix = 0xFF'00'00'00;
+			}
 
-		if (r < mRmax && r > mRmin&& g < mGmax && g > mGmin&& b < mBmax && b > mBmin) {
-
-			*curPix = 0xFF'FF'FF'FF;
+			++curPix;
 		}
-		else {
-			*curPix = 0xFF'00'00'00;
-		}
 
-		++curPix;
+		*img = im;
 	}
 
-	return im;
+
 }

@@ -1,6 +1,7 @@
 #include "InProcess.h"
 
-InProcess::InProcess()
+InProcess::InProcess(QImage const& image)
+	:mImageVector{ image }
 {
 
 }
@@ -26,7 +27,7 @@ void InProcess::Process()
 
 	while (itBegin != itEnd)
 	{
-		mVectorOfProcessedImage = (*itBegin)->ProcessImage(mVectorOfProcessedImage);
+		(*itBegin)->ProcessImage(mImageVector);
 		
 		itBegin++;
 
@@ -37,6 +38,11 @@ void InProcess::Process()
 QImage InProcess::getProcessedImage() const
 {
 	return mProcessedImage;
+}
+
+std::vector<QImage> InProcess::getProcessedImages() const
+{
+	return mImageVector;
 }
 
 void InProcess::addMaximumFilter(int neighborhoodSize)

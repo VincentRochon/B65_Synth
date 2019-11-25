@@ -10,7 +10,7 @@ public:
 	Distribution_Uniforme(int windowSize);
 	~Distribution_Uniforme() = default;
 
-	QImage ProcessImage(QImage const& image) override;
+	void ProcessImage(std::vector<QImage> &image) override;
 
 
 

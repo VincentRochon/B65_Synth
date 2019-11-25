@@ -67,13 +67,8 @@ std::vector<float> Distribution_Gauss::getKernel()
 	return ConvolutionArray;
 }
 
-QImage Distribution_Gauss::ProcessImage(QImage const& image)
+void Distribution_Gauss::ProcessImage(std::vector<QImage> &image)
 {
-	QImage im(image);
-
-
-	int imgWidth{ im.width() };
-	int imgHeight{ im.height() };
 	int posTracker{ 0 };
 	unsigned char maxRed{};
 	unsigned char maxBlue{};
@@ -83,67 +78,76 @@ QImage Distribution_Gauss::ProcessImage(QImage const& image)
 	unsigned char b{};
 	int c{};
 	size_t windowWidth = (mWindowSize * 2 + 1);
-
-	std::vector<float> ConvolutionArray( getKernel() );
-
-	int* curPix{ reinterpret_cast<int*>(im.bits()) };
-	int* endPix{ curPix + imgWidth * imgHeight };
-	const int* curViewPix{ reinterpret_cast<const int*>(image.bits()) };
+	std::vector<float> ConvolutionArray(getKernel());
 	float* vectStart{ ConvolutionArray.data() };
 	float* curPosVect{ ConvolutionArray.data() };
 
-	curViewPix += imgWidth * mWindowSize;
-	// endViewPix -= imageWidth * mWindowSize;
-	curPix += imgWidth * mWindowSize; // skip lines to prevent overflow
-	endPix -= imgWidth * mWindowSize; // remove last lines prevent overflow for treatment
+	auto img{ image.data() };
 
-	while (curPix < endPix) {
+	for (size_t i = 0; i < image.size(); i++) {
 
-		if (posTracker > mWindowSize&& posTracker < (imgWidth - mWindowSize))
-		{
+		QImage im(*img);
 
-			const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
+		int imgWidth{ im.width() };
+		int imgHeight{ im.height() };
 
-			maxRed = 0;
-			maxBlue = 0;
-			maxGreen= 0;
+		int* curPix{ reinterpret_cast<int*>(im.bits()) };
+		int* endPix{ curPix + imgWidth * imgHeight };
+		const int* curViewPix{ reinterpret_cast<const int*>((*img).bits()) };
 
+		curViewPix += imgWidth * mWindowSize;
+		// endViewPix -= imageWidth * mWindowSize;
+		curPix += imgWidth * mWindowSize; // skip lines to prevent overflow
+		endPix -= imgWidth * mWindowSize; // remove last lines prevent overflow for treatment
 
-			for (size_t i = 0; i < windowWidth; ++i)
+		while (curPix < endPix) {
+
+			if (posTracker > mWindowSize&& posTracker < (imgWidth - mWindowSize))
 			{
-				for (size_t j = 0; j < windowWidth; ++j)
+
+				const int* startPix{ curViewPix - imgWidth * mWindowSize + mWindowSize }; // start of the window of pixels
+
+				maxRed = 0;
+				maxBlue = 0;
+				maxGreen = 0;
+
+				for (size_t i = 0; i < windowWidth; ++i)
 				{
-					c = *startPix;
+					for (size_t j = 0; j < windowWidth; ++j)
+					{
+						c = *startPix;
 
-					r = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
-					g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
-					b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
+						r = static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16);
+						g = static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8);
+						b = static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0);
 
-					maxRed += (r) * (*curPosVect);
-					maxGreen += (g) * (*curPosVect);
-					maxBlue += (b) * (*curPosVect);
-		
+						maxRed += (r) * (*curPosVect);
+						maxGreen += (g) * (*curPosVect);
+						maxBlue += (b) * (*curPosVect);
 
-					++curPosVect;
-					++startPix;
+
+						++curPosVect;
+						++startPix;
+					}
+					startPix += imgWidth - windowWidth;// skip 1 line
 				}
-				startPix += imgWidth - windowWidth;// skip 1 line
+
+				curPosVect = vectStart;
+
+				*curPix = (maxRed << 16) | (maxGreen << 8) | (maxBlue << 0) | 0xFF'00'00'00;
+
 			}
 
-			curPosVect = vectStart;
+			if (posTracker == imgWidth) {
+				posTracker = 0;
+			}
 
-			*curPix = (maxRed << 16) | (maxGreen << 8) | (maxBlue << 0) | 0xFF'00'00'00;
-
+			++curViewPix;
+			++posTracker;
+			++curPix;
 		}
 
-		if (posTracker == imgWidth) {
-			posTracker = 0;
-		}
-
-		++curViewPix;
-		++posTracker;
-		++curPix;
+		*img = im;
 	}
 
-	return im;
 }
