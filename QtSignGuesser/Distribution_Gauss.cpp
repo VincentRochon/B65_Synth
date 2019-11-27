@@ -50,7 +50,7 @@ std::vector<float> Distribution_Gauss::getKernel()
 		}
 	}
 
-	curData = reinterpret_cast<float*>(ConvolutionArray.data());
+	// curData = reinterpret_cast<float*>(ConvolutionArray.data());
 	
 	for (auto &v : ConvolutionArray) {
 
@@ -70,7 +70,7 @@ std::vector<float> Distribution_Gauss::getKernel()
 bool Distribution_Gauss::ProcessImage(std::vector<QImage> const &imageIn, std::vector<QImage> & imageOut)
 {
 	if (imageIn.size() != imageOut.size()) {
-		return 0; // invalid format of either vectors
+		return false; // invalid format of either vectors
 	}
 	
 	int posTracker{ 0 };
@@ -157,6 +157,6 @@ bool Distribution_Gauss::ProcessImage(std::vector<QImage> const &imageIn, std::v
 		++imgOut;
 	}
 
-	return 1; // succes
+	return true; // succes
 
 }

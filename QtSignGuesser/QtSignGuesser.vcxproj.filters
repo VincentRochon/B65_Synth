@@ -103,6 +103,9 @@
     <ClCompile Include="CustomBtree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MoyenneImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SignGuesser.h">
@@ -190,6 +193,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CustomBtree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoyenneImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

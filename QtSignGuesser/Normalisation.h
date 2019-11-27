@@ -2,5 +2,24 @@
 #define NORMALISATION_H
 
 
+#include "UnaryProcess.h"
 
-#endif
+class Normalisation : public UnaryProcess
+{
+public :
+
+
+	Normalisation() = delete;
+	Normalisation(unsigned char mNormalValue);
+	~Normalisation() = default;
+
+	bool ProcessImage(std::vector<QImage> const& imageIn, std::vector<QImage>& imageOut) override;
+
+private:
+	unsigned char mNormalValue;
+
+
+};
+
+
+#endif // NORMALISATION_H

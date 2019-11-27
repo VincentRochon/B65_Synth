@@ -9,7 +9,8 @@
 #include "Distribution_Gauss.h"
 #include "Distribution_Uniforme.h"
 #include "Segmentation.h"
-#include "btree.h"
+#include "btree.h" // to remove
+#include "MoyenneImage.h"
 
 class InProcess 
 {
@@ -27,6 +28,7 @@ public:
 	void addGaussianConvolution(int neighborhoodSize);
 	void addUniformeConvolution(int neighborhoodSize);
 	void addSegmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gmax, size_t Bmin, size_t Bmax);
+	void addMoyenneImage();
 
 
 private:

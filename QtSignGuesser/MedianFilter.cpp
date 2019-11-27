@@ -9,7 +9,7 @@ MedianFilter::MedianFilter(int windowSize)
 bool MedianFilter::ProcessImage(std::vector<QImage> const& imageIn, std::vector<QImage>& imageOut)
 {
 	if (imageIn.size() != imageOut.size()) {
-		return 0; // invalid format of either vectors
+		return false; // invalid format of either vectors
 	}
 
 	size_t posTracker{ 0 };
@@ -149,7 +149,7 @@ bool MedianFilter::ProcessImage(std::vector<QImage> const& imageIn, std::vector<
 		//*img = im;
 	}
 
-	return 1; //succesfull
+	return true; //succesfull
 
 }
 

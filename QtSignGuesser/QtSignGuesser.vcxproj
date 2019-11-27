@@ -105,6 +105,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaximumFilter.cpp" />
     <ClCompile Include="MedianFilter.cpp" />
+    <ClCompile Include="MoyenneImage.cpp" />
     <ClCompile Include="Normalisation.cpp" />
     <ClCompile Include="QSimpleImageGrabber.cpp" />
     <ClCompile Include="QSimpleImageViewer.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Logitech_Camera.h" />
     <ClInclude Include="MaximumFilter.h" />
     <ClInclude Include="MedianFilter.h" />
+    <ClInclude Include="MoyenneImage.h" />
     <ClInclude Include="Normalisation.h" />
     <ClInclude Include="RankFilter.h" />
     <ClInclude Include="Segmentation.h" />

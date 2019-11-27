@@ -72,4 +72,9 @@ void InProcess::addSegmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gm
 	mProcess.push_back(new Segmentation(Rmin,Rmax,Gmin,Gmax,Bmin,Bmax));
 }
 
+void InProcess::addMoyenneImage()
+{
+	mProcess.push_back(new MoyenneImage());
+}
+
 

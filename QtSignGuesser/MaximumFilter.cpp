@@ -9,7 +9,7 @@ MaximumFilter::MaximumFilter(int windowSize)
 bool  MaximumFilter::ProcessImage(std::vector<QImage> const &imageIn, std::vector<QImage>& imageOut)
 {
 	if (imageIn.size() != imageOut.size()) {
-		return 0; // invalid format of either vectors
+		return false; // invalid format of either vectors
 	}
 
 	int posTracker{ 0 };
@@ -103,7 +103,7 @@ bool  MaximumFilter::ProcessImage(std::vector<QImage> const &imageIn, std::vecto
 		++imgOut;
 
 	}
-	return 1; //succes
+	return true; //succes
 }
 
 void MaximumFilter::setWindowSize(int newWindowSize)

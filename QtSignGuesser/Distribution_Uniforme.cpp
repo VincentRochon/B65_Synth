@@ -19,7 +19,7 @@ bool Distribution_Uniforme::ProcessImage(std::vector<QImage> const &imageIn, std
 {
 
 	if (imageIn.size() != imageOut.size()) {
-		return 0; // invalid format of either vectors
+		return false; // invalid format of either vectors
 	}
 
 	size_t windowWidth = (mWindowSize * 2 + 1);
@@ -102,5 +102,5 @@ bool Distribution_Uniforme::ProcessImage(std::vector<QImage> const &imageIn, std
 		++imgOut;
 	}
 	
-	return 1; // succes
+	return true; // succes
 }
