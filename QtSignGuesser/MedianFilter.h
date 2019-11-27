@@ -12,7 +12,7 @@ public:
 	~MedianFilter() = default;
 
 
-	void ProcessImage(std::vector<QImage> &image) override;
+	bool ProcessImage(std::vector<QImage> const &imageIn, std::vector<QImage>& imageOut) override;
  
 	void setWindowSize(int newWindowSize);
 	size_t windowSize()const;

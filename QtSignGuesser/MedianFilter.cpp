@@ -6,8 +6,12 @@ MedianFilter::MedianFilter(int windowSize)
 
 }
 
-void MedianFilter::ProcessImage(std::vector<QImage> &image)
+bool MedianFilter::ProcessImage(std::vector<QImage> const& imageIn, std::vector<QImage>& imageOut)
 {
+	if (imageIn.size() != imageOut.size()) {
+		return 0; // invalid format of either vectors
+	}
+
 	size_t posTracker{ 0 };
 	size_t compteur{ 0 };
 	int median{ 0 };
@@ -26,17 +30,18 @@ void MedianFilter::ProcessImage(std::vector<QImage> &image)
 	unsigned char* vecPosGreen{ listOfGreen.data() };
 	unsigned char* vecPosBlue{ listOfBlue.data() };
 
-	auto img{ image.data() };
+	auto imgIn{ imageIn.data() };
+	auto imgOut{ imageOut.data() };
 
-	for (size_t i = 0; i < image.size(); i++) {
+	for (size_t i = 0; i < imageIn.size(); ++i) {
 
-		QImage im(*img);
+		//QImage im(*img);
 
-		int imgWidth{ im.width() };
-		int imgHeight{ im.height() };
+		int imgWidth{ imgOut->width() };
+		int imgHeight{ imgOut->height() };
 
-		const int* curViewPix{ reinterpret_cast<const int*>((*img).bits()) };
-		int* curPix{ reinterpret_cast<int*>(im.bits()) };
+		const int* curViewPix{ reinterpret_cast<const int*>(imgIn->bits()) };
+		int* curPix{ reinterpret_cast<int*>(imgOut->bits()) };
 		int* endPix{ curPix + imgWidth * imgHeight };
 
 		curViewPix += imgWidth * mWindowSize;
@@ -139,9 +144,12 @@ void MedianFilter::ProcessImage(std::vector<QImage> &image)
 			++posTracker;
 			++curPix;
 		}
-
-		*img = im;
+		++imgIn;
+		++imgOut;
+		//*img = im;
 	}
+
+	return 1; //succesfull
 
 }
 

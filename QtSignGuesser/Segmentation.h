@@ -12,7 +12,7 @@ public:
 	~Segmentation() = default;
 
 
-	void ProcessImage(std::vector<QImage> &image) override;
+	bool ProcessImage(std::vector<QImage> const &imageIn, std::vector<QImage>& imageOut) override;
 
 
 private:

@@ -7,18 +7,23 @@ Segmentation::Segmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gmax, s
 {
 }
 
-void Segmentation::ProcessImage(std::vector<QImage> &image)
+bool Segmentation::ProcessImage(std::vector<QImage> const&imageIn, std::vector<QImage>& imageOut)
 {
 
+	if (imageIn.size() != imageOut.size()) {
+		return 0; // invalid format of either vectors
+	}
 
-	auto img{ image.data() };
+	//auto imgIn{ imageIn.data() };
+	auto imgOut{ imageOut.data() };
 
-	for (size_t i = 0; i < image.size(); i++) {
+	for (size_t i = 0; i < imageOut.size(); i++) {
 
-		QImage im(*img);
-		int imgWidth{ im.width() };
-		int imgHeight{ im.height() };
-		int* curPix{ reinterpret_cast<int*>(im.bits()) };
+		//QImage im(*img);
+
+		int imgWidth{ imgOut->width() };
+		int imgHeight{ imgOut->height() };
+		int* curPix{ reinterpret_cast<int*>(imgOut->bits()) };
 		int* endPix{ curPix + imgWidth * imgHeight };
 
 		while (curPix < endPix) {
@@ -41,8 +46,12 @@ void Segmentation::ProcessImage(std::vector<QImage> &image)
 			++curPix;
 		}
 
-		*img = im;
+		//*img = im;
+		//++imgIn;
+		++imgOut;
 	}
+
+	return 1; //succes
 
 
 }

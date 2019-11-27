@@ -67,8 +67,12 @@ std::vector<float> Distribution_Gauss::getKernel()
 	return ConvolutionArray;
 }
 
-void Distribution_Gauss::ProcessImage(std::vector<QImage> &image)
+bool Distribution_Gauss::ProcessImage(std::vector<QImage> const &imageIn, std::vector<QImage> & imageOut)
 {
+	if (imageIn.size() != imageOut.size()) {
+		return 0; // invalid format of either vectors
+	}
+	
 	int posTracker{ 0 };
 	unsigned char maxRed{};
 	unsigned char maxBlue{};
@@ -82,18 +86,19 @@ void Distribution_Gauss::ProcessImage(std::vector<QImage> &image)
 	float* vectStart{ ConvolutionArray.data() };
 	float* curPosVect{ ConvolutionArray.data() };
 
-	auto img{ image.data() };
+	auto imgIn{ imageIn.data() };
+	auto imgOut{ imageOut.data() };
 
-	for (size_t i = 0; i < image.size(); i++) {
+	for (size_t i = 0; i < imageIn.size(); ++i) {
 
-		QImage im(*img);
+		//QImage im(*img);
 
-		int imgWidth{ im.width() };
-		int imgHeight{ im.height() };
+		int imgWidth{ imgOut->width() };
+		int imgHeight{ imgOut->height() };
 
-		int* curPix{ reinterpret_cast<int*>(im.bits()) };
+		int* curPix{ reinterpret_cast<int*>(imgOut->bits()) };
 		int* endPix{ curPix + imgWidth * imgHeight };
-		const int* curViewPix{ reinterpret_cast<const int*>((*img).bits()) };
+		const int* curViewPix{ reinterpret_cast<const int*>(imgIn->bits()) };
 
 		curViewPix += imgWidth * mWindowSize;
 		// endViewPix -= imageWidth * mWindowSize;
@@ -147,7 +152,11 @@ void Distribution_Gauss::ProcessImage(std::vector<QImage> &image)
 			++curPix;
 		}
 
-		*img = im;
+		//*img = im;
+		++imgIn;
+		++imgOut;
 	}
+
+	return 1; // succes
 
 }

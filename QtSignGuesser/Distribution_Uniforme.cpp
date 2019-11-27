@@ -12,22 +12,15 @@ std::vector<float> Distribution_Uniforme::getKernel()
 	
 	std::vector<float> ConvolutionArray(window, (1.0f / window));
 
-	/*
-	float* curData{reinterpret_cast<float*>(ConvolutionArray.data()) };
-
-	float value{ 1.0f / window };
-
-	for (size_t i = 0; i < window; ++i)
-	{
-	
-		ConvolutionArray[i] = value;
-	}
-	*/
 	return ConvolutionArray;
 }
 
-void Distribution_Uniforme::ProcessImage(std::vector<QImage> &image)
+bool Distribution_Uniforme::ProcessImage(std::vector<QImage> const &imageIn, std::vector<QImage>& imageOut)
 {
+
+	if (imageIn.size() != imageOut.size()) {
+		return 0; // invalid format of either vectors
+	}
 
 	size_t windowWidth = (mWindowSize * 2 + 1);
 	size_t window = (windowWidth * windowWidth);
@@ -41,18 +34,20 @@ void Distribution_Uniforme::ProcessImage(std::vector<QImage> &image)
 	int c{};
 	float uniformeValue{ 1.0f / window };
 
-	auto img{ image.data() };
+	auto imgIn{ imageIn.data() };
+	auto imgOut{ imageOut.data() };
 
-	for (size_t i = 0; i < image.size(); i++) {
+	for (size_t i = 0; i < imageIn.size(); i++) {
 
 
-		QImage im(*img);
-		int imgWidth{ im.width() };
-		int imgHeight{ im.height() };
+		//QImage im(*img);
 
-		int* curPix{ reinterpret_cast<int*>(im.bits()) };
+		int imgWidth{ imgOut->width() };
+		int imgHeight{ imgOut->height() };
+
+		int* curPix{ reinterpret_cast<int*>(imgOut->bits()) };
 		int* endPix{ curPix + imgWidth * imgHeight };
-		const int* curViewPix{ reinterpret_cast<const int*>((*img).bits()) };
+		const int* curViewPix{ reinterpret_cast<const int*>(imgIn->bits()) };
 
 		curViewPix += imgWidth * mWindowSize;
 		// endViewPix -= imageWidth * mWindowSize;
@@ -102,7 +97,10 @@ void Distribution_Uniforme::ProcessImage(std::vector<QImage> &image)
 			++curPix;
 		}
 
-		*img = im;
+		//*img = im;
+		++imgIn;
+		++imgOut;
 	}
 	
+	return 1; // succes
 }

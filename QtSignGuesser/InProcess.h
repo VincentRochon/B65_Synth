@@ -32,8 +32,8 @@ public:
 private:
 	std::list<UnaryProcess *> mProcess;
 	QImage mProcessedImage;
-	std::vector<QImage> mImageVector;
-	//std::vector<QImage const&> mVectorOfImageToProcess;
+	std::vector<QImage> mImageIn;
+	std::vector<QImage> mImageOut;
 
 };
 
