@@ -77,4 +77,11 @@ void InProcess::addMoyenneImage()
 	mProcess.push_back(new MoyenneImage());
 }
 
+void InProcess::addNormalisation(unsigned char normalValue)
+{
+
+	mProcess.push_back(new Normalisation(normalValue));
+
+}
+
 

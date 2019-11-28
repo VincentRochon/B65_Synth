@@ -11,6 +11,7 @@
 #include "Segmentation.h"
 #include "btree.h" // to remove
 #include "MoyenneImage.h"
+#include "Normalisation.h"
 
 class InProcess 
 {
@@ -29,6 +30,7 @@ public:
 	void addUniformeConvolution(int neighborhoodSize);
 	void addSegmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gmax, size_t Bmin, size_t Bmax);
 	void addMoyenneImage();
+	void addNormalisation(unsigned char normalValue);
 
 
 private:
