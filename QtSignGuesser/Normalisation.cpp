@@ -16,15 +16,9 @@ bool Normalisation::ProcessImage(std::vector<QImage> const& imageIn, std::vector
 	//auto imgIn{ imageIn.data() };
 	auto imgOut{ imageOut.data() };
 	int c{};
-	unsigned char maxRed{};
-	unsigned char maxGreen{};
-	unsigned char maxBlue{};
-	unsigned char minRed{};
-	unsigned char minGreen{};
-	unsigned char minBlue{};
-	unsigned char r{};
-	unsigned char g{};
-	unsigned char b{};
+	unsigned char maxRed{}, maxGreen{}, maxBlue{};
+	unsigned char minRed{}, minGreen{}, minBlue{};
+	unsigned char r{}, g{}, b{};
 
 	for (size_t i = 0; i < imageOut.size(); ++i){
 
@@ -80,9 +74,9 @@ bool Normalisation::ProcessImage(std::vector<QImage> const& imageIn, std::vector
 		//curViewPix -= imgWidth * imgHeight; // reset start pos
 
 
-		int redDiff{ maxRed - minRed};
-		int greenDiff{maxGreen - minGreen};
-		int blueDiff{maxBlue - minBlue};
+		float redDiff{ static_cast<float>(maxRed - minRed)};
+		float greenDiff{ static_cast<float>(maxGreen - minGreen)};
+		float blueDiff{ static_cast<float>(maxBlue - minBlue)};
 
 		while (curPix < endPix) { // premiere passe pour trouver max et min de l'image
 

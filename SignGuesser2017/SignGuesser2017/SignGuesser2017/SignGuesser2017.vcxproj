@@ -129,6 +129,7 @@
     <ClCompile Include="..\..\..\QtSignGuesser\Logitech_Camera.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\MaximumFilter.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\MedianFilter.cpp" />
+    <ClCompile Include="..\..\..\QtSignGuesser\MoyenneImage.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Normalisation.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QSimpleImageGrabber.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QSimpleImageViewer.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="..\..\..\QtSignGuesser\Logitech_Camera.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\MaximumFilter.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\MedianFilter.h" />
+    <ClInclude Include="..\..\..\QtSignGuesser\MoyenneImage.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Normalisation.h" />
     <QtMoc Include="..\..\..\QtSignGuesser\QSimpleImageGrabber.h" />
     <QtMoc Include="..\..\..\QtSignGuesser\QSimpleImageViewer.h" />
