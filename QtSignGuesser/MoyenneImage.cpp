@@ -17,6 +17,8 @@ bool MoyenneImage::ProcessImage(std::vector<QImage> const& imageIn, std::vector<
 	int imgHeight{ imgOut->height() };
 	int* curPix{ reinterpret_cast<int*>(imgOut->bits()) };
 	int* endPix{ curPix + imgWidth * imgHeight };
+	int colorIn{}, colorOut{};
+	unsigned char rIn{}, gIn{}, bIn{}, rOut{}, gOut{}, bOut{};
 
 	while (curPix < endPix) {
 
@@ -32,9 +34,23 @@ bool MoyenneImage::ProcessImage(std::vector<QImage> const& imageIn, std::vector<
 
 		while (curPix < endPix) {
 
-			///
+			colorIn = *curViewPix;
+			colorOut = *curPix;
 
-			*curPix += std::floor(*curViewPix / numberOfImage);
+			rIn = static_cast<unsigned char>((colorIn & 0x00'FF'00'00) >> 16)/ numberOfImage;
+			gIn = static_cast<unsigned char>((colorIn & 0x00'00'FF'00) >> 8) / numberOfImage;
+			bIn = static_cast<unsigned char>((colorIn & 0x00'00'00'FF) >> 0) / numberOfImage;
+
+			rOut = static_cast<unsigned char>((colorOut & 0x00'FF'00'00) >> 16);
+			gOut = static_cast<unsigned char>((colorOut & 0x00'00'FF'00) >> 8);
+			bOut = static_cast<unsigned char>((colorOut & 0x00'00'00'FF) >> 0);
+
+			rOut += rIn;
+			gOut += gIn;
+			bOut += bIn;
+
+
+			(*curPix) = (rOut << 16) | (gOut << 8) | (bOut << 0) | 0xFF'00'00'00;
 			++curPix;
 			++curViewPix;
 		}

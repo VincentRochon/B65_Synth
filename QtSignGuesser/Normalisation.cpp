@@ -16,20 +16,17 @@ bool Normalisation::ProcessImage(std::vector<QImage> const& imageIn, std::vector
 	//auto imgIn{ imageIn.data() };
 	auto imgOut{ imageOut.data() };
 	int c{};
+	unsigned char r{}, g{}, b{};
 	unsigned char maxRed{}, maxGreen{}, maxBlue{};
 	unsigned char minRed{}, minGreen{}, minBlue{};
-	unsigned char r{}, g{}, b{};
 
 	for (size_t i = 0; i < imageOut.size(); ++i){
 
 		int imgWidth{ imgOut->width() };
 		int imgHeight{ imgOut->height() };
-		maxRed = 0; // reset value
-		maxGreen = 0;
-		maxBlue = 0;
-		minRed = 255;
-		minGreen = 255;
-		minBlue = 255;
+		maxRed, maxGreen, maxBlue = 0; // reset value
+		minRed, minGreen, minBlue = 255;
+
 
 		int* curPix{ reinterpret_cast<int*>(imgOut->bits()) };
 		int* endPix{ curPix + imgWidth * imgHeight };
@@ -93,7 +90,7 @@ bool Normalisation::ProcessImage(std::vector<QImage> const& imageIn, std::vector
 			b = ((b - minBlue) / blueDiff) * mNormalValue;
 
 			
-			(*curPix) = (r << 16) | (g << 8) | (b << 0) | 0xFF'00'00'00;;
+			(*curPix) = (r << 16) | (g << 8) | (b << 0) | 0xFF'00'00'00;
 
 			++curPix;
 

@@ -105,7 +105,8 @@ void SignGuesser::process(QImage const& image)
 	//listOfProcess.addSegmentation(0, 255, 0, 255, 0, 255);
 	//listOfProcess.addUniformeConvolution(2);
 	//listOfProcess.addGaussianConvolution(3);
-	listOfProcess.addNormalisation(255);
+	//listOfProcess.addNormalisation(255);
+	//listOfProcess.addMoyenneImage();
 
 	listOfProcess.Process();
 	
