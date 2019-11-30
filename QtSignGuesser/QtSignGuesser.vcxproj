@@ -115,6 +115,7 @@
     <ClCompile Include="SignGuesser.cpp" />
     <ClCompile Include="Split.cpp" />
     <ClCompile Include="UnaryProcess.cpp" />
+    <ClCompile Include="Uniformisation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SignGuesser.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="Split.h" />
     <ClInclude Include="UnaryProcess.h" />
+    <ClInclude Include="Uniformisation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

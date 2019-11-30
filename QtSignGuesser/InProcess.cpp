@@ -42,10 +42,64 @@ QImage InProcess::getProcessedImage() const
 	return mProcessedImage;
 }
 
-std::vector<QImage> InProcess::getProcessedImages() const
+std::vector<QImage> const & InProcess::getProcessedImages() const
 {
 	return mImageOut;
 }
+
+std::vector<QImage> const& InProcess::getImageToProcess() const
+{
+	return mImageIn;
+}
+
+void InProcess::setImageToProcess(QImage const& image)
+{
+	mImageIn.clear();
+	mImageIn.push_back(image);
+
+}
+
+void InProcess::setImageToProcess(QImage const& image1, QImage const& image2)
+{
+	mImageIn.clear();
+	mImageIn.push_back(image1);
+	mImageIn.push_back(image2);
+}
+
+void InProcess::setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3)
+{
+	mImageIn.clear();
+	mImageIn.push_back(image1);
+	mImageIn.push_back(image2);
+	mImageIn.push_back(image3);
+}
+
+void InProcess::setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4)
+{
+	mImageIn.clear();
+	mImageIn.push_back(image1);
+	mImageIn.push_back(image2);
+	mImageIn.push_back(image3);
+	mImageIn.push_back(image4);
+}
+
+void InProcess::setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4, QImage const& image5)
+{
+	mImageIn.clear();
+	mImageIn.push_back(image1);
+	mImageIn.push_back(image2);
+	mImageIn.push_back(image3);
+	mImageIn.push_back(image4);
+	mImageIn.push_back(image5);
+}
+
+void InProcess::setImageToProcess(std::vector<QImage> const& image)
+{
+	mImageIn.clear();
+	mImageIn = image;
+}
+
+
 
 void InProcess::addMaximumFilter(int neighborhoodSize)
 {
@@ -82,6 +136,11 @@ void InProcess::addNormalisation(unsigned char normalValue)
 
 	mProcess.push_back(new Normalisation(normalValue));
 
+}
+
+void InProcess::addUniformisation()
+{
+	mProcess.push_back(new Uniformisation());
 }
 
 

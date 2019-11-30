@@ -9,9 +9,9 @@
 #include "Distribution_Gauss.h"
 #include "Distribution_Uniforme.h"
 #include "Segmentation.h"
-#include "btree.h" // to remove
 #include "MoyenneImage.h"
 #include "Normalisation.h"
+#include "Uniformisation.h"
 
 class InProcess 
 {
@@ -23,7 +23,14 @@ public:
 public:
 	void Process();
 	QImage getProcessedImage() const;
-	std::vector<QImage> getProcessedImages() const;
+	std::vector<QImage> const & getProcessedImages() const;
+	std::vector<QImage> const & getImageToProcess() const;
+	void setImageToProcess(QImage const& image);
+	void setImageToProcess(QImage const& image1, QImage const& image2);
+	void setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3);
+	void setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4);
+	void setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4, QImage const& image5);
+	void setImageToProcess(std::vector<QImage> const& image);
 	void addMaximumFilter(int neighborhoodSize);
 	void addMedianFilter(int neighborhoodSize);
 	void addGaussianConvolution(int neighborhoodSize);
@@ -31,6 +38,7 @@ public:
 	void addSegmentation(size_t Rmin, size_t Rmax, size_t Gmin, size_t Gmax, size_t Bmin, size_t Bmax);
 	void addMoyenneImage();
 	void addNormalisation(unsigned char normalValue);
+	void addUniformisation();
 
 
 private:
