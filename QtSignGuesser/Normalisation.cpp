@@ -51,13 +51,13 @@ bool Normalisation::ProcessImage(std::vector<QImage> const& imageIn, std::vector
 			if (b > maxBlue) {
 				maxBlue = b;
 			}
-			if (r < maxRed) {
+			if (r < minRed) {
 				minRed = r;
 			}
-			if (g < maxRed) {
+			if (g < minGreen) {
 				minGreen = g;
 			}
-			if (b < maxRed) {
+			if (b < minBlue) {
 				minBlue = b;
 			}
 
@@ -89,7 +89,6 @@ bool Normalisation::ProcessImage(std::vector<QImage> const& imageIn, std::vector
 			g = ((g - minGreen) / greenDiff) * mNormalValue;
 			b = ((b - minBlue) / blueDiff) * mNormalValue;
 
-			
 			(*curPix) = (r << 16) | (g << 8) | (b << 0) | 0xFF'00'00'00;
 
 			++curPix;
