@@ -1,7 +1,7 @@
 #include "InProcess.h"
 
 InProcess::InProcess(QImage const& image)
-	:mImageIn{ image }, mImageOut{image}
+	:mImageReference{ image }, mImageToProcess{image}
 {
 
 }
@@ -27,76 +27,120 @@ void InProcess::Process()
 
 	while (itBegin != itEnd)
 	{
-		(*itBegin)->ProcessImage(mImageIn,mImageOut);
+		(*itBegin)->ProcessImage(mImageReference, mImageToProcess);
 		
-		mImageIn = mImageOut;
+		mImageReference = mImageToProcess;
 
 		itBegin++;
 
 	}
 	
 }
-
+/*
 QImage InProcess::getProcessedImage() const
 {
 	return mProcessedImage;
+}*/
+
+std::vector<QImage> const & InProcess::getImageToProcess() const
+{
+	return mImageToProcess;
 }
 
-std::vector<QImage> const & InProcess::getProcessedImages() const
+std::vector<QImage> const& InProcess::getImageOfReference() const
 {
-	return mImageOut;
+	return mImageReference;
 }
 
-std::vector<QImage> const& InProcess::getImageToProcess() const
+void InProcess::setImageOfReference(QImage const& image)
 {
-	return mImageIn;
-}
-
-void InProcess::setImageToProcess(QImage const& image)
-{
-	mImageIn.clear();
-	mImageIn.push_back(image);
+	mImageReference.clear();
+	mImageReference.push_back(image);
 
 }
 
-void InProcess::setImageToProcess(QImage const& image1, QImage const& image2)
+void InProcess::setImageOfReference(QImage const& image1, QImage const& image2)
 {
-	mImageIn.clear();
-	mImageIn.push_back(image1);
-	mImageIn.push_back(image2);
+	mImageReference.clear();
+	mImageReference.push_back(image1);
+	mImageReference.push_back(image2);
 }
 
-void InProcess::setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3)
+void InProcess::setImageOfReference(QImage const& image1, QImage const& image2, QImage const& image3)
 {
-	mImageIn.clear();
-	mImageIn.push_back(image1);
-	mImageIn.push_back(image2);
-	mImageIn.push_back(image3);
+	mImageReference.clear();
+	mImageReference.push_back(image1);
+	mImageReference.push_back(image2);
+	mImageReference.push_back(image3);
 }
 
-void InProcess::setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4)
+void InProcess::setImageOfReference(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4)
 {
-	mImageIn.clear();
-	mImageIn.push_back(image1);
-	mImageIn.push_back(image2);
-	mImageIn.push_back(image3);
-	mImageIn.push_back(image4);
+	mImageReference.clear();
+	mImageReference.push_back(image1);
+	mImageReference.push_back(image2);
+	mImageReference.push_back(image3);
+	mImageReference.push_back(image4);
 }
 
-void InProcess::setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4, QImage const& image5)
+void InProcess::setImageOfReference(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4, QImage const& image5)
 {
-	mImageIn.clear();
-	mImageIn.push_back(image1);
-	mImageIn.push_back(image2);
-	mImageIn.push_back(image3);
-	mImageIn.push_back(image4);
-	mImageIn.push_back(image5);
+	mImageReference.clear();
+	mImageReference.push_back(image1);
+	mImageReference.push_back(image2);
+	mImageReference.push_back(image3);
+	mImageReference.push_back(image4);
+	mImageReference.push_back(image5);
 }
 
-void InProcess::setImageToProcess(std::vector<QImage> const& image)
+void InProcess::setImageOfReference(std::vector<QImage> const& image)
 {
-	mImageIn.clear();
-	mImageIn = image;
+	mImageReference = image;
+}
+
+void InProcess::setImageToProcess(QImage& image)
+{
+	mImageToProcess.clear();
+	mImageToProcess.push_back(image);
+}
+
+void InProcess::setImageToProcess(QImage& image1, QImage& image2)
+{
+	mImageToProcess.clear();
+	mImageToProcess.push_back(image1);
+	mImageToProcess.push_back(image2);
+}
+
+void InProcess::setImageToProcess(QImage& image1, QImage& image2, QImage& image3)
+{
+	mImageToProcess.clear();
+	mImageToProcess.push_back(image1);
+	mImageToProcess.push_back(image2);
+	mImageToProcess.push_back(image3);
+}
+
+void InProcess::setImageToProcess(QImage& image1, QImage& image2, QImage& image3, QImage& image4)
+{
+	mImageToProcess.clear();
+	mImageToProcess.push_back(image1);
+	mImageToProcess.push_back(image2);
+	mImageToProcess.push_back(image3);
+	mImageToProcess.push_back(image4);
+}
+
+void InProcess::setImageToProcess(QImage& image1, QImage& image2, QImage& image3, QImage& image4, QImage& image5)
+{
+	mImageToProcess.clear();
+	mImageToProcess.push_back(image1);
+	mImageToProcess.push_back(image2);
+	mImageToProcess.push_back(image3);
+	mImageToProcess.push_back(image4);
+	mImageToProcess.push_back(image5);
+}
+
+void InProcess::setImageToProcess(std::vector<QImage>& image)
+{
+	mImageToProcess = image;
 }
 
 

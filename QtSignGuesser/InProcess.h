@@ -22,15 +22,21 @@ public:
 
 public:
 	void Process();
-	QImage getProcessedImage() const;
-	std::vector<QImage> const & getProcessedImages() const;
+	//QImage getProcessedImage() const;
+	std::vector<QImage> const & getImageOfReference() const;
 	std::vector<QImage> const & getImageToProcess() const;
-	void setImageToProcess(QImage const& image);
-	void setImageToProcess(QImage const& image1, QImage const& image2);
-	void setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3);
-	void setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4);
-	void setImageToProcess(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4, QImage const& image5);
-	void setImageToProcess(std::vector<QImage> const& image);
+	void setImageOfReference(QImage const& image);
+	void setImageOfReference(QImage const& image1, QImage const& image2);
+	void setImageOfReference(QImage const& image1, QImage const& image2, QImage const& image3);
+	void setImageOfReference(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4);
+	void setImageOfReference(QImage const& image1, QImage const& image2, QImage const& image3, QImage const& image4, QImage const& image5);
+	void setImageOfReference(std::vector<QImage> const& image);
+	void setImageToProcess(QImage & image);
+	void setImageToProcess(QImage & image1, QImage & image2);
+	void setImageToProcess(QImage & image1, QImage & image2, QImage & image3);
+	void setImageToProcess(QImage & image1, QImage & image2, QImage & image3, QImage & image4);
+	void setImageToProcess(QImage & image1, QImage & image2, QImage & image3, QImage & image4, QImage & image5);
+	void setImageToProcess(std::vector<QImage> & image);
 	void addMaximumFilter(int neighborhoodSize);
 	void addMedianFilter(int neighborhoodSize);
 	void addGaussianConvolution(int neighborhoodSize);
@@ -44,8 +50,8 @@ public:
 private:
 	std::list<UnaryProcess *> mProcess;
 	QImage mProcessedImage;
-	std::vector<QImage> mImageIn;
-	std::vector<QImage> mImageOut;
+	std::vector<QImage> mImageReference;
+	std::vector<QImage> mImageToProcess;
 
 };
 
