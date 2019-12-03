@@ -61,9 +61,6 @@
     <ClCompile Include="InteriorFilling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Logitech_Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -157,9 +154,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InteriorFilling.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Logitech_Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Normalisation.h">
