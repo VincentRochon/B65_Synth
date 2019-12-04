@@ -1,0 +1,8 @@
+- carton noir
+- peinture fluorescente
+- blacklight
+- passer hsv
+- slider pour le range
+- extraction blob
+- taille minimum des blobs
+- lookup table des couleurs (passer hsv a rgb et vice versa)

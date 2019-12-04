@@ -126,7 +126,6 @@
     <ClCompile Include="..\..\..\QtSignGuesser\InProcess.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\InteriorFilling.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Kernel.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\Logitech_Camera.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\MaximumFilter.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\MedianFilter.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\MoyenneImage.cpp" />
@@ -139,6 +138,7 @@
     <ClCompile Include="..\..\..\QtSignGuesser\SignGuesser.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Split.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\UnaryProcess.cpp" />
+    <ClCompile Include="..\..\..\QtSignGuesser\Uniformisation.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +161,6 @@
     <ClInclude Include="..\..\..\QtSignGuesser\InProcess.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\InteriorFilling.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Kernel.h" />
-    <ClInclude Include="..\..\..\QtSignGuesser\Logitech_Camera.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\MaximumFilter.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\MedianFilter.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\MoyenneImage.h" />
@@ -174,6 +173,7 @@
     <QtMoc Include="..\..\..\QtSignGuesser\SignGuesser.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Split.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\UnaryProcess.h" />
+    <ClInclude Include="..\..\..\QtSignGuesser\Uniformisation.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Virtual_Camera.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

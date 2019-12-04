@@ -46,8 +46,6 @@ bool Segmentation::ProcessImage(std::vector<QImage> const&imageIn, std::vector<Q
 			++curPix;
 		}
 
-		//*img = im;
-		//++imgIn;
 		++imgOut;
 	}
 

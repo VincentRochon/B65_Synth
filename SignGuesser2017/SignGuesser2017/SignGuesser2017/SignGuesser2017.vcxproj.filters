@@ -69,9 +69,6 @@
     <ClCompile Include="..\..\..\QtSignGuesser\Kernel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\QtSignGuesser\Logitech_Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\QtSignGuesser\MaximumFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,6 +108,9 @@
     <ClCompile Include="..\..\..\QtSignGuesser\MoyenneImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\QtSignGuesser\Uniformisation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SignGuesser.ui">
@@ -148,9 +148,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\QtSignGuesser\MaximumFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\QtSignGuesser\Logitech_Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\QtSignGuesser\Kernel.h">
@@ -193,6 +190,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\QtSignGuesser\MoyenneImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\QtSignGuesser\Uniformisation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
