@@ -8,7 +8,8 @@
 #include "QSimpleImageGrabber.h"
 #include "QSimpleImageViewer.h"
 #include "UnaryProcess.h"
-
+#include "QColorSpaceConvertor_RGB_HSV.h"
+#include "QImageThresholder.h"
 
 class SignGuesser : public QMainWindow
 {
@@ -27,6 +28,8 @@ private:
 
 	QTimer mTimer;
 	bool mCapturingContinuously;
+	QColorSpaceConvertor_RGB_HSV mRGB_HSV_Converter;
+
 
 private slots:
 	void connectCamera();

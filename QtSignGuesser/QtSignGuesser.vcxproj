@@ -72,6 +72,7 @@
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <StackReserveSize>268435456</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -85,6 +86,7 @@
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <StackReserveSize>268435456</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -107,6 +109,8 @@
     <ClCompile Include="MedianFilter.cpp" />
     <ClCompile Include="MoyenneImage.cpp" />
     <ClCompile Include="Normalisation.cpp" />
+    <ClCompile Include="QColorSpaceConvertor_RGB_HSV.cpp" />
+    <ClCompile Include="QImageThresholder.cpp" />
     <ClCompile Include="QSimpleImageGrabber.cpp" />
     <ClCompile Include="QSimpleImageViewer.cpp" />
     <ClCompile Include="RankFilter.cpp" />
@@ -151,6 +155,8 @@
     <ClInclude Include="MedianFilter.h" />
     <ClInclude Include="MoyenneImage.h" />
     <ClInclude Include="Normalisation.h" />
+    <ClInclude Include="QColorSpaceConvertor_RGB_HSV.h" />
+    <ClInclude Include="QImageThresholder.h" />
     <ClInclude Include="RankFilter.h" />
     <ClInclude Include="Segmentation.h" />
     <ClInclude Include="Shapes.h" />

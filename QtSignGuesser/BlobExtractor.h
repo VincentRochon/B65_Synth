@@ -1,7 +1,7 @@
 #ifndef BLOBEXTRACTOR_H
 #define	BLOBEXTRACTOR_H
 
-
+#include "qimage.h"
 
 class BlobExtractor {
 

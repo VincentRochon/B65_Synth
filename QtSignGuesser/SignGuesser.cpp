@@ -107,12 +107,15 @@ void SignGuesser::process(QImage const& image)
 	// listOfProcess.addNormalisation(255);
 	// listOfProcess.addMoyenneImage();
 	// listOfProcess.addUniformisation();
-	listOfProcess.addSegmentation(10, 100, 10, 255, 10, 100);
-
-
+	//listOfProcess.addSegmentation(10, 100, 10, 255, 10, 100);
 	listOfProcess.Process();
+	QImage imageThresh{ listOfProcess.getImageToProcess()[0] };
+	mRGB_HSV_Converter.rgb2hsv(imageThresh, imageThresh);
+
+	QImageThresholder::process(imageThresh, imageThresh,0,255,0,255,0,255);
+
 	
-	emit imageProcessed(listOfProcess.getImageToProcess()[0]);
+	emit imageProcessed(imageThresh);
 
 
 	// analyse picture
