@@ -7,7 +7,7 @@
 #include "QSimpleImageGrabber.h"
 #include "InProcess.h"
 
-SignGuesser::SignGuesser(QWidget *parent)
+SignGuesser::SignGuesser(QWidget* parent)
 	: QMainWindow(parent),
 	mConnectButton{ new QPushButton("Connect") },
 	mDisconnectButton{ new QPushButton("Disconnect") },
@@ -15,9 +15,19 @@ SignGuesser::SignGuesser(QWidget *parent)
 	mCaptureContinuouslyButton{ new QPushButton("Start capture continuously") },
 	mInputImage{ new QSimpleImageViewer },
 	mProcessedImage{ new QSimpleImageViewer },
-	mCapturingContinuously{ false }
+	mCapturingContinuously{ false },
+	hsvIntervals{ new QNIntervalScrollBar(3) }
 {
 	ui.setupUi(this);
+
+	auto setupInterval{ [](QNIntervalScrollBar* i, QVector<QString> const& titles) {
+	i->setMinimumWidth(350);
+	i->setTitle(titles, 75);
+	i->setRange(0, 255);
+	i->setIntervalToRange();
+} };
+
+	setupInterval(hsvIntervals, { "Hue", "Saturation", "Value" });
 
 	QGridLayout* layout{ new QGridLayout };
 	layout->addWidget(mConnectButton,0,0);
@@ -26,6 +36,7 @@ SignGuesser::SignGuesser(QWidget *parent)
 	layout->addWidget(mCaptureContinuouslyButton,3,0);
 	layout->addWidget(mInputImage,0,1,8,1);
 	layout->addWidget(mProcessedImage,8,1,8,1);
+	layout->addWidget(hsvIntervals, 4, 0);
 
 	QWidget* centralWidget{ new QWidget };
 	centralWidget->setMinimumSize(1200,1000);
@@ -110,55 +121,22 @@ void SignGuesser::process(QImage const& image)
 	//listOfProcess.addSegmentation(10, 100, 10, 255, 10, 100);
 	listOfProcess.Process();
 	QImage imageThresh{ listOfProcess.getImageToProcess()[0] };
+
 	mRGB_HSV_Converter.rgb2hsv(imageThresh, imageThresh);
 
-	QImageThresholder::process(imageThresh, imageThresh,0,255,0,255,0,255);
+	QImageThresholder::process(imageThresh, imageThresh, 
+		hsvIntervals->interval(0).lower(), hsvIntervals->interval(0).upper(),
+		hsvIntervals->interval(1).lower(), hsvIntervals->interval(1).upper(),
+		hsvIntervals->interval(2).lower(), hsvIntervals->interval(2).upper());
 
-	
+	// good values h {0,29} s{0,7} v{250,255}
+	// withn target uv light with distinctions between green / orange h {0,196} s{0,14} v{248,255}
+
+
+
+
 	emit imageProcessed(imageThresh);
 
 
 	// analyse picture
 }
-
-
-// Scrap pour voir comment pas faire!!!
-//for (int x{}; x < im.width(); ++x) {
-//    for (int y{}; y < im.height(); ++y) {
-//        QColor color(im.pixel(x, y));
-//        color.setRed(255 - color.red());
-//        color.setGreen(255 - color.green());
-//        color.setBlue(255 - color.blue());
-//
-//        im.setPixelColor(x, y, color);
-//    }
-//}
-
-/*int* curPix{ reinterpret_cast<int*>(im.bits()) };
-int* endPix{ curPix + im.width() * im.height() };
-while (curPix < endPix) {
-	int c{ *curPix };
-	//*curPix =   ((255 - static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16)) << 16) |
-	//            ((255 - static_cast<unsigned char>((c & 0x00'00'FF'00) >>  8)) <<  8) |
-	//            ((255 - static_cast<unsigned char>((c & 0x00'00'00'FF) >>  0)) <<  0) |
-	//            0xFF'00'00'00;
-
-	unsigned char r{ static_cast<unsigned char>((c & 0x00'FF'00'00) >> 16) };
-	unsigned char g{ static_cast<unsigned char>((c & 0x00'00'FF'00) >> 8) };
-	unsigned char b{ static_cast<unsigned char>((c & 0x00'00'00'FF) >> 0) };
-
-	// moyenne géométrique
-	//int average{ ((int)r + (int)g + (int)b) / 3 };
-	// moyenne anthropomorphique
-	int average{ static_cast<int>((float)r * 0.25f + (float)g * 0.67f + (float)b * 0.08f) };
-	*curPix = (average << 16) |
-		(average << 8) |
-		(average << 0) |
-		0xFF'00'00'00;
-
-	++curPix;
-}*/
-
-//mProcessedImage->setImage(im);
-
-

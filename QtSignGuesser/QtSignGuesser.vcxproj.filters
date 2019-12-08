@@ -115,6 +115,12 @@
     <ClCompile Include="QColorSpaceConvertor_RGB_HSV.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QNIntervalScrollBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QIntervalScrollBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SignGuesser.h">
@@ -124,6 +130,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QSimpleImageGrabber.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QIntervalScrollBar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QNIntervalScrollBar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

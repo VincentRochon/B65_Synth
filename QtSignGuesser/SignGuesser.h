@@ -10,6 +10,7 @@
 #include "UnaryProcess.h"
 #include "QColorSpaceConvertor_RGB_HSV.h"
 #include "QImageThresholder.h"
+#include "QNIntervalScrollBar.h"
 
 class SignGuesser : public QMainWindow
 {
@@ -29,6 +30,7 @@ private:
 	QTimer mTimer;
 	bool mCapturingContinuously;
 	QColorSpaceConvertor_RGB_HSV mRGB_HSV_Converter;
+	QNIntervalScrollBar* hsvIntervals;
 
 
 private slots:

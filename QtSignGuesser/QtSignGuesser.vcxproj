@@ -67,6 +67,8 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -81,6 +83,8 @@
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,6 +115,8 @@
     <ClCompile Include="Normalisation.cpp" />
     <ClCompile Include="QColorSpaceConvertor_RGB_HSV.cpp" />
     <ClCompile Include="QImageThresholder.cpp" />
+    <ClCompile Include="QIntervalScrollBar.cpp" />
+    <ClCompile Include="QNIntervalScrollBar.cpp" />
     <ClCompile Include="QSimpleImageGrabber.cpp" />
     <ClCompile Include="QSimpleImageViewer.cpp" />
     <ClCompile Include="RankFilter.cpp" />
@@ -157,6 +163,8 @@
     <ClInclude Include="Normalisation.h" />
     <ClInclude Include="QColorSpaceConvertor_RGB_HSV.h" />
     <ClInclude Include="QImageThresholder.h" />
+    <QtMoc Include="QIntervalScrollBar.h" />
+    <QtMoc Include="QNIntervalScrollBar.h" />
     <ClInclude Include="RankFilter.h" />
     <ClInclude Include="Segmentation.h" />
     <ClInclude Include="Shapes.h" />
