@@ -121,6 +121,9 @@
     <ClCompile Include="QIntervalScrollBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImageMerger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SignGuesser.h">
@@ -226,6 +229,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QColorSpaceConvertor_RGB_HSV.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageMerger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

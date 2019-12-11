@@ -7,9 +7,14 @@ class BlobExtractor {
 
 public:
 
+	struct pixel
+	{
+		int x, y;
+	};
+
 	BlobExtractor() = delete;
-	BlobExtractor(QImage const& image);
-	~BlobExtractor() = default;
+	//BlobExtractor(QImage const& image);
+	~BlobExtractor() = delete;
 
 
 private:

@@ -30,8 +30,13 @@ private:
 	QTimer mTimer;
 	bool mCapturingContinuously;
 	QColorSpaceConvertor_RGB_HSV mRGB_HSV_Converter;
-	QNIntervalScrollBar* hsvIntervals;
+	QNIntervalScrollBar* hsvIntervals; 
+	QNIntervalScrollBar* hsvIntervals2;
+	QLabel* firstSegmentation;
+	QLabel* secondSegmentation;
 
+
+	QWidget* addTitle(QWidget* widget, QString const& title);
 
 private slots:
 	void connectCamera();

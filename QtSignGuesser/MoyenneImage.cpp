@@ -11,7 +11,7 @@ bool MoyenneImage::ProcessImage(std::vector<QImage> const& imageIn, std::vector<
 	auto imgIn{ imageIn.data() };
 	auto imgOut{ imageOut.data() };
 
-	size_t numberOfImage{ imageIn.size() };
+	int numberOfImage{ static_cast<int>(imageIn.size()) };
 
 	int imgWidth{ imgOut->width() };
 	int imgHeight{ imgOut->height() };
