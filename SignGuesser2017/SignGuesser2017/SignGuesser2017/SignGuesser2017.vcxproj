@@ -58,6 +58,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -65,6 +66,7 @@
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Multimediad.lib;Qt5MultimediaWidgetsd.lib;Qt5Quickd.lib;Qt5QuickWidgetsd.lib;Qt5Sqld.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>268435456</StackReserveSize>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
@@ -96,6 +98,7 @@
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Multimedia.lib;Qt5MultimediaWidgets.lib;Qt5Quick.lib;Qt5QuickWidgets.lib;Qt5Sql.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>268435456</StackReserveSize>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
@@ -123,6 +126,7 @@
     <ClCompile Include="..\..\..\QtSignGuesser\Distribution_Gauss.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Distribution_Uniforme.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Image.cpp" />
+    <ClCompile Include="..\..\..\QtSignGuesser\ImageMerger.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\InProcess.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\InteriorFilling.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Kernel.cpp" />
@@ -130,6 +134,10 @@
     <ClCompile Include="..\..\..\QtSignGuesser\MedianFilter.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\MoyenneImage.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Normalisation.cpp" />
+    <ClCompile Include="..\..\..\QtSignGuesser\QColorSpaceConvertor_RGB_HSV.cpp" />
+    <ClCompile Include="..\..\..\QtSignGuesser\QImageThresholder.cpp" />
+    <ClCompile Include="..\..\..\QtSignGuesser\QIntervalScrollBar.cpp" />
+    <ClCompile Include="..\..\..\QtSignGuesser\QNIntervalScrollBar.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QSimpleImageGrabber.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QSimpleImageViewer.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\RankFilter.cpp" />
@@ -158,6 +166,7 @@
     <ClInclude Include="..\..\..\QtSignGuesser\Distribution_Gauss.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Distribution_Uniforme.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Image.h" />
+    <ClInclude Include="..\..\..\QtSignGuesser\ImageMerger.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\InProcess.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\InteriorFilling.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Kernel.h" />
@@ -167,6 +176,10 @@
     <ClInclude Include="..\..\..\QtSignGuesser\Normalisation.h" />
     <QtMoc Include="..\..\..\QtSignGuesser\QSimpleImageGrabber.h" />
     <QtMoc Include="..\..\..\QtSignGuesser\QSimpleImageViewer.h" />
+    <ClInclude Include="..\..\..\QtSignGuesser\QColorSpaceConvertor_RGB_HSV.h" />
+    <ClInclude Include="..\..\..\QtSignGuesser\QImageThresholder.h" />
+    <QtMoc Include="..\..\..\QtSignGuesser\QIntervalScrollBar.h" />
+    <QtMoc Include="..\..\..\QtSignGuesser\QNIntervalScrollBar.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\RankFilter.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Segmentation.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Shapes.h" />

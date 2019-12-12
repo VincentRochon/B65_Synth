@@ -111,6 +111,21 @@
     <ClCompile Include="..\..\..\QtSignGuesser\Uniformisation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\QtSignGuesser\QColorSpaceConvertor_RGB_HSV.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\QtSignGuesser\QImageThresholder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\QtSignGuesser\QIntervalScrollBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\QtSignGuesser\QNIntervalScrollBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\QtSignGuesser\ImageMerger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SignGuesser.ui">
@@ -195,6 +210,15 @@
     <ClInclude Include="..\..\..\QtSignGuesser\Uniformisation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\QtSignGuesser\QColorSpaceConvertor_RGB_HSV.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\QtSignGuesser\QImageThresholder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\QtSignGuesser\ImageMerger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\..\QtSignGuesser\SignGuesser.h">
@@ -204,6 +228,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\..\QtSignGuesser\QSimpleImageGrabber.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\..\QtSignGuesser\QIntervalScrollBar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\..\QtSignGuesser\QNIntervalScrollBar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
