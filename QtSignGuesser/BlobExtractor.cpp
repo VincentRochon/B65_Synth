@@ -20,7 +20,7 @@ void Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 	}
 
 	// S’assure que la valeur d’entrée soit à remplacer et amorce le remplissage
-	if (*(curPos += x + (y* imageWidth)) != vc) {
+	if (*(curPos += x + (y * imageWidth)) != vc) {
 		return;
 	}
 	else {

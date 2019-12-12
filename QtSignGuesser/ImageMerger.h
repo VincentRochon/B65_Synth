@@ -5,11 +5,11 @@
 
 class ImageMerger 
 {
-
+public:
 	ImageMerger() = delete;
 	~ImageMerger() = delete;
 
-	QImage merge(QImage const& Image1, QImage const& Image2);
+	static QImage merge(QImage const& Image1, QImage const& Image2);
 
 };
 

@@ -13,16 +13,20 @@ SignGuesser::SignGuesser(QWidget* parent)
 	mDisconnectButton{ new QPushButton("Disconnect") },
 	mCaptureOneButton{ new QPushButton("Capture one image") },
 	mCaptureContinuouslyButton{ new QPushButton("Start capture continuously") },
+	mAnalyseButton{ new QPushButton("Analyse Picture") },
 	mInputImage{ new QSimpleImageViewer },
 	mProcessedImage{ new QSimpleImageViewer },
+	mProcessedImage2{ new QSimpleImageViewer },
+	mProcessedImage3{ new QSimpleImageViewer },
 	mCapturingContinuously{ false },
-	hsvIntervals{ new QNIntervalScrollBar(3) },
-	hsvIntervals2{ new QNIntervalScrollBar(3) },
-	firstSegmentation{new QLabel},
-	secondSegmentation{new QLabel}
+	mHsvIntervals{ new QNIntervalScrollBar(3) },
+	mHsvIntervals2{ new QNIntervalScrollBar(3) },
+	mFirstSegmentation{new QLabel},
+	mSecondSegmentation{new QLabel}
+	//mDummyLabel{ new QLabel }
 {
-	QSize const imageSize(400, 400);
-	int const imageSpacing{ 20 };
+	QSize const imageSize(600, 400);
+	int const imageSpacing{ 10 };
 
 	ui.setupUi(this);
 
@@ -38,10 +42,11 @@ SignGuesser::SignGuesser(QWidget* parent)
 	label->setFrameShadow(QFrame::Shadow::Plain);
 	label->setFrameShape(QFrame::Shape::Box);
 } };
-	setupImageLabel(firstSegmentation);
-	setupImageLabel(secondSegmentation);
-	setupInterval(hsvIntervals, { "Hue", "Saturation", "Value" });
-	setupInterval(hsvIntervals2, { "Hue", "Saturation", "Value" });
+	setupImageLabel(mFirstSegmentation);
+	setupImageLabel(mSecondSegmentation);
+	//setupImageLabel(mDummyLabel);
+	setupInterval(mHsvIntervals, { "Hue", "Saturation", "Value" });
+	setupInterval(mHsvIntervals2, { "Hue", "Saturation", "Value" });
 
 
 	QGridLayout* layout{ new QGridLayout };
@@ -50,14 +55,18 @@ SignGuesser::SignGuesser(QWidget* parent)
 	layout->addWidget(mCaptureOneButton,2,0);
 	layout->addWidget(mCaptureContinuouslyButton,3,0);
 	layout->addWidget(mInputImage,0,1,8,1);
-	layout->addWidget(mProcessedImage,8,1,8,1);
-	layout->addWidget(addTitle(firstSegmentation,"Premiere segmentation : "),4,0);
-	layout->addWidget(hsvIntervals, 5, 0);
-	layout->addWidget(addTitle(secondSegmentation, "Deuxieme segmentation : "), 8, 0);
-	layout->addWidget(hsvIntervals2, 9, 0);
+	layout->addWidget(mProcessedImage,0,2,8,2);
+	layout->addWidget(mProcessedImage2, 8, 1, 8, 1);
+	layout->addWidget(mProcessedImage3, 8, 2, 8, 2);
+	layout->addWidget(addTitle(mFirstSegmentation,"Premiere segmentation : Green"),4,0);
+	layout->addWidget(mHsvIntervals, 5, 0);
+	layout->addWidget(addTitle(mSecondSegmentation, "Deuxieme segmentation : Orange"), 8, 0);
+	layout->addWidget(mHsvIntervals2, 9, 0);
+	layout->addWidget(mAnalyseButton,10,0);
+	//layout->addWidget(addTitle(mDummyLabel, "blablabla"), 11, 1, 1, 2);
 
 	QWidget* centralWidget{ new QWidget };
-	centralWidget->setMinimumSize(1200,1000);
+	centralWidget->setMinimumSize(1900,1000);
 	centralWidget->setLayout(layout);
 
 	setCentralWidget(centralWidget);
@@ -71,6 +80,8 @@ SignGuesser::SignGuesser(QWidget* parent)
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::process);
 
 	connect(this, &SignGuesser::imageProcessed, mProcessedImage, &QSimpleImageViewer::setImage);
+	connect(this, &SignGuesser::imageProcessed2, mProcessedImage2, &QSimpleImageViewer::setImage);
+	connect(this, &SignGuesser::imageProcessed3, mProcessedImage3, &QSimpleImageViewer::setImage);
 		
 	//connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::processCapturedImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::readyForCaptureChanged, this, &SignGuesser::processReadyToCapture);
@@ -130,13 +141,13 @@ void SignGuesser::process(QImage const& image)
 
 
 	listOfProcess.addMaximumFilter(1);
-	//listOfProcess.addMedianFilter(1);
-	//listOfProcess.addUniformeConvolution(2);
+	// listOfProcess.addMedianFilter(1);
+	// listOfProcess.addUniformeConvolution(2);
 	listOfProcess.addGaussianConvolution(1);
 	// listOfProcess.addNormalisation(255);
 	// listOfProcess.addMoyenneImage();
 	// listOfProcess.addUniformisation();
-	//listOfProcess.addSegmentation(10, 100, 10, 255, 10, 100);
+	// listOfProcess.addSegmentation(10, 100, 10, 255, 10, 100);
 	listOfProcess.Process();
 	QImage imageThresh{ listOfProcess.getImageToProcess()[0] };
 
@@ -145,19 +156,19 @@ void SignGuesser::process(QImage const& image)
 	QImage imageThreshCopy{ imageThresh };
 
 	QImageThresholder::process(imageThresh, imageThresh, 
-		hsvIntervals->interval(0).lower(), hsvIntervals->interval(0).upper(),
-		hsvIntervals->interval(1).lower(), hsvIntervals->interval(1).upper(),
-		hsvIntervals->interval(2).lower(), hsvIntervals->interval(2).upper());
+		mHsvIntervals->interval(0).lower(), mHsvIntervals->interval(0).upper(),
+		mHsvIntervals->interval(1).lower(), mHsvIntervals->interval(1).upper(),
+		mHsvIntervals->interval(2).lower(), mHsvIntervals->interval(2).upper());
 
 	QImageThresholder::process(imageThreshCopy, imageThreshCopy,
-		hsvIntervals2->interval(0).lower(), hsvIntervals2->interval(0).upper(),
-		hsvIntervals2->interval(1).lower(), hsvIntervals2->interval(1).upper(),
-		hsvIntervals2->interval(2).lower(), hsvIntervals2->interval(2).upper());
-
-
-
+		mHsvIntervals2->interval(0).lower(), mHsvIntervals2->interval(0).upper(),
+		mHsvIntervals2->interval(1).lower(), mHsvIntervals2->interval(1).upper(),
+		mHsvIntervals2->interval(2).lower(), mHsvIntervals2->interval(2).upper());
+	
 
 	emit imageProcessed(imageThresh);
+	emit imageProcessed2(imageThreshCopy);
+	emit imageProcessed3(ImageMerger::merge(imageThresh, imageThreshCopy));
 
 
 	// analyse picture

@@ -11,6 +11,7 @@
 #include "QColorSpaceConvertor_RGB_HSV.h"
 #include "QImageThresholder.h"
 #include "QNIntervalScrollBar.h"
+#include "ImageMerger.h"
 
 class SignGuesser : public QMainWindow
 {
@@ -22,18 +23,21 @@ public:
 private:
 	Ui::SignGuesserClass ui;
 
-	QPushButton* mConnectButton, * mDisconnectButton, * mCaptureOneButton, * mCaptureContinuouslyButton;
+	QPushButton* mConnectButton, * mDisconnectButton, * mCaptureOneButton, * mCaptureContinuouslyButton, * mAnalyseButton;
 	QSimpleImageGrabber mSimpleImageGrabber;
 	QSimpleImageViewer* mInputImage;
 	QSimpleImageViewer* mProcessedImage;
+	QSimpleImageViewer* mProcessedImage2;
+	QSimpleImageViewer* mProcessedImage3;
 
 	QTimer mTimer;
 	bool mCapturingContinuously;
 	QColorSpaceConvertor_RGB_HSV mRGB_HSV_Converter;
-	QNIntervalScrollBar* hsvIntervals; 
-	QNIntervalScrollBar* hsvIntervals2;
-	QLabel* firstSegmentation;
-	QLabel* secondSegmentation;
+	QNIntervalScrollBar* mHsvIntervals; 
+	QNIntervalScrollBar* mHsvIntervals2;
+	QLabel* mFirstSegmentation;
+	QLabel* mSecondSegmentation;
+	//QLabel* mDummyLabel;
 
 
 	QWidget* addTitle(QWidget* widget, QString const& title);
@@ -51,6 +55,8 @@ private slots:
 
 	signals:
 		void imageProcessed(QImage const & image);
+		void imageProcessed2(QImage const& image);
+		void imageProcessed3(QImage const& image);
 };
 
 
