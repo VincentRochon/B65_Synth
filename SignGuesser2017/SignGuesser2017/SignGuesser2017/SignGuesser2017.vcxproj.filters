@@ -126,6 +126,9 @@
     <ClCompile Include="..\..\..\QtSignGuesser\ImageMerger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\QtSignGuesser\BlobExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SignGuesser.ui">
@@ -217,6 +220,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\QtSignGuesser\ImageMerger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\QtSignGuesser\BlobExtractor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,6 +14,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	mCaptureOneButton{ new QPushButton("Capture one image") },
 	mCaptureContinuouslyButton{ new QPushButton("Start capture continuously") },
 	mAnalyseButton{ new QPushButton("Analyse Picture") },
+	mShapeContourButton{new QPushButton("Activer le contour de forme")},
 	mInputImage{ new QSimpleImageViewer },
 	mProcessedImage{ new QSimpleImageViewer },
 	mProcessedImage2{ new QSimpleImageViewer },
@@ -63,6 +64,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	layout->addWidget(addTitle(mSecondSegmentation, "Deuxieme segmentation : Orange"), 8, 0);
 	layout->addWidget(mHsvIntervals2, 9, 0);
 	layout->addWidget(mAnalyseButton,10,0);
+	layout->addWidget(mShapeContourButton, 11, 0);
 	//layout->addWidget(addTitle(mDummyLabel, "blablabla"), 11, 1, 1, 2);
 
 	QWidget* centralWidget{ new QWidget };
@@ -75,6 +77,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	connect(mDisconnectButton, &QPushButton::clicked, this, &SignGuesser::disconnectCamera);
 	connect(mCaptureOneButton, &QPushButton::clicked, this, &SignGuesser::captureOne);
 	connect(mCaptureContinuouslyButton, &QPushButton::clicked, this, &SignGuesser::captureContinuously);
+	connect(mShapeContourButton, &QPushButton::clicked, this, &SignGuesser::toggleShapeContour);
 
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, mInputImage, &QSimpleImageViewer::setImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::process);
@@ -122,6 +125,12 @@ void SignGuesser::processReadyToCapture(bool ready)
 	}
 }
 
+void SignGuesser::toggleShapeContour()
+{
+	mToggleShapeContour = !mToggleShapeContour;
+	updateGui();
+}
+
 void SignGuesser::updateGui()
 {
 	mConnectButton->setEnabled(!mSimpleImageGrabber.isConnected());
@@ -129,6 +138,7 @@ void SignGuesser::updateGui()
 	mCaptureOneButton->setEnabled(mSimpleImageGrabber.isConnected() && !mCapturingContinuously);
 	mCaptureContinuouslyButton->setEnabled(mSimpleImageGrabber.isConnected());
 	mCaptureContinuouslyButton->setText(mCapturingContinuously ? "Stop capture continuously" : "Start capture continuously");
+	mShapeContourButton->setText(mToggleShapeContour ? "Desactiver le contour de forme" : "Activer le contour de forme");
 }
 
 void SignGuesser::process(QImage const& image)
@@ -168,6 +178,16 @@ void SignGuesser::process(QImage const& image)
 
 	emit imageProcessed(imageThresh);
 	emit imageProcessed2(imageThreshCopy);
+
+
+	if (mToggleShapeContour) {
+
+		// DRAW SQUARE CONTOUR OF SHAPES
+
+	}
+
+
+
 	emit imageProcessed3(ImageMerger::merge(imageThresh, imageThreshCopy));
 
 

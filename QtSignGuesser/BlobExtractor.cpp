@@ -1,13 +1,17 @@
 #include "BlobExtractor.h"
 #include <queue>
 
-void Etiquetage(QImage& img) {
+void BlobExtractor::Etiquetage(QImage& img) {
 
 
 
 }
 
-void Remplissage(QImage &Data,int x,int y,int vc,int vr) {
+inline void BlobExtractor::floodFilling(QImage & Data, int x, int y, int vc, int vr)
+{
+}
+
+void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 
 	auto curPos{ Data.bits() };
 	auto resetPos{ Data.bits() };

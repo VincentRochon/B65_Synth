@@ -59,6 +59,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -91,6 +92,7 @@
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -116,6 +118,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\QtSignGuesser\BlobExtractor.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\btree.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\CalculForme.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Camera.cpp" />
@@ -156,6 +159,7 @@
     <QtRcc Include="SignGuesser.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\QtSignGuesser\BlobExtractor.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\btree.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\CalculForme.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Camera.h" />
