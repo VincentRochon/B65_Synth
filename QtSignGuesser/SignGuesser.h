@@ -24,7 +24,7 @@ public:
 private:
 	Ui::SignGuesserClass ui;
 
-	QPushButton* mConnectButton, * mDisconnectButton, * mCaptureOneButton, * mCaptureContinuouslyButton, * mAnalyseButton, * mShapeContourButton;
+	QPushButton* mConnectButton, *mDisconnectButton, *mCaptureOneButton, *mCaptureContinuouslyButton, *mAnalyseButton, *mShapeContourButton, *mToggleThresh;
 	QSimpleImageGrabber mSimpleImageGrabber;
 	QSimpleImageViewer* mInputImage;
 	QSimpleImageViewer* mProcessedImage;
@@ -34,6 +34,7 @@ private:
 	QTimer mTimer;
 	bool mCapturingContinuously;
 	bool mToggleShapeContour = false;
+	bool mTogglePixelSwitching = false;
 	QColorSpaceConvertor_RGB_HSV mRGB_HSV_Converter;
 	QNIntervalScrollBar* mHsvIntervals; 
 	QNIntervalScrollBar* mHsvIntervals2;
@@ -51,6 +52,7 @@ private slots:
 	void captureContinuously();
 	void processReadyToCapture(bool ready);
 	void toggleShapeContour();
+	void togglePixelSwitch();
 
 	virtual void process(QImage const& image);
 

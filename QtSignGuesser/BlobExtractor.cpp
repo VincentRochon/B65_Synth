@@ -9,21 +9,21 @@ void BlobExtractor::Etiquetage(QImage& img) {
 	int imgHeight{ img.height() };
 	int* endPix{ curPix + imgWidth * imgHeight };
 	
+	borderFilling(img, 0xFF'00'00'00,4);
 	for (size_t i = 0; i < imgHeight; ++i)
 	{
 		for (size_t j = 0; j < imgWidth; ++j)
 		{
 			if (*curPix != 0xFF'00'00'00 && *curPix != 0xFF'FF'FF'FF) {
 
-				*curPix = 0xFF'00'00'FF;
+				//*curPix = 0xFF'FF'00'FF;
+				// fillArea(curPix, j, i, *curPix, 0xFF'AA'AA'AA, imgWidth, endPix);
 
 			}
 			++curPix;
 		}
 	}
 	
-	borderFilling(img, 0xFF'00'00'00,5);
-	//fillArea(curPix, 0, 0, 0xFF'00'00'00, 0xFF'FF'FF'FF, imgWidth, endPix);
 
 }
 void BlobExtractor::borderFilling(QImage & img, int color, int borderSize)
