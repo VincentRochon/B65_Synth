@@ -30,6 +30,7 @@ private:
 
 public:
 	static void Etiquetage(QImage& img);
+	static void borderFilling(QImage& img, int color,int borderSize); 
 
 	QRgb qBlack;
 	QRgb qWhite;
@@ -57,7 +58,7 @@ inline void fillArea(int* imagePtr, int x, int y, int curVal, int remVal, int li
 	
 	int* p{ position(imagePtr,x,y,lineSize) };
 
-	if (p < imagePtr || p >= imageEnd || *p !=curVal) {
+	if (p < imagePtr || p >= imageEnd || *p != curVal) {
 		return;
 	}
 

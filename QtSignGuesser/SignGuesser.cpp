@@ -152,7 +152,7 @@ void SignGuesser::process(QImage const& image)
 
 	listOfProcess.addMaximumFilter(1);
 	// listOfProcess.addMedianFilter(1);
-	// listOfProcess.addUniformeConvolution(2);
+	// listOfProcess.addUniformeConvolution(1);
 	listOfProcess.addGaussianConvolution(1);
 	// listOfProcess.addNormalisation(255);
 	// listOfProcess.addMoyenneImage();
@@ -196,8 +196,8 @@ void SignGuesser::process(QImage const& image)
 
 	QImage imageMerged{ ImageMerger::merge(imageThresh, imageThreshCopy) };
 
-	
 	BlobExtractor::Etiquetage(imageMerged);
+	//BlobExtractor::borderFilling(imageMerged, 0xFF'00'00'00,50);
 	//auto listOfList{ BlobExtractor::Etiquetage(imageMerged) };
 
 	if (mToggleShapeContour) {

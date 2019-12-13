@@ -3,6 +3,7 @@
 
 void BlobExtractor::Etiquetage(QImage& img) {
 
+	
 	int* curPix{ reinterpret_cast<int *>(img.bits()) };
 	int imgWidth{ img.width() };
 	int imgHeight{ img.height() };
@@ -12,15 +13,59 @@ void BlobExtractor::Etiquetage(QImage& img) {
 	{
 		for (size_t j = 0; j < imgWidth; ++j)
 		{
-			if (*curPix != 0xFF'00'00'00) {
+			if (*curPix != 0xFF'00'00'00 && *curPix != 0xFF'FF'FF'FF) {
 
-				//floodFilling4(img,j,i, 0xFF'00'00'00, 0xFF'FF'00'00);
-				fillArea(curPix,j,i,*curPix, *curPix, imgWidth, endPix);
+				*curPix = 0xFF'00'00'FF;
 
 			}
 			++curPix;
 		}
 	}
+	
+	borderFilling(img, 0xFF'00'00'00,5);
+	//fillArea(curPix, 0, 0, 0xFF'00'00'00, 0xFF'FF'FF'FF, imgWidth, endPix);
+
+}
+void BlobExtractor::borderFilling(QImage & img, int color, int borderSize)
+{
+	int* curPix{ reinterpret_cast<int *>(img.bits()) };
+	int imgWidth{ img.width() };
+	int imgHeight{ img.height() };
+	int* endPix{ curPix + imgWidth * imgHeight };
+	int posTracker{ 0 };
+
+	for (size_t i = 0; i < imgWidth * borderSize; i++)
+	{
+		*curPix = color;
+		++curPix;
+	}
+
+	while (curPix < endPix - (imgWidth * borderSize)) {
+
+
+
+		if (posTracker < borderSize || posTracker >= (imgWidth - borderSize))
+		{
+			*curPix = color;
+
+		}
+
+		//*curPix = color;
+
+		if (posTracker == imgWidth) {
+			posTracker = 0;
+		}
+
+		++posTracker;
+		++curPix;
+	}
+
+	for (size_t i = 0; i < imgWidth * borderSize; i++)
+	{
+		*curPix = color;
+		++curPix;
+	}
+
 
 }
 /*
@@ -42,6 +87,7 @@ inline void BlobExtractor::floodFilling4(QImage & Data, int x, int y, int vc,int
 
 
 }*/
+
 
 void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 
