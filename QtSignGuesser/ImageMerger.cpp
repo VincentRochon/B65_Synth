@@ -43,9 +43,9 @@ QImage ImageMerger::merge(QImage const& Image1, QImage const& Image2)
 			//}
 			
 
-	ImageMergedCurrentPix++;
-	Image1curPix++;
-	Image2curPix++;
+	++ImageMergedCurrentPix;
+	++Image1curPix;
+	++Image2curPix;
 	}
 
 

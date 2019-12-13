@@ -3,13 +3,45 @@
 
 void BlobExtractor::Etiquetage(QImage& img) {
 
+	int* curPix{ reinterpret_cast<int *>(img.bits()) };
+	int imgWidth{ img.width() };
+	int imgHeight{ img.height() };
+	int* endPix{ curPix + imgWidth * imgHeight };
+	
+	for (size_t i = 0; i < imgHeight; ++i)
+	{
+		for (size_t j = 0; j < imgWidth; ++j)
+		{
+			if (*curPix != 0xFF'00'00'00) {
 
+				//floodFilling4(img,j,i, 0xFF'00'00'00, 0xFF'FF'00'00);
+				fillArea(curPix,j,i,*curPix, *curPix, imgWidth, endPix);
+
+			}
+			++curPix;
+		}
+	}
 
 }
-
-inline void BlobExtractor::floodFilling(QImage & Data, int x, int y, int vc, int vr)
+/*
+inline void BlobExtractor::floodFilling4(QImage & Data, int x, int y, int vc,int vr)
 {
-}
+	auto curPix{ Data.bits() };
+	auto imgWidth{ Data.width() };
+
+	if (x < 0 || x > imgWidth || *(curPix += (x + y * imgWidth)) == vc) {
+		return;
+	}
+
+	*curPix = vr;
+
+	floodFilling4(Data, x-1, y, vc, vr);
+	floodFilling4(Data, x+1, y, vc, vr);
+	// floodFilling4(Data, x, y-1, vc, vr);
+	// floodFilling4(Data, x, y+1, vc, vr);
+
+
+}*/
 
 void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 
@@ -66,8 +98,8 @@ void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 					//ListeARemplacer.Add(G, y + 1); // Insère le voisin du bas
 					ListeARemplacer.push_back({ G,y + 1 });
 				}
-				G--;
-				curPos--;
+				--G;
+				--curPos;
 			}
 			if (G >= 0) { // Recherche les voisins diagonaux de gauche
 				/*
@@ -104,8 +136,8 @@ void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 
 					ListeARemplacer.push_back({ D, y + 1 }); // Insère le voisin du bas
 				} 
-				D++;
-				curPos++;
+				++D;
+				++curPos;
 			}
 			if (D < imageWidth) { // Recherche les voisins diagonaux
 

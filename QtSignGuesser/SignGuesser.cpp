@@ -14,7 +14,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	mCaptureOneButton{ new QPushButton("Capture one image") },
 	mCaptureContinuouslyButton{ new QPushButton("Start capture continuously") },
 	mAnalyseButton{ new QPushButton("Analyse Picture") },
-	mShapeContourButton{new QPushButton("Activer le contour de forme")},
+	mShapeContourButton{new QPushButton("Activer le contour de formes")},
 	mInputImage{ new QSimpleImageViewer },
 	mProcessedImage{ new QSimpleImageViewer },
 	mProcessedImage2{ new QSimpleImageViewer },
@@ -55,10 +55,10 @@ SignGuesser::SignGuesser(QWidget* parent)
 	layout->addWidget(mDisconnectButton,1,0);
 	layout->addWidget(mCaptureOneButton,2,0);
 	layout->addWidget(mCaptureContinuouslyButton,3,0);
-	layout->addWidget(mInputImage,0,1,8,1);
-	layout->addWidget(mProcessedImage,0,2,8,2);
+	layout->addWidget(mInputImage,8,2,8,2);
+	layout->addWidget(mProcessedImage,0,1,8,1);
 	layout->addWidget(mProcessedImage2, 8, 1, 8, 1);
-	layout->addWidget(mProcessedImage3, 8, 2, 8, 2);
+	layout->addWidget(mProcessedImage3, 0, 2, 8, 2);
 	layout->addWidget(addTitle(mFirstSegmentation,"Premiere segmentation : Green"),4,0);
 	layout->addWidget(mHsvIntervals, 5, 0);
 	layout->addWidget(addTitle(mSecondSegmentation, "Deuxieme segmentation : Orange"), 8, 0);
@@ -138,7 +138,7 @@ void SignGuesser::updateGui()
 	mCaptureOneButton->setEnabled(mSimpleImageGrabber.isConnected() && !mCapturingContinuously);
 	mCaptureContinuouslyButton->setEnabled(mSimpleImageGrabber.isConnected());
 	mCaptureContinuouslyButton->setText(mCapturingContinuously ? "Stop capture continuously" : "Start capture continuously");
-	mShapeContourButton->setText(mToggleShapeContour ? "Desactiver le contour de forme" : "Activer le contour de forme");
+	mShapeContourButton->setText(mToggleShapeContour ? "Desactiver le contour de formes" : "Activer le contour de formes");
 }
 
 void SignGuesser::process(QImage const& image)
@@ -169,7 +169,7 @@ void SignGuesser::process(QImage const& image)
 		mHsvIntervals->interval(0).lower(), mHsvIntervals->interval(0).upper(),
 		mHsvIntervals->interval(1).lower(), mHsvIntervals->interval(1).upper(),
 		mHsvIntervals->interval(2).lower(), mHsvIntervals->interval(2).upper());
-
+	
 	QImageThresholder::process(imageThreshCopy, imageThreshCopy,
 		mHsvIntervals2->interval(0).lower(), mHsvIntervals2->interval(0).upper(),
 		mHsvIntervals2->interval(1).lower(), mHsvIntervals2->interval(1).upper(),
@@ -177,18 +177,39 @@ void SignGuesser::process(QImage const& image)
 	
 
 	emit imageProcessed(imageThresh);
+
+	/*
+	int* start{ reinterpret_cast<int * >(imageThreshCopy.bits()) };
+	int width{ imageThreshCopy.width() };
+	int height{ imageThreshCopy.height()};
+	int* end{ start + width * height };
+
+	while (start < end) {
+	
+		*start = 0xFF'FF'00'00;
+
+		++start;
+	}
+	*/
+
 	emit imageProcessed2(imageThreshCopy);
 
+	QImage imageMerged{ ImageMerger::merge(imageThresh, imageThreshCopy) };
+
+	
+	BlobExtractor::Etiquetage(imageMerged);
+	//auto listOfList{ BlobExtractor::Etiquetage(imageMerged) };
 
 	if (mToggleShapeContour) {
 
-		// DRAW SQUARE CONTOUR OF SHAPES
+		int i = 0;
+		++i;
 
 	}
 
 
 
-	emit imageProcessed3(ImageMerger::merge(imageThresh, imageThreshCopy));
+	emit imageProcessed3(imageMerged);
 
 
 	// analyse picture

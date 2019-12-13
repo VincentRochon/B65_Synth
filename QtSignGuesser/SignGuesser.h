@@ -12,6 +12,7 @@
 #include "QImageThresholder.h"
 #include "QNIntervalScrollBar.h"
 #include "ImageMerger.h"
+#include "BlobExtractor.h"
 
 class SignGuesser : public QMainWindow
 {
