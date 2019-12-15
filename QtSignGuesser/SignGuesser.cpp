@@ -81,7 +81,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	connect(mCaptureContinuouslyButton, &QPushButton::clicked, this, &SignGuesser::captureContinuously);
 	connect(mShapeContourButton, &QPushButton::clicked, this, &SignGuesser::toggleShapeContour);
 	connect(mToggleThresh, &QPushButton::clicked, this, &SignGuesser::togglePixelSwitch);
-	//connect(mAnalyseButton, &QPushButton::clicked, this, &SignGuesser::togglePixelSwitch);
+	connect(mAnalyseButton, &QPushButton::clicked, this, &SignGuesser::AnalysePicture);
 
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, mInputImage, &QSimpleImageViewer::setImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::process);
@@ -92,6 +92,9 @@ SignGuesser::SignGuesser(QWidget* parent)
 		
 	//connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::processCapturedImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::readyForCaptureChanged, this, &SignGuesser::processReadyToCapture);
+
+	// Default value
+
 
 	updateGui();
 }
@@ -143,6 +146,10 @@ void SignGuesser::togglePixelSwitch()
 
 void SignGuesser::AnalysePicture() {
 
+	// merge blob list
+	mBlobList1 += mBlobList2;
+	BlobAnalyser::sortList(mBlobList1); // good blob list
+	int i = 0;
 
 }
 
@@ -228,11 +235,8 @@ void SignGuesser::process(QImage const& image)
 	//BlobExtractor::borderFilling(imageMerged, 0xFF'00'00'00,5);
 	//auto listOfList{ BlobExtractor::Etiquetage(imageMerged) };
 
-
 	emit imageProcessed3(imageMerged);
 
-
-	// analyse picture
 }
 
 

@@ -34,31 +34,13 @@
     <ClCompile Include="QSimpleImageGrabber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CalculForme.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Classification.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Comparaison.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Convolution.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DatabaseAccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Distribution_Gauss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InProcess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InteriorFilling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -71,12 +53,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Segmentation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Shapes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Split.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UnaryProcess.cpp">
@@ -92,12 +68,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Distribution_Uniforme.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="btree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomBtree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MoyenneImage.cpp">
@@ -125,6 +95,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QImageUtilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlobAnalyser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,31 +129,13 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CalculForme.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classification.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Comparaison.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Convolution.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DatabaseAccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Distribution_Gauss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InProcess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InteriorFilling.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Normalisation.h">
@@ -190,12 +145,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Segmentation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shapes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Split.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UnaryProcess.h">
@@ -211,12 +160,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Distribution_Uniforme.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="btree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CustomBtree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MoyenneImage.h">
@@ -238,6 +181,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QImageUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlobAnalyser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -95,20 +95,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlobAnalyser.cpp" />
     <ClCompile Include="BlobExtractor.cpp" />
-    <ClCompile Include="btree.cpp" />
-    <ClCompile Include="CalculForme.cpp" />
-    <ClCompile Include="Classification.cpp" />
-    <ClCompile Include="Comparaison.cpp" />
-    <ClCompile Include="Convolution.cpp" />
-    <ClCompile Include="CustomBtree.cpp" />
     <ClCompile Include="DatabaseAccess.cpp" />
     <ClCompile Include="Distribution_Gauss.cpp" />
     <ClCompile Include="Distribution_Uniforme.cpp" />
-    <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageMerger.cpp" />
     <ClCompile Include="InProcess.cpp" />
-    <ClCompile Include="InteriorFilling.cpp" />
     <ClCompile Include="Kernel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaximumFilter.cpp" />
@@ -124,9 +117,7 @@
     <ClCompile Include="QSimpleImageViewer.cpp" />
     <ClCompile Include="RankFilter.cpp" />
     <ClCompile Include="Segmentation.cpp" />
-    <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="SignGuesser.cpp" />
-    <ClCompile Include="Split.cpp" />
     <ClCompile Include="UnaryProcess.cpp" />
     <ClCompile Include="Uniformisation.cpp" />
   </ItemGroup>
@@ -146,20 +137,13 @@
     <QtMoc Include="QSimpleImageGrabber.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlobAnalyser.h" />
     <ClInclude Include="BlobExtractor.h" />
-    <ClInclude Include="btree.h" />
-    <ClInclude Include="CalculForme.h" />
-    <ClInclude Include="Classification.h" />
-    <ClInclude Include="Comparaison.h" />
-    <ClInclude Include="Convolution.h" />
-    <ClInclude Include="CustomBtree.h" />
     <ClInclude Include="DatabaseAccess.h" />
     <ClInclude Include="Distribution_Gauss.h" />
     <ClInclude Include="Distribution_Uniforme.h" />
-    <ClInclude Include="Image.h" />
     <ClInclude Include="ImageMerger.h" />
     <ClInclude Include="InProcess.h" />
-    <ClInclude Include="InteriorFilling.h" />
     <ClInclude Include="Kernel.h" />
     <ClInclude Include="MaximumFilter.h" />
     <ClInclude Include="MedianFilter.h" />
@@ -172,8 +156,6 @@
     <ClInclude Include="QImageUtilities.h" />
     <ClInclude Include="RankFilter.h" />
     <ClInclude Include="Segmentation.h" />
-    <ClInclude Include="Shapes.h" />
-    <ClInclude Include="Split.h" />
     <ClInclude Include="UnaryProcess.h" />
     <ClInclude Include="Uniformisation.h" />
   </ItemGroup>

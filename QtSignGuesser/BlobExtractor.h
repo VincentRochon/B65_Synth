@@ -17,9 +17,11 @@ private:
 		int x, y;
 	};
 
-
 	BlobExtractor() = delete;
-	//BlobExtractor(QImage const& image);
+	BlobExtractor(BlobExtractor const&) = delete;
+	BlobExtractor(BlobExtractor&&) = delete;
+	BlobExtractor& operator=(BlobExtractor const&) = delete;
+	BlobExtractor& operator=(BlobExtractor&&) = delete;
 	~BlobExtractor() = delete;
 
 	void Remplissage(QImage &Data, int x, int y, int vc, int vr);
