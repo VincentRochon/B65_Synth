@@ -15,6 +15,9 @@ class BlobAnalyser {
 
 public:
 	static void sortList(QImageUtilities::BlobList & listToSort);
+	static void trimList(QImageUtilities::BlobList& listToTrim, int AmountToKeep, bool Reverse = false);
+	static std::string analysePosition(QImageUtilities::BlobList const& listToTrim);
+private:
 	static bool my_compare(const QImageUtilities::BlobInfo &a,const QImageUtilities::BlobInfo &b);
 
 private:

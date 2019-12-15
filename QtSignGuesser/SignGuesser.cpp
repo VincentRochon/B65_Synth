@@ -149,7 +149,13 @@ void SignGuesser::AnalysePicture() {
 	// merge blob list
 	mBlobList1 += mBlobList2;
 	BlobAnalyser::sortList(mBlobList1); // good blob list
+	BlobAnalyser::trimList(mBlobList1,5); // trim of blobs ( max 5)
+
+	
+	// Eval Positions
 	int i = 0;
+	mInputImage->setVisible(false);
+	updateGui();
 
 }
 
