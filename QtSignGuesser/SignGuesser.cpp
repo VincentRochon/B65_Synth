@@ -1,8 +1,6 @@
 #include "SignGuesser.h"
 
 #include <QCameraInfo>
-
-
 #include <QGridLayout>
 #include "QSimpleImageGrabber.h"
 #include "InProcess.h"
@@ -16,6 +14,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	mAnalyseButton{ new QPushButton("Analyse Picture") },
 	mShapeContourButton{ new QPushButton("Activer le contour de formes") },
 	mToggleThresh{ new QPushButton("Activer replacage de pixel") },
+	mShowRealImage{ new QPushButton("Afficher la vision normale") },
 	mInputImage{ new QSimpleImageViewer },
 	mProcessedImage{ new QSimpleImageViewer },
 	mProcessedImage2{ new QSimpleImageViewer },
@@ -24,8 +23,9 @@ SignGuesser::SignGuesser(QWidget* parent)
 	mHsvIntervals{ new QNIntervalScrollBar(3) },
 	mHsvIntervals2{ new QNIntervalScrollBar(3) },
 	mFirstSegmentation{new QLabel},
-	mSecondSegmentation{new QLabel}
-	//mDummyLabel{ new QLabel }
+	mSecondSegmentation{ new QLabel },
+	mLetterAnalysed{new QLabel },
+	mTxtLetterAnalysed{new QLabel}
 {
 	QSize const imageSize(600, 400);
 	int const imageSpacing{ 10 };
@@ -61,13 +61,16 @@ SignGuesser::SignGuesser(QWidget* parent)
 	layout->addWidget(mProcessedImage2, 8, 1, 8, 1);
 	layout->addWidget(mProcessedImage3, 0, 2, 8, 2);
 	layout->addWidget(addTitle(mFirstSegmentation,"Premiere segmentation : Green"),4,0);
+	layout->addWidget(addTitle(mSecondSegmentation, "Deuxieme segmentation : Orange"), 8, 0);
 	layout->addWidget(mHsvIntervals, 5, 0);
 	layout->addWidget(mToggleThresh, 6, 0);
-	layout->addWidget(addTitle(mSecondSegmentation, "Deuxieme segmentation : Orange"), 8, 0);
 	layout->addWidget(mHsvIntervals2, 9, 0);
 	layout->addWidget(mAnalyseButton,11,0);
 	layout->addWidget(mShapeContourButton, 10, 0);
-	//layout->addWidget(addTitle(mDummyLabel, "blablabla"), 11, 1, 1, 2);
+	layout->addWidget(mTxtLetterAnalysed,9,2);
+	layout->addWidget(mLetterAnalysed,9,3);
+	layout->addWidget(mShowRealImage, 12, 0);
+
 
 	QWidget* centralWidget{ new QWidget };
 	centralWidget->setMinimumSize(1900,1000);
@@ -81,7 +84,8 @@ SignGuesser::SignGuesser(QWidget* parent)
 	connect(mCaptureContinuouslyButton, &QPushButton::clicked, this, &SignGuesser::captureContinuously);
 	connect(mShapeContourButton, &QPushButton::clicked, this, &SignGuesser::toggleShapeContour);
 	connect(mToggleThresh, &QPushButton::clicked, this, &SignGuesser::togglePixelSwitch);
-	connect(mAnalyseButton, &QPushButton::clicked, this, &SignGuesser::AnalysePicture);
+	connect(mAnalyseButton, &QPushButton::clicked, this, &SignGuesser::analysePicture);
+	connect(mShowRealImage, &QPushButton::clicked, this, &SignGuesser::showRealImage);
 
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, mInputImage, &QSimpleImageViewer::setImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::process);
@@ -94,7 +98,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::readyForCaptureChanged, this, &SignGuesser::processReadyToCapture);
 
 	// Default value
-
+	setupResult();
 
 	updateGui();
 }
@@ -144,20 +148,50 @@ void SignGuesser::togglePixelSwitch()
 	updateGui();
 }
 
-void SignGuesser::AnalysePicture() {
+void SignGuesser::analysePicture() {
 
 	// merge blob list
-	mBlobList1 += mBlobList2;
-	BlobAnalyser::sortList(mBlobList1); // good blob list
-	BlobAnalyser::trimList(mBlobList1,5); // trim of blobs ( max 5)
+	mBlobListMerged = mBlobList1;
+	mBlobListMerged += mBlobList2;
+	BlobAnalyser::sortList(mBlobListMerged); // good blob list
+	BlobAnalyser::trimList(mBlobListMerged,5); // trim of blobs ( max 5)
 
-	
 	// Eval Positions
-	int i = 0;
-	mInputImage->setVisible(false);
-	updateGui();
+	mLetterAnalysed->setText(BlobAnalyser::analysePosition(mBlobListMerged));
+
+	showResult();
 
 }
+
+void SignGuesser::showRealImage() {
+
+	mInputImage->setVisible(true);
+	mTxtLetterAnalysed->setVisible(false);
+	mLetterAnalysed->setVisible(false);
+	updateGui();
+}
+
+void SignGuesser::showResult()
+{
+	mInputImage->setVisible(false);
+	mTxtLetterAnalysed->setVisible(true);
+	mLetterAnalysed->setVisible(true);
+	updateGui();
+}
+
+void SignGuesser::setupResult()
+{
+	mTxtLetterAnalysed->setVisible(false);
+	mTxtLetterAnalysed->setText("Resultat : ");
+	mLetterAnalysed->setVisible(false);
+	QFont newFont = mTxtLetterAnalysed->font();
+	newFont.setPointSizeF(36);
+	newFont.setBold(true);
+	mTxtLetterAnalysed->setFont(newFont);
+	newFont.setPointSizeF(60);
+	mLetterAnalysed->setFont(newFont);
+}
+
 
 void SignGuesser::updateGui()
 {
@@ -172,9 +206,6 @@ void SignGuesser::updateGui()
 
 void SignGuesser::process(QImage const& image)
 {
-	//QImage::Format f{ image.format() };
-	//QImage im(image);
-
 
 	InProcess listOfProcess(image);
 
@@ -234,14 +265,7 @@ void SignGuesser::process(QImage const& image)
 	   
 	emit imageProcessed(imageThresh);
 	emit imageProcessed2(imageThreshCopy);
-
-	QImage imageMerged{ ImageMerger::merge(imageThresh, imageThreshCopy) };
-
-	//BlobExtractor::Etiquetage(imageMerged);
-	//BlobExtractor::borderFilling(imageMerged, 0xFF'00'00'00,5);
-	//auto listOfList{ BlobExtractor::Etiquetage(imageMerged) };
-
-	emit imageProcessed3(imageMerged);
+	emit imageProcessed3(ImageMerger::merge(imageThresh, imageThreshCopy));
 
 }
 

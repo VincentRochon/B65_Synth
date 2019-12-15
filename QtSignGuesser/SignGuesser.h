@@ -26,28 +26,18 @@ public:
 private:
 	Ui::SignGuesserClass ui;
 
-	QPushButton* mConnectButton, *mDisconnectButton, *mCaptureOneButton, *mCaptureContinuouslyButton, *mAnalyseButton, *mShapeContourButton, *mToggleThresh;
+	QPushButton* mConnectButton, *mDisconnectButton, *mCaptureOneButton, *mCaptureContinuouslyButton, *mAnalyseButton, *mShapeContourButton, *mToggleThresh, *mShowRealImage;
 	QSimpleImageGrabber mSimpleImageGrabber;
-	QSimpleImageViewer* mInputImage;
-	QSimpleImageViewer* mProcessedImage;
-	QSimpleImageViewer* mProcessedImage2;
-	QSimpleImageViewer* mProcessedImage3;
-	QImageUtilities::BlobList mBlobList1;
-	QImageUtilities::BlobList mBlobList2;
+	QSimpleImageViewer* mInputImage, *mProcessedImage, *mProcessedImage2, *mProcessedImage3;
+	QImageUtilities::BlobList mBlobList1, mBlobList2, mBlobListMerged;
 
 	QTimer mTimer;
 	bool mCapturingContinuously;
 	bool mToggleShapeContour = false;
 	bool mTogglePixelSwitching = false;
 	QColorSpaceConvertor_RGB_HSV mRGB_HSV_Converter;
-	QNIntervalScrollBar* mHsvIntervals; 
-	QNIntervalScrollBar* mHsvIntervals2;
-	QLabel* mFirstSegmentation;
-	QLabel* mSecondSegmentation;
-	//QLabel* mDummyLabel;
-
-
-
+	QNIntervalScrollBar* mHsvIntervals, *mHsvIntervals2;
+	QLabel* mFirstSegmentation, *mSecondSegmentation, *mLetterAnalysed, *mTxtLetterAnalysed;
 
 	QWidget* addTitle(QWidget* widget, QString const& title);
 
@@ -59,7 +49,10 @@ private slots:
 	void processReadyToCapture(bool ready);
 	void toggleShapeContour();
 	void togglePixelSwitch();
-	void AnalysePicture();
+	void analysePicture();
+	void showRealImage();
+	void showResult();
+	void setupResult();
 
 	virtual void process(QImage const& image);
 

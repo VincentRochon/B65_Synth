@@ -31,9 +31,9 @@ void BlobAnalyser::trimList(QImageUtilities::BlobList& listToTrim, int amountToK
 	}
 }
 
-std::string BlobAnalyser::analysePosition(QImageUtilities::BlobList const& listOfBlobs)
+QString BlobAnalyser::analysePosition(QImageUtilities::BlobList const& listOfBlobs)
 {
-	if (listOfBlobs.size() != 5) return std::string("invalide Size");
+	if (listOfBlobs.size() != 5) return QString("invalide Size");
 
 	auto curPos{ listOfBlobs.begin() };
 
@@ -51,7 +51,7 @@ std::string BlobAnalyser::analysePosition(QImageUtilities::BlobList const& listO
 
 
 
-	return std::string();
+	return QString("bb");
 }
 
 bool BlobAnalyser::my_compare(const QImageUtilities::BlobInfo & firstBlob,const QImageUtilities::BlobInfo& secondBlob)
