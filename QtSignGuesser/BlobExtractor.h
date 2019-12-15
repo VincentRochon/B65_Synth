@@ -25,7 +25,7 @@ private:
 	void Remplissage(QImage &Data, int x, int y, int vc, int vr);
 
 
-	static inline void floodFilling4(QImage& Data, int x, int y, int vc,int vr);
+	//static inline void floodFilling4(QImage& Data, int x, int y, int vc,int vr);
 
 
 public:
@@ -58,7 +58,7 @@ inline void fillArea(int* imagePtr, int x, int y, int curVal, int remVal, int li
 	
 	int* p{ position(imagePtr,x,y,lineSize) };
 
-	if (p < imagePtr || p >= imageEnd || *p != curVal) {
+	if (p < imagePtr || p >= imageEnd || *p != curVal || *p == 0xFF'FF'00'00) {
 		return;
 	}
 

@@ -13,6 +13,7 @@
 #include "QNIntervalScrollBar.h"
 #include "ImageMerger.h"
 #include "BlobExtractor.h"
+#include "QImageUtilities.h"
 
 class SignGuesser : public QMainWindow
 {
@@ -30,6 +31,8 @@ private:
 	QSimpleImageViewer* mProcessedImage;
 	QSimpleImageViewer* mProcessedImage2;
 	QSimpleImageViewer* mProcessedImage3;
+	QImageUtilities::BlobList mBlobList1;
+	QImageUtilities::BlobList mBlobList2;
 
 	QTimer mTimer;
 	bool mCapturingContinuously;
@@ -53,6 +56,7 @@ private slots:
 	void processReadyToCapture(bool ready);
 	void toggleShapeContour();
 	void togglePixelSwitch();
+	void AnalysePicture();
 
 	virtual void process(QImage const& image);
 

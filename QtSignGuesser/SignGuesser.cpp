@@ -65,8 +65,8 @@ SignGuesser::SignGuesser(QWidget* parent)
 	layout->addWidget(mToggleThresh, 6, 0);
 	layout->addWidget(addTitle(mSecondSegmentation, "Deuxieme segmentation : Orange"), 8, 0);
 	layout->addWidget(mHsvIntervals2, 9, 0);
-	layout->addWidget(mAnalyseButton,10,0);
-	layout->addWidget(mShapeContourButton, 11, 0);
+	layout->addWidget(mAnalyseButton,11,0);
+	layout->addWidget(mShapeContourButton, 10, 0);
 	//layout->addWidget(addTitle(mDummyLabel, "blablabla"), 11, 1, 1, 2);
 
 	QWidget* centralWidget{ new QWidget };
@@ -81,6 +81,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	connect(mCaptureContinuouslyButton, &QPushButton::clicked, this, &SignGuesser::captureContinuously);
 	connect(mShapeContourButton, &QPushButton::clicked, this, &SignGuesser::toggleShapeContour);
 	connect(mToggleThresh, &QPushButton::clicked, this, &SignGuesser::togglePixelSwitch);
+	//connect(mAnalyseButton, &QPushButton::clicked, this, &SignGuesser::togglePixelSwitch);
 
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, mInputImage, &QSimpleImageViewer::setImage);
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, this, &SignGuesser::process);
@@ -140,6 +141,11 @@ void SignGuesser::togglePixelSwitch()
 	updateGui();
 }
 
+void SignGuesser::AnalysePicture() {
+
+
+}
+
 void SignGuesser::updateGui()
 {
 	mConnectButton->setEnabled(!mSimpleImageGrabber.isConnected());
@@ -193,46 +199,34 @@ void SignGuesser::process(QImage const& image)
 		QImageThresholder::process(imageThresh, imageThresh,
 			mHsvIntervals->interval(0).lower(), mHsvIntervals->interval(0).upper(),
 			mHsvIntervals->interval(1).lower(), mHsvIntervals->interval(1).upper(),
-			mHsvIntervals->interval(2).lower(), mHsvIntervals->interval(2).upper(),0xFF'00'00'FF);
+			mHsvIntervals->interval(2).lower(), mHsvIntervals->interval(2).upper(),0xFF'FF'FF'FF);
 
 		QImageThresholder::process(imageThreshCopy, imageThreshCopy,
 			mHsvIntervals2->interval(0).lower(), mHsvIntervals2->interval(0).upper(),
 			mHsvIntervals2->interval(1).lower(), mHsvIntervals2->interval(1).upper(),
-			mHsvIntervals2->interval(2).lower(), mHsvIntervals2->interval(2).upper(),0xFF'00'FF'00);
+			mHsvIntervals2->interval(2).lower(), mHsvIntervals2->interval(2).upper(),0xFF'FF'FF'FF);
 	}
-	
 
+
+
+	if (mToggleShapeContour) {
+
+		mBlobList1 = QImageUtilities::blobize(imageThresh, imageThresh, Qt::white, 625);
+		mBlobList2 = QImageUtilities::blobize(imageThreshCopy, imageThreshCopy, Qt::white, 625);
+
+		mBlobList1.draw(imageThresh);
+		mBlobList2.draw(imageThreshCopy);
+
+	}
+	   
 	emit imageProcessed(imageThresh);
-
-	/*
-	int* start{ reinterpret_cast<int * >(imageThreshCopy.bits()) };
-	int width{ imageThreshCopy.width() };
-	int height{ imageThreshCopy.height()};
-	int* end{ start + width * height };
-
-	while (start < end) {
-	
-		*start = 0xFF'FF'00'00;
-
-		++start;
-	}
-	*/
-
 	emit imageProcessed2(imageThreshCopy);
 
 	QImage imageMerged{ ImageMerger::merge(imageThresh, imageThreshCopy) };
 
-	BlobExtractor::Etiquetage(imageMerged);
+	//BlobExtractor::Etiquetage(imageMerged);
 	//BlobExtractor::borderFilling(imageMerged, 0xFF'00'00'00,5);
 	//auto listOfList{ BlobExtractor::Etiquetage(imageMerged) };
-
-	if (mToggleShapeContour) {
-
-		int i = 0;
-		++i;
-
-	}
-
 
 
 	emit imageProcessed3(imageMerged);

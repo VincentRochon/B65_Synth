@@ -124,6 +124,9 @@
     <ClCompile Include="ImageMerger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QImageUtilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SignGuesser.h">
@@ -232,6 +235,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageMerger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QImageUtilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

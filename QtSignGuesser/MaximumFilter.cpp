@@ -93,6 +93,7 @@ bool  MaximumFilter::ProcessImage(std::vector<QImage> const &imageIn, std::vecto
 			if (posTracker == imgWidth) {
 				posTracker = 0;
 			}
+			
 
 			++curViewPix;
 			++posTracker;

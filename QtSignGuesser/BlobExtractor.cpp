@@ -5,19 +5,23 @@ void BlobExtractor::Etiquetage(QImage& img) {
 
 	
 	int* curPix{ reinterpret_cast<int *>(img.bits()) };
+	int* startPix{ curPix };
 	int imgWidth{ img.width() };
 	int imgHeight{ img.height() };
 	int* endPix{ curPix + imgWidth * imgHeight };
+	uint tempColor{ 0xFF'FF'00'00 };
 	
 	borderFilling(img, 0xFF'00'00'00,4);
 	for (size_t i = 0; i < imgHeight; ++i)
 	{
 		for (size_t j = 0; j < imgWidth; ++j)
 		{
-			if (*curPix != 0xFF'00'00'00 && *curPix != 0xFF'FF'FF'FF) {
+			if (*curPix != 0xFF'00'00'00) {
 
-				//*curPix = 0xFF'FF'00'FF;
-				// fillArea(curPix, j, i, *curPix, 0xFF'AA'AA'AA, imgWidth, endPix);
+				//*curPix = tempColor;
+
+				fillArea(startPix, j, i, *curPix, tempColor, imgWidth, endPix);
+				tempColor += 0x00'01'01'01;
 
 			}
 			++curPix;

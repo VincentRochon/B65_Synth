@@ -117,6 +117,7 @@
     <ClCompile Include="Normalisation.cpp" />
     <ClCompile Include="QColorSpaceConvertor_RGB_HSV.cpp" />
     <ClCompile Include="QImageThresholder.cpp" />
+    <ClCompile Include="QImageUtilities.cpp" />
     <ClCompile Include="QIntervalScrollBar.cpp" />
     <ClCompile Include="QNIntervalScrollBar.cpp" />
     <ClCompile Include="QSimpleImageGrabber.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="QImageThresholder.h" />
     <QtMoc Include="QIntervalScrollBar.h" />
     <QtMoc Include="QNIntervalScrollBar.h" />
+    <ClInclude Include="QImageUtilities.h" />
     <ClInclude Include="RankFilter.h" />
     <ClInclude Include="Segmentation.h" />
     <ClInclude Include="Shapes.h" />

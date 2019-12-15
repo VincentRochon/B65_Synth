@@ -74,12 +74,7 @@ bool Distribution_Gauss::ProcessImage(std::vector<QImage> const &imageIn, std::v
 	}
 	
 	int posTracker{ 0 };
-	unsigned char maxRed{};
-	unsigned char maxBlue{};
-	unsigned char maxGreen{};
-	unsigned char r{};
-	unsigned char g{};
-	unsigned char b{};
+	unsigned char maxRed{},maxBlue{}, maxGreen{}, r{}, g{}, b{};
 	int c{};
 	size_t windowWidth = (mWindowSize * 2 + 1);
 	std::vector<float> ConvolutionArray(getKernel());
