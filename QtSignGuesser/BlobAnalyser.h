@@ -17,10 +17,15 @@ public:
 	static void sortList(QImageUtilities::BlobList & listToSort);
 	static void trimList(QImageUtilities::BlobList& listToTrim, int AmountToKeep, bool Reverse = false);
 	static QString analysePosition(QImageUtilities::BlobList const& listToTrim);
-private:
-	static bool my_compare(const QImageUtilities::BlobInfo &a,const QImageUtilities::BlobInfo &b);
 
 private:
+	static bool my_compare(const QImageUtilities::BlobInfo &a,const QImageUtilities::BlobInfo &b);
+	static bool hCheck(QImageUtilities::BlobInfo const& blob0,
+		QImageUtilities::BlobInfo const& blob1,
+		QImageUtilities::BlobInfo const& blob2,
+		QImageUtilities::BlobInfo const& blob3,
+		QImageUtilities::BlobInfo const& blob4);
+
 
 
 };
