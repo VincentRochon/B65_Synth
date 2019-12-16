@@ -118,20 +118,14 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\QtSignGuesser\BlobAnalyser.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\BlobExtractor.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\btree.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\CalculForme.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\Camera.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\Classification.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\Comparaison.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\Convolution.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\DatabaseAccess.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Distribution_Gauss.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Distribution_Uniforme.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\Image.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\ImageMerger.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\InProcess.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\InteriorFilling.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Kernel.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\MaximumFilter.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\MedianFilter.cpp" />
@@ -139,15 +133,14 @@
     <ClCompile Include="..\..\..\QtSignGuesser\Normalisation.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QColorSpaceConvertor_RGB_HSV.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QImageThresholder.cpp" />
+    <ClCompile Include="..\..\..\QtSignGuesser\QImageUtilities.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QIntervalScrollBar.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QNIntervalScrollBar.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QSimpleImageGrabber.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\QSimpleImageViewer.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\RankFilter.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Segmentation.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\Shapes.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\SignGuesser.cpp" />
-    <ClCompile Include="..\..\..\QtSignGuesser\Split.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\UnaryProcess.cpp" />
     <ClCompile Include="..\..\..\QtSignGuesser\Uniformisation.cpp" />
     <ClCompile Include="main.cpp" />
@@ -159,6 +152,7 @@
     <QtRcc Include="SignGuesser.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\QtSignGuesser\BlobAnalyser.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\BlobExtractor.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\btree.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\CalculForme.h" />
@@ -184,6 +178,7 @@
     <ClInclude Include="..\..\..\QtSignGuesser\QImageThresholder.h" />
     <QtMoc Include="..\..\..\QtSignGuesser\QIntervalScrollBar.h" />
     <QtMoc Include="..\..\..\QtSignGuesser\QNIntervalScrollBar.h" />
+    <ClInclude Include="..\..\..\QtSignGuesser\QImageUtilities.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\RankFilter.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Segmentation.h" />
     <ClInclude Include="..\..\..\QtSignGuesser\Shapes.h" />

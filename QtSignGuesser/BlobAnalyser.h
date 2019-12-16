@@ -26,6 +26,11 @@ private:
 		QImageUtilities::BlobInfo const& blob3,
 		QImageUtilities::BlobInfo const& blob4);
 
+	static bool xCheck(QImageUtilities::BlobInfo const& blob0,
+		QImageUtilities::BlobInfo const& blob1,
+		QImageUtilities::BlobInfo const& blob2,
+		QImageUtilities::BlobInfo const& blob3,
+		QImageUtilities::BlobInfo const& blob4);
 
 
 };

@@ -113,6 +113,30 @@ bool BlobAnalyser::hCheck(QImageUtilities::BlobInfo const& blob0, QImageUtilitie
 	return false; // failure
 }
 
+bool BlobAnalyser::xCheck(QImageUtilities::BlobInfo const & blob0, QImageUtilities::BlobInfo const & blob1, QImageUtilities::BlobInfo const & blob2, QImageUtilities::BlobInfo const & blob3, QImageUtilities::BlobInfo const & blob4)
+{
+	int	x0{ static_cast<int>(blob0.centroid().x()) };
+	int	y0{ static_cast<int>(blob0.centroid().y()) };
+	int	x1{ static_cast<int>(blob1.centroid().x()) };
+	int	y1{ static_cast<int>(blob1.centroid().y()) };
+	int	x2{ static_cast<int>(blob2.centroid().x()) };
+	int	y2{ static_cast<int>(blob2.centroid().y()) };
+	int	x3{ static_cast<int>(blob3.centroid().x()) };
+	int	y3{ static_cast<int>(blob3.centroid().y()) };
+	int	x4{ static_cast<int>(blob4.centroid().x()) };
+	int	y4{ static_cast<int>(blob4.centroid().y()) };
+
+	int counter{};
+
+
+	if (counter == 5)
+	{
+		return true; // success
+	}
+
+	return false; // failure
+}
+
 bool BlobAnalyser::my_compare(const QImageUtilities::BlobInfo & firstBlob,const QImageUtilities::BlobInfo& secondBlob)
 {
 	if (firstBlob.centroid().x() < secondBlob.centroid().x())
