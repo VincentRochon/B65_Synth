@@ -153,9 +153,9 @@ void SignGuesser::analysePicture() {
 	// merge blob list
 	mBlobListMerged = mBlobList1;
 	mBlobListMerged += mBlobList2;
-	BlobAnalyser::sortList(mBlobListMerged); // good blob list
 	BlobAnalyser::trimList(mBlobListMerged,5); // trim of blobs ( max 5)
-
+	BlobAnalyser::sortListLtoR(mBlobListMerged); // good blob list
+	// BlobAnalyser::sortList(mMergedImage, mBlobListMerged);
 	// Eval Positions
 	mLetterAnalysed->setText(BlobAnalyser::analysePosition(mBlobListMerged));
 
@@ -265,7 +265,7 @@ void SignGuesser::process(QImage const& image)
 	   
 	emit imageProcessed(imageThresh);
 	emit imageProcessed2(imageThreshCopy);
-	emit imageProcessed3(ImageMerger::merge(imageThresh, imageThreshCopy));
+	emit imageProcessed3(mMergedImage = ImageMerger::merge(imageThresh, imageThreshCopy));
 
 }
 

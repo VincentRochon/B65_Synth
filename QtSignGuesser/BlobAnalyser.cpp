@@ -1,12 +1,56 @@
 #include "BlobAnalyser.h"
 
 
-void BlobAnalyser::sortList(QImageUtilities::BlobList& listToSort)
+void BlobAnalyser::sortListLtoR(QImageUtilities::BlobList& listToSort)
 {
 
 	std::sort(listToSort.begin(), listToSort.end(), my_compare);
 
 	
+}
+
+void BlobAnalyser::sortList(QImage const& image, QImageUtilities::BlobList & listToSort)
+{
+	int imgWidth{ image.width() };
+	int imgHeight{ image.height() };
+	int compteur{1};
+
+	std::vector < BlobExtractor::pixel > tempVect(imgWidth * imgHeight, {0,0});
+	QImageUtilities::BlobList newList{ listToSort };
+
+	auto curPix{ listToSort.begin() };
+	auto endPix{ listToSort.end() };
+
+	while (curPix < endPix)
+	{
+		int x{ static_cast<int>(curPix->centroid().x()) };
+		int y{ static_cast<int>(curPix->centroid().y()) };
+
+		tempVect[x + (y * imgHeight)] = {x,y};
+		++compteur;
+		++curPix;
+	}
+
+	auto curPointer{ tempVect.begin() };
+	auto endPointer{ tempVect.end() };
+	
+	compteur = 0 ;
+	BlobExtractor::pixel dummyPix{0,0};
+
+	while (curPointer < endPointer)
+	{
+		if (*curPointer != dummyPix) {
+
+			int x{ curPointer->x };
+			int y{ curPointer->y };
+
+			newList[compteur] = findXnYmatch(listToSort, x, y);
+			++compteur;
+		}
+		++curPointer;
+	}
+
+	listToSort = newList;
 }
 
 void BlobAnalyser::trimList(QImageUtilities::BlobList& listToTrim, int amountToKeep, bool Reverse)
@@ -79,16 +123,14 @@ bool BlobAnalyser::hCheck(QImageUtilities::BlobInfo const& blob0, QImageUtilitie
 		++counter; // good position 1st blob
 	}
 
-	if (y1 > y0 && y1 > y3)
+	if (y1 > y0 && y1 > y3 && y1 > y4)
 	{
 		++counter; // good position 2nd blob
 	}
-	
 
-	if (y2 > y0 && y2 > y3) {
+	if (y2 > y0 && y2 > y3 && y2 > y4) {
 		++counter; // good position 3rd blob
 	}
-	
 
 	
 	if (y3 < y1 && y3 < y2)
@@ -97,12 +139,10 @@ bool BlobAnalyser::hCheck(QImageUtilities::BlobInfo const& blob0, QImageUtilitie
 	}
 	
 
-
 	if (y4 > y0 && y4 > y3)
 	{
 		++counter; // good position 4th blob
 	}
-	
 
 	if (counter == 5)
 	{
@@ -127,23 +167,23 @@ bool BlobAnalyser::xCheck(QImageUtilities::BlobInfo const & blob0, QImageUtiliti
 
 	int counter{}; 
 
-	if (y0 > y1 && y0 > y2 && y0 > y3 && y0 > y4) { // good position pinky
+	if (y0 > y1 && y0 > y2 && y0 > y3 && y0 > y4) {
 		++counter;
 	}
 
-	if (y1 < y0 && y1 > y2 && y1 > y3 && y1 > y4 ) {
+	if (y1 < y0 && y1 < y2 && y1 < y4) {
 		++counter;
 	}
 
-	if (y2 < y0 && y2 < y1 && y2 + 50 > y3 && y2 < y4) {
+	if (y2 > y1 && y2 > y3 && y2 > y4) {
 		++counter;
 	}
 
-	if (y3 < y0 && y3 < y1 && y3 + 50 > y2 && y3 < y4) {
+	if (y3 < y0 && y3 < y2 && y3 < y4) {
 		++counter;
 	}
 
-	if (y4 < y0 && y4 < y1 && y4 > y2 && y4 > y3) {
+	if (y4 < y0 && y4 > y1 && y4 < y2 && y4 > y3) {
 		++counter;
 	}
 
@@ -177,5 +217,27 @@ bool BlobAnalyser::my_compare(const QImageUtilities::BlobInfo & firstBlob,const 
 			return false;
 		}
 	}
+}
+
+QImageUtilities::BlobInfo BlobAnalyser::findXnYmatch(QImageUtilities::BlobList& blobList, int x, int y)
+{
+	auto curBlob{ blobList.begin() };
+	auto endBlob{ blobList.end() };
+
+
+	while (curBlob < endBlob)
+	{
+		int curX{ static_cast<int>(curBlob->centroid().x()) };
+		int curY{ static_cast<int>(curBlob->centroid().y()) };
+
+		if (curX == x && curY == y) {
+
+			return *curBlob;
+		}
+
+		++curBlob;
+	}
+
+	return QImageUtilities::BlobInfo();
 }
 

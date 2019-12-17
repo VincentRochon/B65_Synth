@@ -40,6 +40,7 @@ private:
 	QLabel* mFirstSegmentation, *mSecondSegmentation, *mLetterAnalysed, *mTxtLetterAnalysed;
 
 	QWidget* addTitle(QWidget* widget, QString const& title);
+	QImage mMergedImage;
 
 private slots:
 	void connectCamera();

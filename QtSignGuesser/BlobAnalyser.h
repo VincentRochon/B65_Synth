@@ -2,7 +2,7 @@
 #define	BLOBANALYSER_H
 
 #include "QImageUtilities.h"
-
+#include "BlobExtractor.h"
 
 class BlobAnalyser {
 
@@ -14,12 +14,14 @@ class BlobAnalyser {
 	~BlobAnalyser() = delete;
 
 public:
-	static void sortList(QImageUtilities::BlobList & listToSort);
+	static void sortListLtoR (QImageUtilities::BlobList & listToSort);
+	static void sortList(QImage const & image,QImageUtilities::BlobList& listToSort);
 	static void trimList(QImageUtilities::BlobList& listToTrim, int AmountToKeep, bool Reverse = false);
 	static QString analysePosition(QImageUtilities::BlobList const& listToTrim);
 
 private:
-	static bool my_compare(const QImageUtilities::BlobInfo &a,const QImageUtilities::BlobInfo &b);
+	static bool my_compare(const QImageUtilities::BlobInfo& a, const QImageUtilities::BlobInfo& b);
+	static QImageUtilities::BlobInfo findXnYmatch(QImageUtilities::BlobList& blobList, int x, int y);
 
 	static bool hCheck(QImageUtilities::BlobInfo const& blob0,
 		QImageUtilities::BlobInfo const& blob1,
@@ -37,3 +39,4 @@ private:
 };
 
 #endif BLOBANALYSER_H 
+

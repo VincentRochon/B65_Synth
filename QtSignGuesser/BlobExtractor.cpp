@@ -1,6 +1,14 @@
 #include "BlobExtractor.h"
 #include <queue>
 
+/*
+bool BlobExtractor::operator!=(const pixel)
+{
+
+
+	// TODO: insert return statement here
+}*/
+/*
 void BlobExtractor::Etiquetage(QImage& img) {
 
 	
@@ -30,6 +38,8 @@ void BlobExtractor::Etiquetage(QImage& img) {
 	
 
 }
+*/
+/*
 void BlobExtractor::borderFilling(QImage & img, int color, int borderSize)
 {
 	int* curPix{ reinterpret_cast<int *>(img.bits()) };
@@ -72,6 +82,7 @@ void BlobExtractor::borderFilling(QImage & img, int color, int borderSize)
 
 
 }
+*/
 /*
 inline void BlobExtractor::floodFilling4(QImage & Data, int x, int y, int vc,int vr)
 {
@@ -92,7 +103,7 @@ inline void BlobExtractor::floodFilling4(QImage & Data, int x, int y, int vc,int
 
 }*/
 
-
+/*
 void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 
 	auto curPos{ Data.bits() };
@@ -125,7 +136,7 @@ void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 
 		++startList;
 	}*/
-
+/*
 	for (size_t i = 0; i < ListeARemplacer.size(); ++i) {
 		
 		x, y = ListeARemplacer[i].x, ListeARemplacer[i].y;
@@ -160,6 +171,7 @@ void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 
 					ListeARemplacer.Add(G, y + 1); // Insère le voisin du bas
 				}*/
+				/*
 				if (y > 0 && *(curPos - y * imageWidth) == vc) {
 
 					//ListeARemplacer.Add(G, y - 1); // Insère le voisin du haut
@@ -202,3 +214,4 @@ void BlobExtractor::Remplissage(QImage &Data,int x,int y,int vc,int vr) {
 		
 	}
 }
+*/
