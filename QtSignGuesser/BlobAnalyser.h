@@ -20,6 +20,7 @@ public:
 
 private:
 	static bool my_compare(const QImageUtilities::BlobInfo &a,const QImageUtilities::BlobInfo &b);
+
 	static bool hCheck(QImageUtilities::BlobInfo const& blob0,
 		QImageUtilities::BlobInfo const& blob1,
 		QImageUtilities::BlobInfo const& blob2,
