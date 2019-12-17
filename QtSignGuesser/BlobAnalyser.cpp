@@ -33,7 +33,7 @@ void BlobAnalyser::trimList(QImageUtilities::BlobList& listToTrim, int amountToK
 
 QString BlobAnalyser::analysePosition(QImageUtilities::BlobList const& listOfBlobs)
 {
-	if (listOfBlobs.size() != 5) return QString("invalide Size");
+	if (listOfBlobs.size() != 5) return QString("invalide");
 
 	auto curPos{ listOfBlobs.begin() };
 
