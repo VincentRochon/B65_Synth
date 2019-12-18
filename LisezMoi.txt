@@ -1,0 +1,28 @@
+QtSignGuesser : 
+	- Programme de détection de lettres formées par le langage des signes devant une caméra.
+
+Pour que le programme fonctionne :
+	- Connecter une caméra.
+	- Lancez l'application.
+	
+Pour utilisez le programme :
+	- Connecter une caméra.
+	- Lancez l'application.
+	- Calibrer les intervalles de segmentation correspondant aux couleurs des boules 
+		fluorescentes situées sur le bouts des doigts.
+	- Desactiver le remplacage de pixel.
+	- Activer le contour de forme.
+	- Activer l'analyse d'image.
+
+Prerequis : 
+	- aucun
+
+Développez avec :
+	- Visual Studio
+	- Qt
+
+Auteur:
+	- Vincent Thomassin-Rochon
+
+Contributeurs / Remerciement :
+	Merci a Jean-Christophe Demers pour son aide et sa petite librairie.

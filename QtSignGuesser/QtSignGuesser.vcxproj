@@ -97,7 +97,6 @@
   <ItemGroup>
     <ClCompile Include="BlobAnalyser.cpp" />
     <ClCompile Include="BlobExtractor.cpp" />
-    <ClCompile Include="DatabaseAccess.cpp" />
     <ClCompile Include="Distribution_Gauss.cpp" />
     <ClCompile Include="Distribution_Uniforme.cpp" />
     <ClCompile Include="ImageMerger.cpp" />
@@ -139,7 +138,6 @@
   <ItemGroup>
     <ClInclude Include="BlobAnalyser.h" />
     <ClInclude Include="BlobExtractor.h" />
-    <ClInclude Include="DatabaseAccess.h" />
     <ClInclude Include="Distribution_Gauss.h" />
     <ClInclude Include="Distribution_Uniforme.h" />
     <ClInclude Include="ImageMerger.h" />

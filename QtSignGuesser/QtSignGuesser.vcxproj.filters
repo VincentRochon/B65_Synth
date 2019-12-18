@@ -34,9 +34,6 @@
     <ClCompile Include="QSimpleImageGrabber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DatabaseAccess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Distribution_Gauss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -129,9 +126,6 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DatabaseAccess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Distribution_Gauss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
