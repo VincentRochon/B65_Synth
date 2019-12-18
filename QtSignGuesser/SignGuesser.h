@@ -34,7 +34,7 @@ private:
 	QTimer mTimer;
 	bool mCapturingContinuously;
 	bool mToggleShapeContour = false;
-	bool mTogglePixelSwitching = false;
+	bool mTogglePixelSwitching = true;
 	QColorSpaceConvertor_RGB_HSV mRGB_HSV_Converter;
 	QNIntervalScrollBar* mHsvIntervals, *mHsvIntervals2;
 	QLabel* mFirstSegmentation, *mSecondSegmentation, *mLetterAnalysed, *mTxtLetterAnalysed;

@@ -140,7 +140,7 @@ void QIntervalScrollBar::setLower(int low)
 
 void QIntervalScrollBar::setUpper(int up)
 {
-    setInterval(lower(), false, up, true);
+    setInterval(lower(), up, false, true);
 }
 
 void QIntervalScrollBar::setInterval(int low, int up)

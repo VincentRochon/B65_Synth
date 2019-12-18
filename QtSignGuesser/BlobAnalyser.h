@@ -35,6 +35,23 @@ private:
 		QImageUtilities::BlobInfo const& blob3,
 		QImageUtilities::BlobInfo const& blob4);
 
+	static bool yCheck(QImageUtilities::BlobInfo const& blob0,
+		QImageUtilities::BlobInfo const& blob1,
+		QImageUtilities::BlobInfo const& blob2,
+		QImageUtilities::BlobInfo const& blob3,
+		QImageUtilities::BlobInfo const& blob4);
+
+	static bool mCheck(QImageUtilities::BlobInfo const& blob0,
+		QImageUtilities::BlobInfo const& blob1,
+		QImageUtilities::BlobInfo const& blob2,
+		QImageUtilities::BlobInfo const& blob3,
+		QImageUtilities::BlobInfo const& blob4);
+
+	static bool lCheck(QImageUtilities::BlobInfo const& blob0,
+		QImageUtilities::BlobInfo const& blob1,
+		QImageUtilities::BlobInfo const& blob2,
+		QImageUtilities::BlobInfo const& blob3,
+		QImageUtilities::BlobInfo const& blob4);
 
 };
 

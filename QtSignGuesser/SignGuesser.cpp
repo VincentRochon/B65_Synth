@@ -98,6 +98,20 @@ SignGuesser::SignGuesser(QWidget* parent)
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::readyForCaptureChanged, this, &SignGuesser::processReadyToCapture);
 
 	// Default value
+	mHsvIntervals->interval(0).setLower(0);
+	mHsvIntervals->interval(0).setUpper(15);
+	mHsvIntervals->interval(1).setLower(140);
+	mHsvIntervals->interval(1).setUpper(255);
+	mHsvIntervals->interval(2).setLower(200);
+	mHsvIntervals->interval(2).setUpper(255);
+
+	mHsvIntervals2->interval(0).setLower(70);
+	mHsvIntervals2->interval(0).setUpper(130);
+	mHsvIntervals2->interval(1).setLower(20);
+	mHsvIntervals2->interval(1).setUpper(255);
+	mHsvIntervals2->interval(2).setLower(90);
+	mHsvIntervals2->interval(2).setUpper(255);
+
 	setupResult();
 
 	updateGui();
@@ -188,7 +202,7 @@ void SignGuesser::setupResult()
 	newFont.setPointSizeF(36);
 	newFont.setBold(true);
 	mTxtLetterAnalysed->setFont(newFont);
-	newFont.setPointSizeF(60);
+	newFont.setPointSizeF(48);
 	mLetterAnalysed->setFont(newFont);
 }
 
@@ -202,6 +216,10 @@ void SignGuesser::updateGui()
 	mCaptureContinuouslyButton->setText(mCapturingContinuously ? "Stop capture continuously" : "Start capture continuously");
 	mShapeContourButton->setText(mToggleShapeContour ? "Desactiver le contour de formes" : "Activer le contour de formes");
 	mToggleThresh->setText(mTogglePixelSwitching ? "Desactiver le remplacage de pixel" : "Activer le remplacage de pixel");
+	mAnalyseButton->setDisabled(!mSimpleImageGrabber.isConnected());
+	mShapeContourButton->setDisabled(!mSimpleImageGrabber.isConnected());
+	mToggleThresh->setDisabled(!mSimpleImageGrabber.isConnected());
+	mShowRealImage->setDisabled(!mSimpleImageGrabber.isConnected());
 }
 
 void SignGuesser::process(QImage const& image)
@@ -255,8 +273,8 @@ void SignGuesser::process(QImage const& image)
 
 	if (mToggleShapeContour) {
 
-		mBlobList1 = QImageUtilities::blobize(imageThresh, imageThresh, Qt::white, 625);
-		mBlobList2 = QImageUtilities::blobize(imageThreshCopy, imageThreshCopy, Qt::white, 625);
+		mBlobList1 = QImageUtilities::blobize(imageThresh, imageThresh, Qt::white, 400);
+		mBlobList2 = QImageUtilities::blobize(imageThreshCopy, imageThreshCopy, Qt::white, 400);
 
 		mBlobList1.draw(imageThresh);
 		mBlobList2.draw(imageThreshCopy);
