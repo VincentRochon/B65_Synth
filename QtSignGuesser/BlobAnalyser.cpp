@@ -236,7 +236,41 @@ bool BlobAnalyser::yCheck(QImageUtilities::BlobInfo const& blob0, QImageUtilitie
 
 bool BlobAnalyser::mCheck(QImageUtilities::BlobInfo const& blob0, QImageUtilities::BlobInfo const& blob1, QImageUtilities::BlobInfo const& blob2, QImageUtilities::BlobInfo const& blob3, QImageUtilities::BlobInfo const& blob4)
 {
+	int	y0{ static_cast<int>(blob0.centroid().y()) };
+	int	y1{ static_cast<int>(blob1.centroid().y()) };
+	int	y2{ static_cast<int>(blob2.centroid().y()) };
+	int	y3{ static_cast<int>(blob3.centroid().y()) };
+	int	y4{ static_cast<int>(blob4.centroid().y()) };
 
+	int counter{};
+
+	if (y0 < y1 && y0 < y2 && y0 < y3 && y0 < y4) {
+		++counter;
+	}
+
+	if (y1 > y0 && y1 > y3 && y1 > y4) {
+		++counter;
+	}
+
+	if (y2 > y0 && y2 < y3 && y2 < y4) {
+		++counter;
+	}
+
+	if (y3 > y0 && y3 < y1 && y3 > y2) {
+		++counter;
+	}
+
+	if (y4 > y0 && y4 < y1 && y4 > y2) {
+		++counter;
+	}
+
+
+	if (counter == 5)
+	{
+		return true; // success
+	}
+
+	return false; // failure
 }
 
 bool BlobAnalyser::lCheck(QImageUtilities::BlobInfo const& blob0, QImageUtilities::BlobInfo const& blob1, QImageUtilities::BlobInfo const& blob2, QImageUtilities::BlobInfo const& blob3, QImageUtilities::BlobInfo const& blob4)
