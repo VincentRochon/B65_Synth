@@ -105,7 +105,7 @@ QString BlobAnalyser::analysePosition(QImageUtilities::BlobList const& listOfBlo
 		return QString(" M");
 	}
 	if (lCheck(blob0, blob1, blob2, blob3, blob4)) {
-		return QString(" M");
+		return QString(" L");
 	}
 
 
@@ -137,15 +137,15 @@ bool BlobAnalyser::hCheck(QImageUtilities::BlobInfo const& blob0, QImageUtilitie
 	}
 
 	
-	if (y3 < y1 && y3 < y2)
+	if (y3 < y1 && y3 < y2 && y3 < y4 && y3 < y0)
 	{
-		++counter; // good position 3rd blob
+		++counter; // good position 4th blob
 	}
 	
 
-	if (y4 > y0 && y4 > y3)
+	if (y4 > y0 && y4 > y3 && y4 < y1 && y4 < y2 )
 	{
-		++counter; // good position 4th blob
+		++counter; // good position 5th blob
 	}
 
 	if (counter == 5)
@@ -283,23 +283,23 @@ bool BlobAnalyser::lCheck(QImageUtilities::BlobInfo const& blob0, QImageUtilitie
 
 	int counter{};
 
-	if (true) {
+	if (y0 > y2 && y0 > y3 && y0 > y4) {
 		++counter;
 	}
 
-	if (true) {
+	if (y1 > y2 && y1 > y3 && y1 > y4) {
 		++counter;
 	}
 
-	if (true) {
+	if (y2 < y0 && y2 < y1 && y2 > y3 && y2 > y4) {
 		++counter;
 	}
 
-	if (true) {
+	if (y3 < y0 && y3 < y1 && y3 < y2 && y3 < y4) {
 		++counter;
 	}
 
-	if (true) {
+	if (y4 < y0 && y4 < y1 && y4 > y3) {
 		++counter;
 	}
 

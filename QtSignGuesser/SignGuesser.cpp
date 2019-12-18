@@ -196,7 +196,7 @@ void SignGuesser::showResult()
 void SignGuesser::setupResult()
 {
 	mTxtLetterAnalysed->setVisible(false);
-	mTxtLetterAnalysed->setText("Resultat : ");
+	mTxtLetterAnalysed->setText(" Resultat : ");
 	mLetterAnalysed->setVisible(false);
 	QFont newFont = mTxtLetterAnalysed->font();
 	newFont.setPointSizeF(36);
