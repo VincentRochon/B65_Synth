@@ -21,6 +21,9 @@ Prerequis :
 		- Qt5Widgets.dll
 		- Qt5Core.dll
 		
+		Pour aller chercher les dlls, s'assurer d'avoir qt d'installer et executer l'exe windeploy dans .../Qt/<compilateur>/bin/
+		Avec comme argument le chemin au fichier exe qui requiert les dlls.
+		
 	- Si un fichier solution est désirer : 
 		- c++ langage standard : lastest
 		- stack reserve size : 268435456
