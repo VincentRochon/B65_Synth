@@ -7,11 +7,11 @@
 
 SignGuesser::SignGuesser(QWidget* parent)
 	: QMainWindow(parent),
-	mConnectButton{ new QPushButton("Connect") },
-	mDisconnectButton{ new QPushButton("Disconnect") },
-	mCaptureOneButton{ new QPushButton("Capture one image") },
-	mCaptureContinuouslyButton{ new QPushButton("Start capture continuously") },
-	mAnalyseButton{ new QPushButton("Analyse Picture") },
+	mConnectButton{ new QPushButton("Connecter la camera") },
+	mDisconnectButton{ new QPushButton("Deconnecter la camera") },
+	mCaptureOneButton{ new QPushButton("Capturer une image") },
+	mCaptureContinuouslyButton{ new QPushButton("Demarrer la capture continue") },
+	mAnalyseButton{ new QPushButton("Activer analyse d'image") },
 	mShapeContourButton{ new QPushButton("Activer le contour de formes") },
 	mToggleThresh{ new QPushButton("Activer replacage de pixel") },
 	mShowRealImage{ new QPushButton("Afficher la vision normale") },
@@ -60,8 +60,8 @@ SignGuesser::SignGuesser(QWidget* parent)
 	layout->addWidget(mProcessedImage,0,1,8,1);
 	layout->addWidget(mProcessedImage2, 8, 1, 8, 1);
 	layout->addWidget(mProcessedImage3, 0, 2, 8, 2);
-	layout->addWidget(addTitle(mFirstSegmentation,"Premiere segmentation : Green"),4,0);
-	layout->addWidget(addTitle(mSecondSegmentation, "Deuxieme segmentation : Orange"), 8, 0);
+	layout->addWidget(addTitle(mFirstSegmentation,"Premiere segmentation : "),4,0);
+	layout->addWidget(addTitle(mSecondSegmentation, "Deuxieme segmentation : "), 8, 0);
 	layout->addWidget(mHsvIntervals, 5, 0);
 	layout->addWidget(mToggleThresh, 6, 0);
 	layout->addWidget(mHsvIntervals2, 9, 0);
@@ -84,7 +84,7 @@ SignGuesser::SignGuesser(QWidget* parent)
 	connect(mCaptureContinuouslyButton, &QPushButton::clicked, this, &SignGuesser::captureContinuously);
 	connect(mShapeContourButton, &QPushButton::clicked, this, &SignGuesser::toggleShapeContour);
 	connect(mToggleThresh, &QPushButton::clicked, this, &SignGuesser::togglePixelSwitch);
-	connect(mAnalyseButton, &QPushButton::clicked, this, &SignGuesser::analysePicture);
+	connect(mAnalyseButton, &QPushButton::clicked, this, &SignGuesser::toggleAnalysePicture);
 	connect(mShowRealImage, &QPushButton::clicked, this, &SignGuesser::showRealImage);
 
 	connect(&mSimpleImageGrabber, &QSimpleImageGrabber::imageCaptured, mInputImage, &QSimpleImageViewer::setImage);
@@ -153,6 +153,7 @@ void SignGuesser::processReadyToCapture(bool ready)
 void SignGuesser::toggleShapeContour()
 {
 	mToggleShapeContour = !mToggleShapeContour;
+	if(!mToggleShapeContour) mAnalysePicture = false;
 	updateGui();
 }
 
@@ -162,23 +163,15 @@ void SignGuesser::togglePixelSwitch()
 	updateGui();
 }
 
-void SignGuesser::analysePicture() {
+void SignGuesser::toggleAnalysePicture() {
 
-	// merge blob list
-	mBlobListMerged = mBlobList1;
-	mBlobListMerged += mBlobList2;
-	BlobAnalyser::trimList(mBlobListMerged,5); // trim of blobs ( max 5)
-	BlobAnalyser::sortListLtoR(mBlobListMerged); // good blob list
-	// BlobAnalyser::sortList(mMergedImage, mBlobListMerged);
-	// Eval Positions
-	mLetterAnalysed->setText(BlobAnalyser::analysePosition(mBlobListMerged));
-
-	showResult();
-
+	mAnalysePicture = !mAnalysePicture;
+	updateGui();
 }
 
 void SignGuesser::showRealImage() {
 
+	mAnalysePicture = false;
 	mInputImage->setVisible(true);
 	mTxtLetterAnalysed->setVisible(false);
 	mLetterAnalysed->setVisible(false);
@@ -202,7 +195,7 @@ void SignGuesser::setupResult()
 	newFont.setPointSizeF(36);
 	newFont.setBold(true);
 	mTxtLetterAnalysed->setFont(newFont);
-	newFont.setPointSizeF(48);
+	newFont.setPointSizeF(42);
 	mLetterAnalysed->setFont(newFont);
 }
 
@@ -213,9 +206,10 @@ void SignGuesser::updateGui()
 	mDisconnectButton->setEnabled(mSimpleImageGrabber.isConnected());
 	mCaptureOneButton->setEnabled(mSimpleImageGrabber.isConnected() && !mCapturingContinuously);
 	mCaptureContinuouslyButton->setEnabled(mSimpleImageGrabber.isConnected());
-	mCaptureContinuouslyButton->setText(mCapturingContinuously ? "Stop capture continuously" : "Start capture continuously");
+	mCaptureContinuouslyButton->setText(mCapturingContinuously ? "Arreter la capture continue" : "Demarrer la capture continue");
 	mShapeContourButton->setText(mToggleShapeContour ? "Desactiver le contour de formes" : "Activer le contour de formes");
 	mToggleThresh->setText(mTogglePixelSwitching ? "Desactiver le remplacage de pixel" : "Activer le remplacage de pixel");
+	mAnalyseButton->setText(mAnalysePicture ? "Desactiver analyse d'image" : "Activer analyse d'image");
 	mAnalyseButton->setDisabled(!mSimpleImageGrabber.isConnected());
 	mShapeContourButton->setDisabled(!mSimpleImageGrabber.isConnected());
 	mToggleThresh->setDisabled(!mSimpleImageGrabber.isConnected());
@@ -284,6 +278,23 @@ void SignGuesser::process(QImage const& image)
 	emit imageProcessed(imageThresh);
 	emit imageProcessed2(imageThreshCopy);
 	emit imageProcessed3(mMergedImage = ImageMerger::merge(imageThresh, imageThreshCopy));
+
+	if (mAnalysePicture) {
+
+		// merge blob list
+		mBlobListMerged = mBlobList1;
+		mBlobListMerged += mBlobList2;
+		BlobAnalyser::sortListLtoR(mBlobListMerged); // good blob list
+		BlobAnalyser::trimList(mBlobListMerged, 5); // trim of blobs ( max 5)
+		// BlobAnalyser::sortList(mMergedImage, mBlobListMerged); // sort from top to bottom
+		// Eval Positions
+		mLetterAnalysed->setText(BlobAnalyser::analysePosition(mBlobListMerged));
+
+		showResult();
+	}
+	else {
+		showRealImage();
+	}
 
 }
 

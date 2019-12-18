@@ -22,7 +22,7 @@ private:
 	// void Remplissage(QImage &Data, int x, int y, int vc, int vr);
 
 
-	//static inline void floodFilling4(QImage& Data, int x, int y, int vc,int vr);
+	// static inline void floodFilling4(QImage& Data, int x, int y, int vc,int vr);
 
 
 public:
@@ -32,7 +32,6 @@ public:
 		int x, y;
 	};
 
-	// bool operator !=(const pixel);
 	// static void Etiquetage(QImage& img);
 	// static void borderFilling(QImage& img, int color,int borderSize); 
 

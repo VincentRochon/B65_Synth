@@ -35,6 +35,7 @@ private:
 	bool mCapturingContinuously;
 	bool mToggleShapeContour = false;
 	bool mTogglePixelSwitching = true;
+	bool mAnalysePicture = false;
 	QColorSpaceConvertor_RGB_HSV mRGB_HSV_Converter;
 	QNIntervalScrollBar* mHsvIntervals, *mHsvIntervals2;
 	QLabel* mFirstSegmentation, *mSecondSegmentation, *mLetterAnalysed, *mTxtLetterAnalysed;
@@ -50,7 +51,7 @@ private slots:
 	void processReadyToCapture(bool ready);
 	void toggleShapeContour();
 	void togglePixelSwitch();
-	void analysePicture();
+	void toggleAnalysePicture();
 	void showRealImage();
 	void showResult();
 	void setupResult();
