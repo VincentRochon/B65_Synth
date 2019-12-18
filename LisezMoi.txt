@@ -15,7 +15,16 @@ Pour utilisez le programme :
 	- Activer l'analyse d'image.
 
 Prerequis : 
-	- aucun
+	- 4 dlls de Qt placer au meme endroit que le fichier executable
+		- Qt5Gui.dll
+		- Qt5Multimedia.dll
+		- Qt5Widgets.dll
+		- Qt5Core.dll
+		
+	- Si un fichier solution est désirer : 
+		- c++ langage standard : lastest
+		- stack reserve size : 268435456
+		- inline function expansion : Any suitable (/ob2)
 
 Développez avec :
 	- Visual Studio
