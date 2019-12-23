@@ -1,6 +1,8 @@
 QtSignGuesser , 
 	- Programme de détection de lettres formées par le langage des signes devant une caméra.
 
+ ** LA CONFIGURATION POUR USAGERS OU DÉVELOPPEURS EST LA MÊME. **
+
 Pour que le programme fonctionne :
 	- Connecter une caméra.
 	- Lancez l'application.
@@ -8,15 +10,12 @@ Pour que le programme fonctionne :
 Pour utiliser le programme :
 	- Connecter une caméra.
 	- Lancez l'application.
-	- Placer les 5 boules fluorescentes d'au moins 2 couleurs différentes sur les doigts en alternance
+	- Placer les boules sur les doigts en alternance
 	- Calibrer les intervalles de segmentation correspondant aux couleurs des boules 
 		Fluorescentes situées sur le bout des doigts.
 	- Désactiver le replacage de pixel.
 	- Activer le contour de forme.
 	- Activer l'analyse d'image.
-	- Placer sa mains droite comme on le désire devant la caméra.
-
-** L'ANALYSE DE LETTE NE FONCTIONNE QUE SUR LA MAIN DROITE **
 	
 Formes possibles pouvant être remarquées : 
 	- H,L,M,X,Y
@@ -36,10 +35,10 @@ Prérequis :
 		- Qt5Core.dll
 		
 		Pour aller chercher les dals, s'assurer d'avoir qt d'installer et exécuter le EXE windeploy dans .../Qt/<compilateur>/bin/
-		avec comme argument le chemin au fichier EXE qui requiert les dals.
+		avec comme argument le chemin au fichier EXE qui requiert les dlls.
 		Sinon il est possible d'aller les chercher dans le dossier .../Qt/<compilateur>/bin/ et les transférer au niveau de l'exécutable
 		
-	- Si un fichier solution est désiré : 
+	- Pour configurer la solution Visual Studio: 
 		- c++ langage standard : lastest
 		- stack reserve size : 268435456
 		- inline function expansion : Any suitable (/ob2)
