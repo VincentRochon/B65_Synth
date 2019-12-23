@@ -208,7 +208,7 @@ void SignGuesser::updateGui()
 	mCaptureContinuouslyButton->setEnabled(mSimpleImageGrabber.isConnected());
 	mCaptureContinuouslyButton->setText(mCapturingContinuously ? "Arreter la capture continue" : "Demarrer la capture continue");
 	mShapeContourButton->setText(mToggleShapeContour ? "Desactiver le contour de formes" : "Activer le contour de formes");
-	mToggleThresh->setText(mTogglePixelSwitching ? "Desactiver le remplacage de pixel" : "Activer le remplacage de pixel");
+	mToggleThresh->setText(mTogglePixelSwitching ? "Desactiver le replacage de pixel" : "Activer le replacage de pixel");
 	mAnalyseButton->setText(mAnalysePicture ? "Desactiver analyse d'image" : "Activer analyse d'image");
 	mAnalyseButton->setDisabled(!mSimpleImageGrabber.isConnected());
 	mShapeContourButton->setDisabled(!mSimpleImageGrabber.isConnected());
